@@ -4,7 +4,7 @@ import GoogleButton from "./components/google-button";
 
 import Link from "next/link";
 
-export default function LoginPage() {
+export default function RegisterPage() {
   return (
     <main className="flex">
       <div className="w-full py-5 md:w-1/2 min-h-[100vh]">

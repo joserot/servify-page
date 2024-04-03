@@ -9,7 +9,7 @@ export default function Form() {
       <Input type="email" placeholder="Email" />
       <Input type="password" placeholder="Contraseña" />
       <Input type="password" placeholder="Confirma tu contraseña" />
-      <Button>Registrarse</Button>
+      <Button className="text-bold text-white">Registrarse</Button>
     </form>
   );
 }

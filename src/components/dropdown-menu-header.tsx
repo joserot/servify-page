@@ -54,7 +54,7 @@ export function DropdownMenuHeader() {
         </DropdownMenuGroup>
 
         <DropdownMenuSeparator />
-        <Link href={"/ofrece-tus-servicios"}>
+        <Link href={"/offer-your-services"}>
           <DropdownMenuItem>Ofrecé tus servicios</DropdownMenuItem>
         </Link>
       </DropdownMenuContent>
