@@ -2,14 +2,15 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Hero from "./components/hero";
 import Content from "./components/content";
+import FooterContact from "./components/footer-contact";
 
 export default function ProfessionalPage() {
   return (
-    <main className="bg-gray-200 dark:bg-gray-800">
+    <main className="bg-gray-200 dark:bg-gray-800 relative">
       <Header />
       <div
         className="
-        min-h-[100vh]
+        min-h-[90vh]
         "
       >
         <div
@@ -28,6 +29,7 @@ export default function ProfessionalPage() {
           <Content />
         </div>
       </div>
+      <FooterContact />
       <Footer />
     </main>
   );
