@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface Props {
   service: string;
@@ -6,8 +9,13 @@ interface Props {
 }
 
 export default function ServicesCard({ service, image }: Props) {
+  const router = useRouter();
+
+  const handleClick = () => router.push("/searcher");
+
   return (
     <div
+      onClick={handleClick}
       className="
       cursor-pointer
       w-full

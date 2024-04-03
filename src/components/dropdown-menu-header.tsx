@@ -45,10 +45,10 @@ export function DropdownMenuHeader() {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuGroup>
-          <Link href={"/registro"}>
+          <Link href={"/register"}>
             <DropdownMenuItem>Registrate</DropdownMenuItem>
           </Link>
-          <Link href={"/iniciar-sesion"}>
+          <Link href={"/login"}>
             <DropdownMenuItem>Iniciar sesión</DropdownMenuItem>
           </Link>
         </DropdownMenuGroup>
