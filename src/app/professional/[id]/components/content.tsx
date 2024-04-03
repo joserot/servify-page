@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 import Jobs from "./jobs";
+import Recommends from "./recommends";
 
 export default function Content() {
   return (
@@ -18,7 +19,9 @@ export default function Content() {
           <TabsContent value="account">
             <Jobs />
           </TabsContent>
-          <TabsContent value="password">Recomendaciones</TabsContent>
+          <TabsContent value="password">
+            <Recommends />
+          </TabsContent>
         </Tabs>
       </div>
       <div className="hidden md:flex w-full pt-10  ">

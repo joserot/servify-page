@@ -1,31 +1,38 @@
 "use client";
 
-import { Gallery } from "react-grid-gallery";
-
 const images = [
-  {
-    src: "/service-3.jpg",
-    width: 320,
-    height: 174,
-    caption: "After Rain (Jeshu John - designerspics.com)",
-  },
-  {
-    src: "/service-2.jpg",
-    width: 320,
-    height: 212,
-    alt: "Boats (Jeshu John - designerspics.com)",
-  },
-  {
-    src: "/service-4.jpg",
-    width: 320,
-    height: 212,
-  },
+  "/service-2.jpg",
+  "/service-3.jpg",
+  "/service-4.jpg",
+  "/service-5.jpg",
+  "/service-2.jpg",
+  "/service-3.jpg",
+  "/service-4.jpg",
+  "/service-5.jpg",
+  "/service-2.jpg",
+  "/service-3.jpg",
+  "/service-4.jpg",
+  "/service-5.jpg",
+  "/service-2.jpg",
+  "/service-3.jpg",
+  "/service-4.jpg",
+  "/service-5.jpg",
 ];
 
 export default function Jobs() {
   return (
-    <div className="w-full">
-      <Gallery enableImageSelection={false} images={images} />
+    <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 pt-10">
+      {images.map((image, i) => {
+        return (
+          <img
+            className="h-auto w-full object-cover rounded-sm"
+            key={i}
+            src={image}
+            width={200}
+            height={200}
+          />
+        );
+      })}
     </div>
   );
 }
