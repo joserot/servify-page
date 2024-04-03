@@ -33,7 +33,7 @@ export default function Footer() {
         </Link>
       </div>
       <div className="">
-        <Link href={"/"} className="hover:underline">
+        <Link href={"/offer-your-services"} className="hover:underline">
           Ofrecé tus servicios
         </Link>
         &nbsp;

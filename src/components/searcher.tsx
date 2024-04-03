@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+import { useRouter } from "next/navigation";
+
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -39,6 +41,14 @@ export function Searcher() {
   const [openLocations, setOpenLocations] = useState(false);
   const [location, setLocation] = useState("");
 
+  const router = useRouter();
+
+  const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    router.push("/searcher");
+  };
+
   // PENDIENTE
   // const [locationsList, setLocationsList] = useState([]);
 
@@ -54,6 +64,7 @@ export function Searcher() {
 
   return (
     <form
+      onSubmit={handleSubmit}
       className="
       w-full 
       flex
