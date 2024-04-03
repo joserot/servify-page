@@ -1,3 +1,5 @@
+"use client";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMapLocationDot,
@@ -9,13 +11,20 @@ import {
 
 import { Badge } from "@/components/ui/badge";
 
+import { useRouter } from "next/navigation";
+
 interface Props {
   worker: Professional;
 }
 
 export default function CardWorker({ worker }: Props) {
+  const router = useRouter();
+
+  const handleClick = () => router.push("/professional/1");
+
   return (
     <div
+      onClick={handleClick}
       className={`
         bg-background 
         rounded 
