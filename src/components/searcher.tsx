@@ -88,7 +88,7 @@ export function Searcher() {
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-full p-0">
-          <Command>
+          <Command className="w-full min-w-[90vw] md:min-w-0">
             <CommandList>
               <CommandInput placeholder="Busca ayuda en..." />
               <CommandEmpty>No hay resultados</CommandEmpty>
@@ -141,7 +141,7 @@ export function Searcher() {
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-full p-0">
-          <Command>
+          <Command className="w-full min-w-[90vw] md:min-w-0">
             <CommandList>
               <CommandInput placeholder="En donde lo necesitas..." />
               <CommandEmpty>No hay resultados</CommandEmpty>

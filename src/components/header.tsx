@@ -1,8 +1,13 @@
 import Logo from "./logo";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 import { DropdownMenuHeader } from "./dropdown-menu-header";
+import { Searcher } from "./searcher";
 
-export default function Header() {
+interface Props {
+  showSearcher?: boolean;
+}
+
+export default function Header({ showSearcher = false }: Props) {
   return (
     <header
       className="
@@ -29,6 +34,13 @@ export default function Header() {
             justify-between"
       >
         <Logo />
+
+        {showSearcher && (
+          <div className="hidden lg:block border-2 border-gray-200 rounded-full min-w-[500px]">
+            <Searcher />
+          </div>
+        )}
+
         <div
           className="
             flex
