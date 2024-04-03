@@ -12,8 +12,6 @@ export default function About() {
   return (
     <article
       className="
-        mb-24 
-        md:mb-44 
         bg-gray-100 
         flex 
         justify-center 

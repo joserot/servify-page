@@ -3,10 +3,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer
-      className="
-      
-          fixed 
-          bottom-0 
+      className=" 
           w-full
           bg-background
           flex

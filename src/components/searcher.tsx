@@ -26,7 +26,11 @@ import {
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 
+import { useDebouncedCallback } from "use-debounce";
+
 import { categoriesList, locationsList } from "@/data/data";
+
+//import getLocations from "@/services/getLocations";
 
 export function Searcher() {
   const [openCategories, setOpenCategories] = useState(false);
@@ -35,15 +39,42 @@ export function Searcher() {
   const [openLocations, setOpenLocations] = useState(false);
   const [location, setLocation] = useState("");
 
+  // PENDIENTE
+  // const [locationsList, setLocationsList] = useState([]);
+
+  // const handleChange = useDebouncedCallback(async (location) => {
+  //   if (!location) return;
+
+  //   const locations = await getLocations();
+
+  //   console.log(locations);
+
+  //   // setLocationsList(locations);
+  // }, 500);
+
   return (
-    <form className="w-full flex relative rounded-full overflow-hidden bg-background">
+    <form
+      className="
+      w-full 
+      flex
+      flex-col
+      gap-2
+      relative
+      overflow-hidden
+      bg-gray-500
+      p-2
+      md:p-0
+      md:bg-background
+      md:rounded-full
+      md:flex-row"
+    >
       <Popover open={openCategories} onOpenChange={setOpenCategories}>
         <PopoverTrigger asChild>
           <Button
             variant="outline"
             role="combobox"
             aria-expanded={openCategories}
-            className="w-full md:w-5/12 gap-2 justify-start items-center border-none rounded-none h-11"
+            className="w-full md:w-5/12 gap-2 justify-start items-center border-none md:rounded-none h-11 overflow-hidden"
           >
             <FontAwesomeIcon
               icon={faBriefcase}
@@ -97,7 +128,7 @@ export function Searcher() {
             variant="outline"
             role="combobox"
             aria-expanded={openLocations}
-            className="w-full md:w-5/12 gap-2 justify-start items-center border-none rounded-none h-11"
+            className="w-full md:w-5/12 gap-2 justify-start items-center border-none md:rounded-none h-11 overflow-hidden"
           >
             <FontAwesomeIcon
               icon={faLocationDot}
@@ -144,7 +175,20 @@ export function Searcher() {
         </PopoverContent>
       </Popover>
 
-      <Button className="absolute right-1 top-1 h-9 w-9 rounded-full">
+      <Button
+        className="
+        flex
+        items-center
+        gap-2
+        w-full 
+        right-1
+        top-1
+        md:rounded-full
+        md:absolute
+        md:h-9
+        md:w-9"
+      >
+        <span className="md:hidden">Buscar</span>
         <FontAwesomeIcon icon={faMagnifyingGlass} />
       </Button>
     </form>
