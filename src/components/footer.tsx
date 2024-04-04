@@ -39,8 +39,8 @@ export default function Footer() {
         &nbsp;
         <span>·</span>
         &nbsp;
-        <Link href={"/"} className="hover:underline">
-          Sobre nosotros
+        <Link href={"/contact"} className="hover:underline">
+          Contacto
         </Link>
       </div>
     </footer>

@@ -72,7 +72,8 @@ export function Searcher() {
       gap-2
       relative
       overflow-hidden
-      bg-gray-500
+      bg-gray-400
+      rounded-md
       p-2
       md:p-0
       md:bg-background

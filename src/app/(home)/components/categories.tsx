@@ -23,10 +23,10 @@ export default function Categories() {
             />
           ))}
         </div>
-        <Button variant="link" className="self-end flex gap-2 items-center">
+        {/* <Button variant="link" className="self-end flex gap-2 items-center">
           Ver todos los servicios
           <FontAwesomeIcon icon={faArrowRight} />
-        </Button>
+        </Button> */}
       </div>
     </article>
   );
