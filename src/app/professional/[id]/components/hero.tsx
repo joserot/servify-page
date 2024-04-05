@@ -24,7 +24,7 @@ export default function Hero() {
       >
         <div>
           <img
-            src="/user.jpg"
+            src="/user-1.webp"
             width={150}
             height={150}
             alt="Jose Rotchen"
@@ -61,7 +61,7 @@ export default function Hero() {
               md:text-xl
              `}
           >
-            Jose Rotchen
+            Carlos Rodriguez
           </h3>
           <span
             className={`
