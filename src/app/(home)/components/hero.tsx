@@ -58,7 +58,7 @@ export default function Hero() {
             width={600}
             height={400}
             alt="servify"
-            src={"/hero-home.webp"}
+            src={"/hero-home.jpg"}
             className="
             w-full
              max-w-xl  
