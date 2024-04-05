@@ -6,6 +6,9 @@ import {
   faBriefcase,
 } from "@fortawesome/free-solid-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+
+import { Badge } from "@/components/ui/badge";
 
 import { Button } from "@/components/ui/button";
 
@@ -17,10 +20,7 @@ export default function Hero() {
         flex 
         gap-5
         md:gap-10
-        items-center    
-        border-b
-      border-gray-300 
-        pb-5"
+        items-center"
       >
         <div>
           <img
@@ -115,14 +115,43 @@ export default function Hero() {
           </div>
         </div>
       </div>
-      <div className="pt-5">
+      <div className="pt-2">
+        <div
+          className={`
+              border-t 
+              border-gray-300 
+              flex 
+              justify-start 
+              items-start 
+              flex-wrap 
+              py-2 
+              gap-2`}
+        >
+          {["Experincia verificada", "Matrícula verificada"].map(
+            (verification) => {
+              return (
+                <Badge
+                  key={verification}
+                  className={`
+                 text-xs 
+                  sm:text-sm
+                 bg-green-500
+                 flex
+                 items-center
+                 gap-2 
+              `}
+                >
+                  <FontAwesomeIcon icon={faCheck} /> {verification}
+                </Badge>
+              );
+            }
+          )}
+        </div>
         <p className="text-sm text-foreground">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non
-          blandit ipsum. Donec efficitur at urna quis fringilla. Vestibulum a
-          suscipit lectus. Proin sit amet augue cursus, dictum ipsum nec,
-          iaculis est. Quisque at consequat libero, eleifend mollis dui. Aliquam
-          erat volutpat. In ultrices cursus est eget blandit. Cras hendrerit
-          quam quis varius pellentesque.
+          Soy un gasista matriculado con amplia experiencia en instalaciones de
+          gas y plomería. A lo largo de mi carrera, he trabajado en una variedad
+          de proyectos, desde pequeñas reparaciones hasta instalaciones
+          completas en edificios residenciales y comerciales.
         </p>
       </div>
     </div>
