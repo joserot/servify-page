@@ -58,18 +58,6 @@ export const locationsList = [
 
 export const workers = [
   {
-    id: "1",
-    name: "Jose",
-    lastName: "Rotchen",
-    image: "/user.webp",
-    location: "Posadas, Misiones",
-    serviceLocation: "En tu domicilio",
-    service: "Gasista matriculado",
-    stars: 5,
-    recommendations: 16,
-    verifications: ["Experincia verificada", "Matrícula verificada"],
-  },
-  {
     id: "2",
     name: "Carlos",
     lastName: "Rodriguez",
@@ -118,18 +106,7 @@ export const workers = [
     recommendations: 4,
     verifications: ["Experincia verificada", "Matrícula verificada"],
   },
-  {
-    id: "6",
-    name: "Jose",
-    lastName: "Rotchen",
-    image: "/user.webp",
-    location: "Posadas, Misiones",
-    serviceLocation: "En tu domicilio",
-    service: "Gasista matriculado",
-    stars: 5,
-    recommendations: 16,
-    verifications: ["Experincia verificada", "Matrícula verificada"],
-  },
+
   {
     id: "7",
     name: "Carlos",
@@ -155,6 +132,18 @@ export const workers = [
     verifications: ["Matrícula verificada"],
   },
   {
+    id: "1",
+    name: "Jose",
+    lastName: "Rotchen",
+    image: "/user.webp",
+    location: "Posadas, Misiones",
+    serviceLocation: "En tu domicilio",
+    service: "Gasista matriculado",
+    stars: 5,
+    recommendations: 16,
+    verifications: ["Experincia verificada", "Matrícula verificada"],
+  },
+  {
     id: "9",
     name: "Alberto",
     lastName: "Fernandez",
@@ -165,5 +154,17 @@ export const workers = [
     stars: 4,
     recommendations: 11,
     verifications: ["Matrícula verificada"],
+  },
+  {
+    id: "11",
+    name: "Javier",
+    lastName: "Ortigoza",
+    image: "/user-4.webp",
+    location: "Posadas, Misiones",
+    serviceLocation: "En tu domicilio",
+    service: "Plomero matriculado",
+    stars: 5,
+    recommendations: 4,
+    verifications: ["Experincia verificada", "Matrícula verificada"],
   },
 ];
