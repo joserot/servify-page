@@ -6,6 +6,9 @@ import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 import Jobs from "./jobs";
 import Recommends from "./recommends";
+import ModalLogin from "./modal-login";
+
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 
 export default function Content() {
   return (
@@ -25,9 +28,14 @@ export default function Content() {
         </Tabs>
       </div>
       <div className="hidden md:flex w-full pt-10  ">
-        <Button className="w-full items-center text-lg font-bold gap-2">
-          Contactar <FontAwesomeIcon icon={faWhatsapp} />
-        </Button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button className="w-full items-center text-lg font-bold gap-2">
+              Contactar <FontAwesomeIcon icon={faWhatsapp} />
+            </Button>
+          </DialogTrigger>
+          <ModalLogin />
+        </Dialog>
       </div>
     </div>
   );

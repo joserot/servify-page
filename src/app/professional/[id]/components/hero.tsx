@@ -5,12 +5,11 @@ import {
   faStar,
   faBriefcase,
 } from "@fortawesome/free-solid-svg-icons";
-import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 import { Badge } from "@/components/ui/badge";
 
-import { Button } from "@/components/ui/button";
+import ContactButton from "./contact-button";
 
 export default function Hero() {
   return (
@@ -49,10 +48,8 @@ export default function Hero() {
           relative
           "
         >
-          <Button className="hidden md:flex absolute top-0 right-0 gap-2 items-center text-lg font-bold">
-            Contactar
-            <FontAwesomeIcon icon={faWhatsapp} />
-          </Button>
+          <ContactButton />
+
           <h3
             className={`
               font-semibold 
