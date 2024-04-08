@@ -11,6 +11,8 @@ import { Button } from "@/components/ui/button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faEye } from "@fortawesome/free-solid-svg-icons";
 
+import ButtonEditProfessional from "./button-edit-professional";
+
 const invoices = [
   {
     id: "1",
@@ -64,9 +66,7 @@ export function TableProfessionals() {
             <TableCell>{invoice.job}</TableCell>
             <TableCell>{invoice.date}</TableCell>
             <TableCell className="flex gap-2 items-center">
-              <Button>
-                <FontAwesomeIcon className="w-3" icon={faPen} />
-              </Button>
+              <ButtonEditProfessional />
               <Button>
                 <FontAwesomeIcon className="w-3" icon={faEye} />
               </Button>

@@ -168,3 +168,25 @@ export const workers = [
     verifications: ["Experincia verificada", "Matrícula verificada"],
   },
 ];
+
+export const modalityList = [
+  {
+    label: "En tu domicilio",
+    value: "En tu domicilio",
+  },
+  {
+    label: "En el domicilio del profesional",
+    value: "En el domicilio del profesional",
+  },
+];
+
+export const verificationsList = [
+  {
+    label: "Experincia verificada",
+    value: "Experincia verificada",
+  },
+  {
+    label: "Matrícula verificada",
+    value: "Matrícula verificada",
+  },
+];

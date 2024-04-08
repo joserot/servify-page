@@ -58,7 +58,7 @@ export default function SideNav() {
             className="mt-6 flex h-[48px] md:w-full grow items-center justify-center gap-2 md:flex-none md:justify-start md:mt-0"
           >
             <FontAwesomeIcon className="w-5" icon={faRightToBracket} />
-            <div>Cerrar sesión</div>
+            Cerrar sesión
           </Button>
         </form>
       </div>
