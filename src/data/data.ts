@@ -2,42 +2,42 @@ export const categoriesList = [
   {
     value: "Electricista",
     label: "Electricista",
-    image: "/electricista.jpg",
+    image: "/electricista.webp",
   },
   {
     value: "Plomeria",
     label: "Plomeria",
-    image: "/plomero.jpg",
+    image: "/plomero.webp",
   },
   {
     value: "Mudanza",
     label: "Mudanza",
-    image: "/mudanza.jpg",
+    image: "/mudanza.webp",
   },
   {
     value: "Limpieza evento",
     label: "Limpieza evento",
-    image: "/limpieza-evento.jpg",
+    image: "/limpieza-evento.webp",
   },
   {
     value: "Masajes",
     label: "Masajes",
-    image: "/masajes.jpg",
+    image: "/masajes.webp",
   },
   {
     value: "Eventos",
     label: "Eventos",
-    image: "/eventos.jpg",
+    image: "/eventos.webp",
   },
   {
     value: "Pintura",
     label: "Pintura",
-    image: "/pintura.jpg",
+    image: "/pintura.webp",
   },
   {
     value: "Limpieza hogar",
     label: "Limpieza hogar",
-    image: "/limpieza.jpg",
+    image: "/limpieza.webp",
   },
 ];
 

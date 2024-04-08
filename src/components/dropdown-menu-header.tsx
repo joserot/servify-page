@@ -38,7 +38,7 @@ export function DropdownMenuHeader() {
             height={28}
             width={28}
             className="h-7 w-7 rounded-full "
-            src="/placeholder-user.jpg"
+            src="/placeholder-user.webp"
             alt="foto de perfil"
           />
         </Button>
