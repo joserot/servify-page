@@ -71,7 +71,7 @@ export default function BigImage({ image, setImage, imagesList }: Props) {
       <img
         src={image}
         width={500}
-        className="w-11/12 max-w-[700px] h-auto object-cover"
+        className="w-11/12 max-w-[700px] h-auto object-cover rounded-sm"
       />
     </div>
   );

@@ -4,10 +4,12 @@ import Filters from "./components/filters";
 import OrderBy from "./components/order-by";
 import Cards from "./components/cards";
 import ButtonFilters from "./components/button-filters";
+import ModalLocation from "./components/modal-location";
 
 export default function SearcherPage() {
   return (
     <main className="bg-gray-200 dark:bg-gray-800">
+      <ModalLocation />
       <Header showSearcher />
       <article
         className="
