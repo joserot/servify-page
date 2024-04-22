@@ -1,7 +1,7 @@
 import { DialogContent, DialogFooter } from "@/components/ui/dialog";
 
 import Form from "./form-login";
-import GoogleButton from "./google-button";
+import GoogleButton from "@/components/google-button";
 import Separator from "./separator";
 
 import Link from "next/link";

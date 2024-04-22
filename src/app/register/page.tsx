@@ -1,6 +1,6 @@
 import Form from "./components/form";
 import Separator from "./components/separator";
-import GoogleButton from "./components/google-button";
+import GoogleButton from "@/components/google-button";
 
 import Banner from "@/components/banner";
 
