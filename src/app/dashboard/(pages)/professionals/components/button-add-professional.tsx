@@ -8,9 +8,13 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import FormAddProfessional from "./form-add-professional";
 
+import { useState } from "react";
+
 export default function ButtonAddProfessional() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="flex gap-2">
           <FontAwesomeIcon className="w-3" icon={faPlus} /> Agregar profesional
@@ -21,7 +25,7 @@ export default function ButtonAddProfessional() {
           <span className="block mb-4 text-3xl font-bold text-center">
             Agregar profesional
           </span>
-          <FormAddProfessional />
+          <FormAddProfessional setOpen={setOpen} />
         </div>
       </DialogContent>
     </Dialog>

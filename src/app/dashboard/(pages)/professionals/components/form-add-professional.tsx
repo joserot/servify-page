@@ -1,3 +1,5 @@
+"use client";
+
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -12,6 +14,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 
+import { useToast } from "@/components/ui/use-toast";
+
+import addProfessional from "../services/add-professional";
+
 import {
   categoriesList,
   locationsList,
@@ -19,16 +25,60 @@ import {
   verificationsList,
 } from "@/data/data";
 
-export default function FormAddProfessional() {
+import revalidateUrl from "@/app/actions";
+
+interface Props {
+  setOpen: (open: boolean) => void;
+}
+
+export default function FormAddProfessional({ setOpen }: Props) {
+  const { toast } = useToast();
+
+  const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const name = event.currentTarget.userName.value;
+    const lastName = event.currentTarget.lastName.value;
+    const email = event.currentTarget.email.value;
+    const price = event.currentTarget.price.value;
+    const service = event.currentTarget.service.value;
+    const location = event.currentTarget.location.value;
+    const locationService = event.currentTarget.locationService.value;
+    const phone = event.currentTarget.phone.value;
+    const description = event.currentTarget.description.value;
+    const verifications = [""];
+
+    const response = await addProfessional(
+      email,
+      name,
+      lastName,
+      service,
+      location,
+      locationService,
+      phone,
+      description,
+      verifications,
+      Number(price)
+    );
+
+    if (response.status === 201 || response.status === 200) {
+      revalidateUrl("/dashboard/professionals");
+      setOpen(false);
+    } else {
+      toast({
+        variant: "destructive",
+        title: response,
+      });
+    }
+  };
+
   return (
-    <form className="w-full flex flex-col gap-4">
-      <Label className="flex flex-col gap-1">
-        Foto de perfil
-        <Input type="file" />
-      </Label>
-      <Input placeholder="Nombre" />
-      <Input placeholder="Apellido" />
-      <Select>
+    <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
+      <Input required placeholder="Nombre" name="userName" />
+      <Input required placeholder="Apellido" name="lastName" />
+      <Input required placeholder="Email" type="email" name="email" />
+
+      <Select required name="service">
         <SelectTrigger>
           <SelectValue placeholder="Selecciona la profesion" />
         </SelectTrigger>
@@ -44,7 +94,7 @@ export default function FormAddProfessional() {
           </SelectGroup>
         </SelectContent>
       </Select>
-      <Select>
+      <Select required name="location">
         <SelectTrigger>
           <SelectValue placeholder="Selecciona la ubicación" />
         </SelectTrigger>
@@ -60,7 +110,7 @@ export default function FormAddProfessional() {
           </SelectGroup>
         </SelectContent>
       </Select>
-      <Select>
+      <Select required name="locationService">
         <SelectTrigger>
           <SelectValue placeholder="Selecciona la ubicación del servicio" />
         </SelectTrigger>
@@ -76,7 +126,15 @@ export default function FormAddProfessional() {
           </SelectGroup>
         </SelectContent>
       </Select>
-      <Input placeholder="Teléfono" />
+      <Input required placeholder="Teléfono" name="phone" />
+      <Textarea required placeholder="Descripción" name="description" />
+
+      <Input placeholder="Precio mínimo" type="number" name="price" />
+
+      <Label className="flex flex-col gap-1">
+        Foto de perfil
+        <Input type="file" name="image" />
+      </Label>
 
       {verificationsList.map((varification) => {
         return (
@@ -91,14 +149,7 @@ export default function FormAddProfessional() {
           </div>
         );
       })}
-      <Textarea placeholder="Descripción" />
-      <Label className="flex flex-col gap-2">
-        Imagenes de trabajos
-        <div className="flex gap-1">
-          <Input type="file" />
-          <Button>+</Button>
-        </div>
-      </Label>
+
       <Button>Agregar profesional</Button>
     </form>
   );

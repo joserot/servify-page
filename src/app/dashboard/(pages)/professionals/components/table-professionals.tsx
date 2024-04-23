@@ -9,7 +9,9 @@ import {
 import { Button } from "@/components/ui/button";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen, faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faTrash } from "@fortawesome/free-solid-svg-icons";
+
+import Link from "next/link";
 
 import ButtonEditProfessional from "./button-edit-professional";
 
@@ -47,7 +49,12 @@ export function TableProfessionals({ professionals }: Props) {
             <TableCell className="flex gap-2 items-center">
               <ButtonEditProfessional />
               <Button>
-                <FontAwesomeIcon className="w-3" icon={faEye} />
+                <Link target="_blank" href={`/professional/${professional.id}`}>
+                  <FontAwesomeIcon className="w-3" icon={faEye} />
+                </Link>
+              </Button>
+              <Button variant={"destructive"}>
+                <FontAwesomeIcon className="w-3" icon={faTrash} />
               </Button>
             </TableCell>
           </TableRow>
