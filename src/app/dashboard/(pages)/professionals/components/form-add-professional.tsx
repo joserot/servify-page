@@ -16,6 +16,8 @@ import { Button } from "@/components/ui/button";
 
 import { useToast } from "@/components/ui/use-toast";
 
+import { useState } from "react";
+
 import addProfessional from "../services/add-professional";
 
 import {
@@ -34,6 +36,12 @@ interface Props {
 export default function FormAddProfessional({ setOpen }: Props) {
   const { toast } = useToast();
 
+  const [checkboxes, setCheckboxes] = useState(
+    verificationsList.map((v) => {
+      return { value: v.value, label: v.label, checked: false };
+    })
+  );
+
   const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -46,7 +54,13 @@ export default function FormAddProfessional({ setOpen }: Props) {
     const locationService = event.currentTarget.locationService.value;
     const phone = event.currentTarget.phone.value;
     const description = event.currentTarget.description.value;
-    const verifications = [""];
+    const verifications = checkboxes
+      .filter((checkbox) => {
+        return checkbox.checked;
+      })
+      .map((c) => {
+        return c.value;
+      });
 
     const response = await addProfessional(
       email,
@@ -69,6 +83,15 @@ export default function FormAddProfessional({ setOpen }: Props) {
         variant: "destructive",
         title: response,
       });
+    }
+  };
+
+  const handleCheckboxClick = async (checkboxValue: string) => {
+    let updatedCheckboxes = [...checkboxes];
+    let index = updatedCheckboxes.findIndex((x) => checkboxValue === x.value);
+    if (index !== -1) {
+      updatedCheckboxes[index].checked = !updatedCheckboxes[index].checked;
+      setCheckboxes(updatedCheckboxes);
     }
   };
 
@@ -136,10 +159,17 @@ export default function FormAddProfessional({ setOpen }: Props) {
         <Input type="file" name="image" />
       </Label>
 
-      {verificationsList.map((varification) => {
+      {checkboxes.map((varification) => {
         return (
           <div key={varification.value} className="flex items-center space-x-2">
-            <Checkbox id={varification.value} />
+            <Checkbox
+              id={varification.value}
+              name={varification.value}
+              checked={varification.checked}
+              onClick={() => {
+                handleCheckboxClick(varification.value);
+              }}
+            />
             <label
               htmlFor={varification.value}
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
