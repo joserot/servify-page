@@ -30,6 +30,7 @@ export default function Form() {
       });
     }
   };
+
   return (
     <form onSubmit={handleSubmit} className="w-full  flex flex-col gap-4">
       <Input required type="email" placeholder="Email" name="email" />
