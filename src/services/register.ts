@@ -36,6 +36,10 @@ export default async function register({
 
     throw new Error();
   } catch (error: any) {
-    return error;
+    return (
+      error.response.data.message ||
+      error.response.data.message[0] ||
+      "Ocurrió un error"
+    );
   }
 }

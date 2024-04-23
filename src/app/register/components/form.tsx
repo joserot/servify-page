@@ -2,6 +2,7 @@
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 
 import register from "@/services/register";
 
@@ -9,6 +10,8 @@ import { useRouter } from "next/navigation";
 
 export default function Form() {
   const router = useRouter();
+
+  const { toast } = useToast();
 
   const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -23,7 +26,10 @@ export default function Form() {
     if (response.status === 201) {
       router.push("/");
     } else {
-      alert("Ocurrió un error");
+      toast({
+        variant: "destructive",
+        title: response,
+      });
     }
   };
 
@@ -38,7 +44,7 @@ export default function Form() {
         placeholder="Contraseña"
         name="password"
       />
-      <Button className="text-bold text-white">Registrarse</Button>
+      <Button>Registrarse</Button>
     </form>
   );
 }

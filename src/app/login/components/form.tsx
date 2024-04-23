@@ -2,6 +2,7 @@
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 
 import loginEmail from "@/services/login-email";
 
@@ -9,6 +10,8 @@ import { useRouter } from "next/navigation";
 
 export default function Form() {
   const router = useRouter();
+
+  const { toast } = useToast();
 
   const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -21,7 +24,10 @@ export default function Form() {
     if (response.status === 201) {
       router.push("/");
     } else {
-      alert("Ocurrió un error");
+      toast({
+        variant: "destructive",
+        title: response,
+      });
     }
   };
   return (

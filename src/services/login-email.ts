@@ -26,7 +26,11 @@ export default async function loginEmail({ email, password }: Props) {
     }
 
     throw new Error();
-  } catch (error) {
-    return error;
+  } catch (error: any) {
+    return (
+      error.response.data.message ||
+      error.response.data.message[0] ||
+      "Ocurrió un error"
+    );
   }
 }
