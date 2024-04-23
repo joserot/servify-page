@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import logout from "@/services/logout";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -6,6 +9,10 @@ import {
   faUsers,
   faUserTie,
 } from "@fortawesome/free-solid-svg-icons";
+
+import { usePathname } from "next/navigation";
+
+import clsx from "clsx";
 
 import { Button } from "@/components/ui/button";
 
@@ -23,6 +30,8 @@ const linksList = [
 ];
 
 export default function SideNav() {
+  const pathname = usePathname();
+
   return (
     <div className="flex h-full flex-col px-3 py-4 md:px-2 bg-primary">
       <Link
@@ -41,7 +50,15 @@ export default function SideNav() {
           {linksList.map((link) => {
             return (
               <Link
-                className="text-lg text-white font-semibold flex gap-3 items-center p-3 rounded-md hover:bg-white hover:text-primary transition-all"
+                className={clsx(
+                  "text-lg font-semibold flex gap-3 items-center p-3 rounded-md hover:bg-white hover:text-primary transition-all",
+                  {
+                    "bg-white text-primary": pathname === link.value,
+                  },
+                  {
+                    "text-white": pathname !== link.value,
+                  }
+                )}
                 key={link.value}
                 href={link.value}
               >
@@ -54,6 +71,7 @@ export default function SideNav() {
         <div className="hidden h-auto w-full grow rounded-md bg-primary md:block"></div>
         <form>
           <Button
+            onClick={logout}
             variant={"secondary"}
             className="mt-6 flex h-[48px] md:w-full grow items-center justify-center gap-2 md:flex-none md:justify-start md:mt-0"
           >
