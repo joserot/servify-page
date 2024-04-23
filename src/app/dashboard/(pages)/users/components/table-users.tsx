@@ -6,10 +6,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import ButtonDeleteUser from "./button-delete-user";
 
 interface Props {
   users: User[];
@@ -44,9 +42,7 @@ export function TableUsers({ users }: Props) {
               />
             </TableCell>
             <TableCell>
-              <Button variant={"destructive"}>
-                <FontAwesomeIcon icon={faTrash} />
-              </Button>
+              <ButtonDeleteUser id={user.id} />
             </TableCell>
           </TableRow>
         ))}

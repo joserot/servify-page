@@ -9,7 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 import Link from "next/link";
 
