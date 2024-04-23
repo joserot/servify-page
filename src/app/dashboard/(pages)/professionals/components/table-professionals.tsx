@@ -14,6 +14,7 @@ import { faEye, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
 import ButtonEditProfessional from "./button-edit-professional";
+import ButtonDeleteProfessional from "./button-delete-professional";
 
 interface Props {
   professionals: Professional[];
@@ -53,9 +54,7 @@ export function TableProfessionals({ professionals }: Props) {
                   <FontAwesomeIcon className="w-3" icon={faEye} />
                 </Link>
               </Button>
-              <Button variant={"destructive"}>
-                <FontAwesomeIcon className="w-3" icon={faTrash} />
-              </Button>
+              <ButtonDeleteProfessional id={professional.id} />
             </TableCell>
           </TableRow>
         ))}
