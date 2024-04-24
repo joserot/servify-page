@@ -5,6 +5,7 @@ import OrderBy from "./components/order-by";
 import Cards from "./components/cards";
 import ButtonFilters from "./components/button-filters";
 import ModalLocation from "./components/modal-location";
+import { Searcher } from "@/components/searcher";
 
 import getProfessionals from "./services/get-professionals";
 
@@ -34,21 +35,22 @@ export default async function SearcherPage({
   );
 
   return (
-    <main className="bg-gray-200 dark:bg-gray-800">
+    <main className="bg-gray-200 dark:bg-gray-800 ">
       {/* <ModalLocation /> */}
       <Header showSearcher />
       <article
         className="
         flex 
         flex-col 
-        justify-center
+        justify-start
         start-center
         md:flex-row
         w-11/12
         max-w-7xl
         mx-auto
         mt-10
-        h-full"
+        h-full
+        min-h-[90vh]"
       >
         <Filters />
         <div
@@ -57,6 +59,9 @@ export default async function SearcherPage({
         lg:w-2/3
         pb-20"
         >
+          <div className="md:hidden w-full mb-5">
+            <Searcher background={false} />
+          </div>
           <OrderBy />
           {!professionals || !professionals.length ? (
             <p>No se encontraron profesionales</p>

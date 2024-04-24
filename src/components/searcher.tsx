@@ -32,7 +32,11 @@ import { useSearchParams } from "next/navigation";
 
 import { categoriesList, locationsList } from "@/data/data";
 
-export function Searcher() {
+interface Props {
+  background?: boolean;
+}
+
+export function Searcher({ background = true }: Props) {
   const searchParams = useSearchParams();
 
   const professionQuery = searchParams.get("profession");
@@ -63,20 +67,20 @@ export function Searcher() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="
+      className={`
       w-full 
       flex
       flex-col
       gap-2
       relative
       overflow-hidden
-      bg-gray-400
+      ${background ? "bg-gray-400" : ""}
       rounded-md
       p-2
       md:p-0
       md:bg-background
       md:rounded-full
-      md:flex-row"
+      md:flex-row`}
     >
       <Popover open={openCategories} onOpenChange={setOpenCategories}>
         <PopoverTrigger asChild>
