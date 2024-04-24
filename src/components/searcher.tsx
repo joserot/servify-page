@@ -32,11 +32,21 @@ import { useSearchParams } from "next/navigation";
 
 import { categoriesList, locationsList } from "@/data/data";
 
+import { Suspense } from "react";
+
 interface Props {
   background?: boolean;
 }
 
 export function Searcher({ background = true }: Props) {
+  return (
+    <Suspense>
+      <SearcherBar background={background} />
+    </Suspense>
+  );
+}
+
+function SearcherBar({ background = true }: Props) {
   const searchParams = useSearchParams();
 
   const professionQuery = searchParams.get("profession");
