@@ -48,7 +48,7 @@ export function TableProfessionals({ professionals }: Props) {
             <TableCell>{professional.active ? "Activo" : "Inactivo"}</TableCell>
             <TableCell>{professional.createdAt}</TableCell>
             <TableCell className="flex gap-2 items-center">
-              <ButtonEditProfessional />
+              <ButtonEditProfessional id={professional.id} />
               <Button>
                 <Link target="_blank" href={`/professional/${professional.id}`}>
                   <FontAwesomeIcon className="w-3" icon={faEye} />

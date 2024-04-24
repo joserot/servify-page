@@ -8,9 +8,17 @@ import { faPen } from "@fortawesome/free-solid-svg-icons";
 
 import FormEditProfessional from "./form-edit-professional";
 
-export default function ButtonEditProfessional() {
+import { useState } from "react";
+
+interface Props {
+  id: string;
+}
+
+export default function ButtonEditProfessional({ id }: Props) {
+  const [open, setOpen] = useState(false);
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button>
           <FontAwesomeIcon className="w-3" icon={faPen} />
@@ -21,7 +29,7 @@ export default function ButtonEditProfessional() {
           <span className="block mb-4 text-3xl font-bold text-center">
             Editar profesional
           </span>
-          <FormEditProfessional />
+          <FormEditProfessional id={id} setOpen={setOpen} />
         </div>
       </DialogContent>
     </Dialog>

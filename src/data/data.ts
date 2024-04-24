@@ -190,3 +190,14 @@ export const verificationsList = [
     value: "Matrícula verificada",
   },
 ];
+
+export const statusList = [
+  {
+    label: "Activo",
+    value: "Activo",
+  },
+  {
+    label: "Inactivo",
+    value: "Inactivo",
+  },
+];

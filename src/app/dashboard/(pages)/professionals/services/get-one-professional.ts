@@ -7,7 +7,7 @@ import { getCookies } from "next-client-cookies/server";
 
 import professionalAdapter from "@/adapters/professional-adapter";
 
-export default async function getProfessionals() {
+export default async function getOneProfessional(id: string) {
   const cookies = getCookies();
   const token: any = cookies.get(ACCESS_TOKEN_NAME);
 
@@ -16,14 +16,12 @@ export default async function getProfessionals() {
   }
 
   try {
-    const response: any = await axios.get(API_URL + "/professionals/admin", {
+    const response: any = await axios.get(API_URL + `/professionals/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
 
     if (response.status === 200) {
-      return response.data.map((professional: any) => {
-        return professionalAdapter(professional);
-      });
+      return professionalAdapter(response.data);
     }
 
     throw new Error();
