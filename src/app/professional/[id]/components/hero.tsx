@@ -4,6 +4,7 @@ import {
   faHouse,
   faStar,
   faBriefcase,
+  faMoneyCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
@@ -11,7 +12,20 @@ import { Badge } from "@/components/ui/badge";
 
 import ContactButton from "./contact-button";
 
-export default function Hero() {
+import getLabel from "@/utils/get-label";
+
+import {
+  categoriesList,
+  locationsList,
+  modalityList,
+  verificationsList,
+} from "@/data/data";
+
+interface Props {
+  professional: Professional;
+}
+
+export default function Hero({ professional }: Props) {
   return (
     <div className="mb-10">
       <div
@@ -23,10 +37,10 @@ export default function Hero() {
       >
         <div>
           <img
-            src="/user-1.webp"
+            src={professional.image}
             width={150}
             height={150}
-            alt="Jose Rotchen"
+            alt={professional.name + " " + professional.lastName}
             className="
             w-24
             h-24
@@ -58,7 +72,7 @@ export default function Hero() {
               md:text-xl
              `}
           >
-            Carlos Rodriguez
+            {professional.name + " " + professional.lastName}
           </h3>
           <span
             className={`
@@ -70,7 +84,7 @@ export default function Hero() {
               gap-2`}
           >
             <FontAwesomeIcon icon={faMapLocationDot} className="text-primary" />
-            Posadas, Misiones
+            {getLabel(professional.location, locationsList)}
           </span>
           <span
             className={`
@@ -82,7 +96,7 @@ export default function Hero() {
               gap-2`}
           >
             <FontAwesomeIcon icon={faHouse} className="text-primary" />
-            En tu domicilio
+            {getLabel(professional.locationService, modalityList)}
           </span>
           <span
             className={`
@@ -94,27 +108,33 @@ export default function Hero() {
               gap-2`}
           >
             <FontAwesomeIcon icon={faBriefcase} className="text-primary" />
-            Gasista matriculado
+            {getLabel(professional.service, categoriesList)}
           </span>
-          <div
+          <span
             className={`
-            my-1
-            text-sm 
-            sm:text-base
-              text-yellow-500 `}
+              text-sm 
+              sm:text-base
+              text-foreground
+              flex
+              items-center
+              gap-2`}
           >
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <span className="text-foreground ml-2 text-sm">(16)</span>
-          </div>
+            <FontAwesomeIcon icon={faMoneyCheck} className="text-primary" />
+            {"Desde " + professional.price + " ARS"}
+          </span>
+
+          <span className="text-foreground text-sm py-2">
+            {professional.likes > 0 ? (
+              <strong>{professional.likes + " Personas lo recomiendan"}</strong>
+            ) : null}
+          </span>
         </div>
       </div>
       <div className="pt-2">
-        <div
-          className={`
+        {professional.verifications && professional.verifications.length ? (
+          <div
+            className={`
+
               border-t 
               border-gray-300 
               flex 
@@ -123,9 +143,8 @@ export default function Hero() {
               flex-wrap 
               py-2 
               gap-2`}
-        >
-          {["Experincia verificada", "Matrícula verificada"].map(
-            (verification) => {
+          >
+            {professional.verifications.map((verification) => {
               return (
                 <Badge
                   key={verification}
@@ -138,18 +157,14 @@ export default function Hero() {
                  gap-2 
               `}
                 >
-                  <FontAwesomeIcon icon={faCheck} /> {verification}
+                  <FontAwesomeIcon icon={faCheck} />
+                  {getLabel(verification, verificationsList)}
                 </Badge>
               );
-            }
-          )}
-        </div>
-        <p className="text-sm text-foreground">
-          Soy un gasista matriculado con amplia experiencia en instalaciones de
-          gas y plomería. A lo largo de mi carrera, he trabajado en una variedad
-          de proyectos, desde pequeñas reparaciones hasta instalaciones
-          completas en edificios residenciales y comerciales.
-        </p>
+            })}
+          </div>
+        ) : null}
+        <p className="text-sm text-foreground">{professional.description}</p>
       </div>
     </div>
   );

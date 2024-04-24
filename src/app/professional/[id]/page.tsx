@@ -4,7 +4,17 @@ import Hero from "./components/hero";
 import Content from "./components/content";
 import FooterContact from "./components/footer-contact";
 
-export default function ProfessionalPage() {
+import getOneProfessional from "./service/get-one-professional";
+
+export default async function ProfessionalPage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const id = params.id;
+
+  const professional: Professional = await getOneProfessional(id);
+
   return (
     <main className="bg-gray-200 dark:bg-gray-800 relative">
       <Header />
@@ -15,17 +25,17 @@ export default function ProfessionalPage() {
       >
         <div
           className="        
-        bg-background 
-        md:w-11/12
-        max-w-3xl
-        mx-auto
-        my-10
-        md:rounded-md
-        shadow-sm
-        p-5
-        md:p-10"
+          bg-background 
+          md:w-11/12
+          max-w-3xl
+          mx-auto
+          my-10
+          md:rounded-md
+          shadow-sm
+          p-5
+          md:p-10"
         >
-          <Hero />
+          <Hero professional={professional} />
           <Content />
         </div>
       </div>
