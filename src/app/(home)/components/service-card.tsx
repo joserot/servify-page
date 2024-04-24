@@ -4,14 +4,15 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 interface Props {
-  service: string;
+  label: string;
+  value: string;
   image: string;
 }
 
-export default function ServicesCard({ service, image }: Props) {
+export default function ServicesCard({ label, value, image }: Props) {
   const router = useRouter();
 
-  const handleClick = () => router.push("/searcher");
+  const handleClick = () => router.push(`/searcher?profession=${value}`);
 
   return (
     <div
@@ -33,13 +34,13 @@ export default function ServicesCard({ service, image }: Props) {
     >
       <Image
         src={image}
-        alt={service}
+        alt={label}
         width={400}
         height={400}
         className="w-36 h-auto sm:w-full"
       />
       <div className="px-6 py-4 flex justify-center items-center">
-        <div className="text-md mb-2 sm:text-center">{service}</div>
+        <div className="text-md mb-2 sm:text-center">{label}</div>
       </div>
     </div>
   );

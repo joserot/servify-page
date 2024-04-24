@@ -8,8 +8,30 @@ import ModalLocation from "./components/modal-location";
 
 import getProfessionals from "./services/get-professionals";
 
-export default async function SearcherPage() {
-  const professionals: Professional[] = await getProfessionals();
+export default async function SearcherPage({
+  searchParams,
+}: {
+  searchParams?: {
+    location?: string;
+    profession?: string;
+    locationService?: string;
+    orderBy?: string;
+    page?: string;
+  };
+}) {
+  const location = searchParams?.location || "";
+  const profession = searchParams?.profession || "";
+  const locationService = searchParams?.locationService || "";
+  const orderBy = searchParams?.orderBy || "";
+
+  const currentPage = Number(searchParams?.page) || 1;
+
+  const professionals: Professional[] = await getProfessionals(
+    location,
+    profession,
+    locationService,
+    orderBy
+  );
 
   return (
     <main className="bg-gray-200 dark:bg-gray-800">
@@ -36,7 +58,7 @@ export default async function SearcherPage() {
         pb-20"
         >
           <OrderBy />
-          {!professionals ? (
+          {!professionals || !professionals.length ? (
             <p>No se encontraron profesionales</p>
           ) : (
             <Cards professionals={professionals} />

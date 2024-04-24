@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Accordion,
   AccordionContent,
@@ -7,15 +9,26 @@ import {
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
-import {
-  categoriesList,
-  locationsList,
-  modalityList,
-  verificationsList,
-  statusList,
-} from "@/data/data";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
+
+import { modalityList } from "@/data/data";
 
 export default function Filters() {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
+  const handleChangeFilter = (modality: string) => {
+    const params = new URLSearchParams(searchParams);
+
+    if (modality === "Cualquiera") {
+      params.delete("locationService");
+    } else {
+      params.set("locationService", modality);
+    }
+    replace(`${pathname}?${params.toString()}`);
+  };
+
   return (
     <section
       className="
@@ -47,6 +60,15 @@ export default function Filters() {
             <AccordionTrigger>Lugar del servicio</AccordionTrigger>
             <AccordionContent>
               <RadioGroup defaultValue="comfortable">
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem
+                    value={"Cualquiera"}
+                    id={"Cualquiera"}
+                    onClick={() => handleChangeFilter("Cualquiera")}
+                  />
+                  <Label htmlFor={"Cualquiera"}>{"Cualquiera"}</Label>
+                </div>
+
                 {modalityList.map((modality) => {
                   return (
                     <div
@@ -56,6 +78,7 @@ export default function Filters() {
                       <RadioGroupItem
                         value={modality.value}
                         id={modality.value}
+                        onClick={() => handleChangeFilter(modality.value)}
                       />
                       <Label htmlFor={modality.value}>{modality.label}</Label>
                     </div>

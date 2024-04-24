@@ -18,7 +18,8 @@ export default function Categories() {
           {categoriesList.map((service, index) => (
             <ServicesCard
               key={index}
-              service={service.label}
+              label={service.label}
+              value={service.value}
               image={service.image}
             />
           ))}

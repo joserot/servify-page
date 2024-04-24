@@ -28,39 +28,37 @@ import {
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { useDebouncedCallback } from "use-debounce";
+import { useSearchParams } from "next/navigation";
 
 import { categoriesList, locationsList } from "@/data/data";
 
-//import getLocations from "@/services/getLocations";
-
 export function Searcher() {
+  const searchParams = useSearchParams();
+
+  const professionQuery = searchParams.get("profession");
+  const locationQuery = searchParams.get("location");
+
   const [openCategories, setOpenCategories] = useState(false);
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState<string | null>(professionQuery);
 
   const [openLocations, setOpenLocations] = useState(false);
-  const [location, setLocation] = useState("");
+  const [location, setLocation] = useState<string | null>(locationQuery);
 
   const router = useRouter();
 
   const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    router.push("/searcher");
+    if (!category && !location) {
+      router.push("/searcher");
+    } else if (category && !location) {
+      router.push(`/searcher?profession=${category}`);
+    } else if (!category && location) {
+      router.push(`/searcher?location=${location}`);
+    } else {
+      router.push(`/searcher?profession=${category}&location=${location}`);
+    }
   };
-
-  // PENDIENTE
-  // const [locationsList, setLocationsList] = useState([]);
-
-  // const handleChange = useDebouncedCallback(async (location) => {
-  //   if (!location) return;
-
-  //   const locations = await getLocations();
-
-  //   console.log(locations);
-
-  //   // setLocationsList(locations);
-  // }, 500);
 
   return (
     <form
