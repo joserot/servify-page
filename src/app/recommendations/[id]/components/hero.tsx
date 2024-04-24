@@ -3,9 +3,17 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 import { Badge } from "@/components/ui/badge";
 
-export default function Hero() {
+import getLabel from "@/utils/get-label";
+
+import { verificationsList } from "@/data/data";
+
+interface Props {
+  professional: Professional;
+}
+
+export default function Hero({ professional }: Props) {
   return (
-    <div className="mb-10">
+    <div className="mb-5">
       <div
         className="
         flex 
@@ -14,12 +22,14 @@ export default function Hero() {
         gap-4
         items-center"
       >
-        <h1 className="text-center text-3xl font-bold">Recomieda a Carlos</h1>
+        <h1 className="text-center text-3xl font-bold">
+          Recomieda a {professional.name}
+        </h1>
         <img
-          src="/user-1.webp"
+          src={professional.image}
           width={150}
           height={150}
-          alt="Jose Rotchen"
+          alt={professional.name + " " + professional.lastName}
           className="
             w-24
             h-24
@@ -33,19 +43,20 @@ export default function Hero() {
       </div>
 
       <div className="pt-2">
-        <div
-          className={`
+        {professional.verifications && professional.verifications.length ? (
+          <div
+            className={`
+
               border-t 
               border-gray-300 
               flex 
-              justify-center 
+              justify-start 
               items-start 
               flex-wrap 
               py-2 
               gap-2`}
-        >
-          {["Experincia verificada", "Matrícula verificada"].map(
-            (verification) => {
+          >
+            {professional.verifications.map((verification) => {
               return (
                 <Badge
                   key={verification}
@@ -58,16 +69,17 @@ export default function Hero() {
                  gap-2 
               `}
                 >
-                  <FontAwesomeIcon icon={faCheck} /> {verification}
+                  <FontAwesomeIcon icon={faCheck} />
+                  {getLabel(verification, verificationsList)}
                 </Badge>
               );
-            }
-          )}
-        </div>
-        <p className="text-sm text-foreground text-center">
-          Con tu recomendación ayudas a Carlos a obtener más clientes y
-          contribuyes a dar transparencia en nuestra plataforma para que más
-          personas puedan usarla.
+            })}
+          </div>
+        ) : null}
+        <p className="text-foreground text-center py-5">
+          Con tu recomendación ayudas a {professional.name} a obtener más
+          clientes y contribuyes a dar transparencia en nuestra plataforma para
+          que más personas puedan usarla.
         </p>
       </div>
     </div>

@@ -4,7 +4,7 @@ import Hero from "./components/hero";
 import Content from "./components/content";
 import FooterContact from "./components/footer-contact";
 
-import getOneProfessional from "./service/get-one-professional";
+import getOneProfessional from "@/services/get-one-professional";
 
 export default async function ProfessionalPage({
   params,
