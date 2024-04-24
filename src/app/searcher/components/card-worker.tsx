@@ -4,14 +4,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMapLocationDot,
   faHouse,
-  faStar,
   faCheck,
   faBriefcase,
+  faMoneyCheck,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { Badge } from "@/components/ui/badge";
 
 import { useRouter } from "next/navigation";
+
+import getLabel from "@/utils/get-label";
+
+import {
+  categoriesList,
+  locationsList,
+  modalityList,
+  verificationsList,
+} from "@/data/data";
 
 interface Props {
   worker: Professional;
@@ -40,8 +49,14 @@ export default function CardWorker({ worker }: Props) {
         dark:border-gray-500
         dark:hover:shadow-slate-50
         dark:hover:shadow-sm
+        relative
         `}
     >
+      <div className="hidden md:block absolute top-3 right-3">
+        <span className="text-primary font-bold text-lg">
+          {"Desde " + worker.price + " ARS"}
+        </span>
+      </div>
       <div
         className="
         w-full
@@ -57,7 +72,7 @@ export default function CardWorker({ worker }: Props) {
           gap-1
           justify-start
           items-start
-          `}
+          py-2`}
         >
           <img
             src={worker.image}
@@ -80,6 +95,8 @@ export default function CardWorker({ worker }: Props) {
           flex-col
           justify-start
           items-start
+          gap-1
+          md:gap-0
           "
         >
           <h3
@@ -102,7 +119,7 @@ export default function CardWorker({ worker }: Props) {
               gap-2`}
           >
             <FontAwesomeIcon icon={faMapLocationDot} className="text-primary" />
-            {worker.location}
+            {getLabel(worker.location, locationsList)}
           </span>
           <span
             className={`
@@ -114,7 +131,7 @@ export default function CardWorker({ worker }: Props) {
               gap-2`}
           >
             <FontAwesomeIcon icon={faHouse} className="text-primary" />
-            {worker.serviceLocation}
+            {getLabel(worker.locationService, modalityList)}
           </span>
           <span
             className={`
@@ -126,24 +143,28 @@ export default function CardWorker({ worker }: Props) {
               gap-2`}
           >
             <FontAwesomeIcon icon={faBriefcase} className="text-primary" />
-            {worker.service}
+            {getLabel(worker.service, categoriesList)}
           </span>
-          <div
+
+          <span
             className={`
-            my-1
-            text-sm 
-            sm:text-base
-              text-yellow-500 `}
+              md:hidden
+              text-sm 
+              sm:text-base
+              text-foreground
+              flex
+              items-center
+              gap-2`}
           >
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <span className="text-foreground ml-2 text-sm">
-              ({worker.recommendations})
-            </span>
-          </div>
+            <FontAwesomeIcon icon={faMoneyCheck} className="text-primary" />
+            {"Desde " + worker.price + " ARS"}
+          </span>
+
+          <span className="text-foreground text-sm py-2">
+            {worker.likes > 0 ? (
+              <strong>{worker.likes + " Personas lo recomiendan"}</strong>
+            ) : null}
+          </span>
         </div>
       </div>
 
@@ -154,8 +175,9 @@ export default function CardWorker({ worker }: Props) {
           flex-col
        `}
       >
-        <div
-          className={`
+        {worker.verifications && worker.verifications.length ? (
+          <div
+            className={`
 
               border-t 
               border-gray-300 
@@ -165,12 +187,12 @@ export default function CardWorker({ worker }: Props) {
               flex-wrap 
               py-2 
               gap-2`}
-        >
-          {worker.verifications.map((verification) => {
-            return (
-              <Badge
-                key={verification}
-                className={`
+          >
+            {worker.verifications.map((verification) => {
+              return (
+                <Badge
+                  key={verification}
+                  className={`
                  text-xs 
                   sm:text-sm
                  bg-green-500
@@ -178,12 +200,14 @@ export default function CardWorker({ worker }: Props) {
                  items-center
                  gap-2 
               `}
-              >
-                <FontAwesomeIcon icon={faCheck} /> {verification}
-              </Badge>
-            );
-          })}
-        </div>
+                >
+                  <FontAwesomeIcon icon={faCheck} />
+                  {getLabel(verification, verificationsList)}
+                </Badge>
+              );
+            })}
+          </div>
+        ) : null}
       </div>
     </div>
   );

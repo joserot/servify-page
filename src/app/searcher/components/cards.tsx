@@ -1,8 +1,10 @@
 import CardWorker from "./card-worker";
 
-import { workers } from "@/data/data";
+interface Props {
+  professionals: Professional[];
+}
 
-export default function Cards() {
+export default function Cards({ professionals }: Props) {
   return (
     <section
       className="
@@ -13,8 +15,8 @@ export default function Cards() {
         gap-5
         w-full "
     >
-      {workers.map((worker) => {
-        return <CardWorker key={worker.id} worker={worker} />;
+      {professionals.map((professional) => {
+        return <CardWorker key={professional.id} worker={professional} />;
       })}
     </section>
   );

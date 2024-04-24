@@ -7,6 +7,14 @@ import {
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
+import {
+  categoriesList,
+  locationsList,
+  modalityList,
+  verificationsList,
+  statusList,
+} from "@/data/data";
+
 export default function Filters() {
   return (
     <section
@@ -39,64 +47,20 @@ export default function Filters() {
             <AccordionTrigger>Lugar del servicio</AccordionTrigger>
             <AccordionContent>
               <RadioGroup defaultValue="comfortable">
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="default" id="r1" />
-                  <Label htmlFor="r1">Cualquiera</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="comfortable" id="r2" />
-                  <Label htmlFor="r2">En tu domicilio</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="compact" id="r3" />
-                  <Label htmlFor="r3">En el domicilio del profesional</Label>
-                </div>
-              </RadioGroup>
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="item-2">
-            <AccordionTrigger>Calificación</AccordionTrigger>
-            <AccordionContent>
-              <RadioGroup defaultValue="comfortable">
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="1" id="r1" />
-                  <Label htmlFor="r1">Cualquiera</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="2" id="r2" />
-                  <Label htmlFor="r2">+2 estrellas</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="3" id="r3" />
-                  <Label htmlFor="r3">+3 estrellas</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="4" id="r4" />
-                  <Label htmlFor="r4">+4 estrellas</Label>
-                </div>
-              </RadioGroup>
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="item-3">
-            <AccordionTrigger>Recomendaciones</AccordionTrigger>
-            <AccordionContent>
-              <RadioGroup defaultValue="comfortable">
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="1" id="r1" />
-                  <Label htmlFor="r1">Cualquiera</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="2" id="r2" />
-                  <Label htmlFor="r2">Al menos una</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="3" id="r3" />
-                  <Label htmlFor="r3">+3 recomendaciones</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="4" id="r4" />
-                  <Label htmlFor="r4">+10 recomendaciones</Label>
-                </div>
+                {modalityList.map((modality) => {
+                  return (
+                    <div
+                      key={modality.value}
+                      className="flex items-center space-x-2"
+                    >
+                      <RadioGroupItem
+                        value={modality.value}
+                        id={modality.value}
+                      />
+                      <Label htmlFor={modality.value}>{modality.label}</Label>
+                    </div>
+                  );
+                })}
               </RadioGroup>
             </AccordionContent>
           </AccordionItem>

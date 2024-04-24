@@ -18,10 +18,8 @@ export default function OrderBy() {
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectItem value="1">Más Destacados</SelectItem>
-              <SelectItem value="2">Más Recomendados</SelectItem>
-              <SelectItem value="3">Más Experiencia</SelectItem>
-              <SelectItem value="4">Menor Precio</SelectItem>
+              <SelectItem value="1">Más me gustas</SelectItem>
+              <SelectItem value="2">Mejor precio</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>

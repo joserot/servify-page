@@ -6,10 +6,14 @@ import Cards from "./components/cards";
 import ButtonFilters from "./components/button-filters";
 import ModalLocation from "./components/modal-location";
 
-export default function SearcherPage() {
+import getProfessionals from "./services/get-professionals";
+
+export default async function SearcherPage() {
+  const professionals: Professional[] = await getProfessionals();
+
   return (
     <main className="bg-gray-200 dark:bg-gray-800">
-      <ModalLocation />
+      {/* <ModalLocation /> */}
       <Header showSearcher />
       <article
         className="
@@ -32,9 +36,13 @@ export default function SearcherPage() {
         pb-20"
         >
           <OrderBy />
-          <Cards />
+          {!professionals ? (
+            <p>No se encontraron profesionales</p>
+          ) : (
+            <Cards professionals={professionals} />
+          )}
         </div>
-        <ButtonFilters />
+        {/* <ButtonFilters /> */}
       </article>
 
       <Footer />
