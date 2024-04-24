@@ -1,41 +1,41 @@
 export const categoriesList = [
   {
-    value: "Electricista",
+    value: "electricista",
     label: "Electricista",
     image: "/electricista.webp",
   },
   {
-    value: "Plomeria",
+    value: "plomeria",
     label: "Plomeria",
     image: "/plomero.webp",
   },
   {
-    value: "Mudanza",
+    value: "mudanza",
     label: "Mudanza",
     image: "/mudanza.webp",
   },
   {
-    value: "Limpieza evento",
+    value: "limpieza-evento",
     label: "Limpieza evento",
     image: "/limpieza-evento.webp",
   },
   {
-    value: "Masajes",
+    value: "masajes",
     label: "Masajes",
     image: "/masajes.webp",
   },
   {
-    value: "Eventos",
+    value: "eventos",
     label: "Eventos",
     image: "/eventos.webp",
   },
   {
-    value: "Pintura",
+    value: "pintura",
     label: "Pintura",
     image: "/pintura.webp",
   },
   {
-    value: "Limpieza hogar",
+    value: "limpieza-hogar",
     label: "Limpieza hogar",
     image: "/limpieza.webp",
   },
@@ -43,15 +43,15 @@ export const categoriesList = [
 
 export const locationsList = [
   {
-    value: "Posadas, Misiones",
+    value: "posadas",
     label: "Posadas, Misiones",
   },
   {
-    value: "Ciudad Autónoma de Buenos Aires",
+    value: "caba",
     label: "Ciudad Autónoma de Buenos Aires",
   },
   {
-    value: "Capital, Cordoba",
+    value: "cordoba-capital",
     label: "Capital, Cordoba",
   },
 ];
@@ -171,33 +171,33 @@ export const workers = [
 
 export const modalityList = [
   {
+    value: "en-tu-domicilio",
     label: "En tu domicilio",
-    value: "En tu domicilio",
   },
   {
+    value: "en-domicilio-del-profesional",
     label: "En el domicilio del profesional",
-    value: "En el domicilio del profesional",
   },
 ];
 
 export const verificationsList = [
   {
+    value: "experiencia-verificada",
     label: "Experincia verificada",
-    value: "Experincia verificada",
   },
   {
+    value: "matricula-verificada",
     label: "Matrícula verificada",
-    value: "Matrícula verificada",
   },
 ];
 
 export const statusList = [
   {
+    value: "activo",
     label: "Activo",
-    value: "Activo",
   },
   {
+    value: "inactivo",
     label: "Inactivo",
-    value: "Inactivo",
   },
 ];

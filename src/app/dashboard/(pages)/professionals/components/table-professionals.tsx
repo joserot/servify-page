@@ -16,6 +16,10 @@ import Link from "next/link";
 import ButtonEditProfessional from "./button-edit-professional";
 import ButtonDeleteProfessional from "./button-delete-professional";
 
+import getLabel from "@/utils/get-label";
+
+import { categoriesList, locationsList } from "@/data/data";
+
 interface Props {
   professionals: Professional[];
 }
@@ -25,7 +29,7 @@ export function TableProfessionals({ professionals }: Props) {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[100px]">ID</TableHead>
+          <TableHead className="w-[100px]">Foto</TableHead>
           <TableHead>Nombre</TableHead>
           <TableHead>Profesión</TableHead>
           <TableHead>Ubicación</TableHead>
@@ -38,12 +42,23 @@ export function TableProfessionals({ professionals }: Props) {
       <TableBody>
         {professionals.map((professional) => (
           <TableRow key={professional.id}>
-            <TableCell className="font-medium">{professional.id}</TableCell>
+            <TableCell className="font-medium">
+              <img
+                className="rounded-full w-10 h-10"
+                src={professional.image}
+                width={30}
+                height={30}
+              />
+            </TableCell>
             <TableCell>
               {professional.name + " " + professional.lastName}
             </TableCell>
-            <TableCell>{professional.service}</TableCell>
-            <TableCell>{professional.location}</TableCell>
+            <TableCell>
+              {getLabel(professional.service, categoriesList)}
+            </TableCell>
+            <TableCell>
+              {getLabel(professional.location, locationsList)}
+            </TableCell>
             <TableCell>{professional.email}</TableCell>
             <TableCell>{professional.active ? "Activo" : "Inactivo"}</TableCell>
             <TableCell>{professional.createdAt}</TableCell>

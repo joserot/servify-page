@@ -81,7 +81,7 @@ export default function FormEditProfessional({ id, setOpen }: Props) {
     const locationService = event.currentTarget.locationService.value;
     const phone = event.currentTarget.phone.value;
     const description = event.currentTarget.description.value;
-    const active = event.currentTarget.active.value === "Activo" ? true : false;
+    const active = event.currentTarget.active.value === "activo" ? true : false;
 
     const verifications = checkboxes
       .filter((checkbox) => {
@@ -204,7 +204,7 @@ export default function FormEditProfessional({ id, setOpen }: Props) {
       </Select>
 
       <Select
-        defaultValue={professionalData.active ? "Activo" : "Inactivo"}
+        defaultValue={professionalData.active ? "activo" : "inactivo"}
         required
         name="active"
       >
