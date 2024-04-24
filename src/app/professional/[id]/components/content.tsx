@@ -10,7 +10,11 @@ import ModalLogin from "./modal-login";
 
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 
-export default function Content() {
+interface Props {
+  professional: Professional;
+}
+
+export default function Content({ professional }: Props) {
   return (
     <div>
       <div className="w-full flex justify-center">
@@ -23,7 +27,7 @@ export default function Content() {
             <Jobs />
           </TabsContent>
           <TabsContent value="password">
-            <Recommends />
+            <Recommends professionalId={professional.id} />
           </TabsContent>
         </Tabs>
       </div>

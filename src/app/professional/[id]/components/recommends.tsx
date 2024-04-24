@@ -4,6 +4,8 @@ import { Separator } from "@/components/ui/separator";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
+import getRecommendsOfProfessional from "../service/get-recommends-of-professional";
+
 const recommendsList = [
   {
     image: "https://github.com/shadcn.png",
@@ -43,7 +45,15 @@ const recommendsList = [
   },
 ];
 
-export default function Recommends() {
+interface Props {
+  professionalId: string;
+}
+
+export default async function Recommends({ professionalId }: Props) {
+  const recommends = await getRecommendsOfProfessional(professionalId);
+
+  console.log(recommends);
+
   return (
     <div className="w-full pt-10">
       {recommendsList.map((r, i) => {
