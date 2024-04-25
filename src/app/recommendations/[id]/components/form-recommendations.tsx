@@ -69,6 +69,7 @@ export default function FormRecommendations({ id }: Props) {
         </span>
         <div className="flex gap-1 justify-start items-center">
           <Button
+            variant={like ? "default" : "outline"}
             onClick={(event) => {
               event.preventDefault();
               setLike(true);
@@ -82,14 +83,14 @@ export default function FormRecommendations({ id }: Props) {
               event.preventDefault();
               setLike(false);
             }}
-            variant={"destructive"}
+            variant={!like ? "destructive" : "outline"}
             className="flex items-center gap-2"
           >
             Malo <FontAwesomeIcon icon={faThumbsDown} />
           </Button>
         </div>
       </div>
-      <Input name="userName" placeholder="Nombre (opcional)" />
+      <Input required name="userName" placeholder="Nombre" />
       <Textarea name="text" placeholder="Recomendación (opcional)" />
       <Button className="self-end">Enviar</Button>
     </form>

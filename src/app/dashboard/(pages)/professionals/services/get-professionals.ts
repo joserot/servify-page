@@ -16,7 +16,7 @@ export default async function getProfessionals() {
   }
 
   try {
-    const response: any = await axios.get(API_URL + "/professionals/admin", {
+    const response: any = await axios.get(API_URL + "/professionals/all", {
       headers: { Authorization: `Bearer ${token}` },
     });
 

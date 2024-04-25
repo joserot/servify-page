@@ -26,3 +26,11 @@ interface User {
   createdAt: string;
   image: string;
 }
+
+interface Recommend {
+  id: string;
+  like: boolean;
+  name?: string;
+  text?: string;
+  image?: string;
+}

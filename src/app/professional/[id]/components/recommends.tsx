@@ -2,88 +2,60 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
 import getRecommendsOfProfessional from "../service/get-recommends-of-professional";
-
-const recommendsList = [
-  {
-    image: "https://github.com/shadcn.png",
-    letters: "CN",
-    stars: 5,
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliqua quis velit metus. Duis aliquam nulla eu ultrices lacinia.",
-  },
-  {
-    image: "https://github.com/shadcn.png",
-    letters: "CN",
-    stars: 4,
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliqua quis velit metus. Duis aliquam nulla eu ultrices lacinia.",
-  },
-  {
-    image: "https://github.com/shadcn.png",
-    letters: "CN",
-    stars: 4,
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliqua quis velit metus. Duis aliquam nulla eu ultrices lacinia.ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    image: "https://github.com/shadcn.png",
-    letters: "CN",
-    stars: 5,
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliqua quis velit metus. Duis aliquam nulla eu ultrices lacinia.",
-  },
-  {
-    image: "https://github.com/shadcn.png",
-    letters: "CN",
-    stars: 3,
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliqua quis velit metus. Duis aliquam nulla eu ultrices lacinia.",
-  },
-  {
-    image: "https://github.com/shadcn.png",
-    letters: "CN",
-    stars: 5,
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliqua quis velit metus. Duis aliquam nulla eu ultrices lacinia. ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-];
 
 interface Props {
   professionalId: string;
 }
 
 export default async function Recommends({ professionalId }: Props) {
-  const recommends = await getRecommendsOfProfessional(professionalId);
+  const recommends: Recommend[] = await getRecommendsOfProfessional(
+    professionalId
+  );
 
-  console.log(recommends);
+  const recommendsFilter = recommends.filter((r) => {
+    return r.name && r.like;
+  });
+
+  if (!recommendsFilter.length)
+    return (
+      <div className="w-full pt-10">
+        <p>Aún no hay recomendaciones</p>
+      </div>
+    );
 
   return (
     <div className="w-full pt-10">
-      {recommendsList.map((r, i) => {
-        const listStarts: string[] = [];
-
-        for (let index = 0; index < r.stars; index++) {
-          listStarts.push("-");
-        }
-
+      {recommendsFilter.map((r, i) => {
         return (
           <div key={i}>
-            <div className="flex gap-2 items-center mb-1">
+            <div className="flex gap-3 items-center mb-1">
               <Avatar>
-                <AvatarImage src={r.image} alt="@shadcn" />
-                <AvatarFallback>{r.letters}</AvatarFallback>
+                <AvatarImage
+                  src={r.image}
+                  alt={r.name ? r.name : "Persona que recomienda"}
+                />
+                <AvatarFallback>{r.name ? r.name[0] : ""}</AvatarFallback>
               </Avatar>
 
-              <div
-                className={`
-              my-1
-              text-sm 
-              sm:text-base
-              text-yellow-500 `}
-              >
-                {listStarts.map((start, i) => {
-                  return <FontAwesomeIcon key={i} icon={faStar} />;
-                })}
-              </div>
+              {r.like ? (
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold block">{r.name}</span>
+                    <FontAwesomeIcon
+                      className="text-primary"
+                      icon={faThumbsUp}
+                    />
+                  </div>
+                  {r.text ? (
+                    <p className="text-sm text-foreground">{r.text}</p>
+                  ) : null}
+                </div>
+              ) : null}
             </div>
-            <p className="text-sm text-foreground">{r.text}</p>
+
             <Separator className="my-4" />
           </div>
         );

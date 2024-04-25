@@ -25,6 +25,8 @@ interface Props {
 }
 
 export function TableProfessionals({ professionals }: Props) {
+  if (!professionals || !professionals.length) return null;
+
   return (
     <Table>
       <TableHeader>
