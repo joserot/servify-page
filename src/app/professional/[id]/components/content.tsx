@@ -1,20 +1,16 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 import Jobs from "./jobs";
 import Recommends from "./recommends";
-import ModalLogin from "./modal-login";
 
-import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import ContactButton from "./contact-button";
 
 interface Props {
   professional: Professional;
+  user: User | null;
 }
 
-export default function Content({ professional }: Props) {
+export default function Content({ professional, user }: Props) {
   return (
     <div>
       <div className="w-full flex justify-center">
@@ -31,15 +27,8 @@ export default function Content({ professional }: Props) {
           </TabsContent>
         </Tabs>
       </div>
-      <div className="hidden md:flex w-full pt-10  ">
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button className="w-full items-center text-lg font-bold gap-2">
-              Contactar <FontAwesomeIcon icon={faWhatsapp} />
-            </Button>
-          </DialogTrigger>
-          <ModalLogin />
-        </Dialog>
+      <div className="hidden md:flex w-full pt-10">
+        <ContactButton professional={professional} user={user} type="static" />
       </div>
     </div>
   );

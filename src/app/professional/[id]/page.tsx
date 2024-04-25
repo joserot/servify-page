@@ -39,11 +39,11 @@ export default async function ProfessionalPage({
           p-5
           md:p-10"
         >
-          <Hero professional={professional} />
-          <Content professional={professional} />
+          <Hero professional={professional} user={user} />
+          <Content professional={professional} user={user} />
         </div>
       </div>
-      <FooterContact />
+      <FooterContact professional={professional} user={user} />
       <Footer />
     </main>
   );

@@ -23,9 +23,10 @@ import {
 
 interface Props {
   professional: Professional;
+  user: User | null;
 }
 
-export default function Hero({ professional }: Props) {
+export default function Hero({ professional, user }: Props) {
   return (
     <div className="mb-10">
       <div
@@ -62,7 +63,7 @@ export default function Hero({ professional }: Props) {
           relative
           "
         >
-          <ContactButton />
+          <ContactButton professional={professional} user={user} />
 
           <h3
             className={`

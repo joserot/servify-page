@@ -1,5 +1,14 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+
+import editProfile from "../service/edit-profile";
+
+import { useToast } from "@/components/ui/use-toast";
+
+import revalidateUrl from "@/app/actions";
 
 // import Link from "next/link";
 
@@ -8,17 +17,49 @@ interface Props {
 }
 
 export default function FormProfile({ user }: Props) {
+  const { toast } = useToast();
+
+  const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const name = event.currentTarget.userName.value;
+    const lastName = event.currentTarget.lastName.value;
+
+    const response = await editProfile(user.id, name, lastName);
+
+    if (response.status === 200 || response.status === 201) {
+      toast({
+        variant: "default",
+        title: "Perfil actualizado",
+      });
+      revalidateUrl("profile");
+    } else {
+      toast({
+        variant: "destructive",
+        title: response,
+      });
+    }
+  };
+
   return (
     <div className="pb-5 border-b border-gray-300">
       <span className="block text-3xl font-bold mb-5">Datos de tu perfil</span>
-      <form className="w-full flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
         <Label className="flex flex-col gap-1">
           Nombre
-          <Input defaultValue={user.name} placeholder="Nombre" />
+          <Input
+            defaultValue={user.name}
+            placeholder="Nombre"
+            name="userName"
+          />
         </Label>
         <Label className="flex flex-col gap-1">
           Apellido
-          <Input defaultValue={user.lastName} placeholder="Apellido" />
+          <Input
+            defaultValue={user.lastName}
+            placeholder="Apellido"
+            name="lastName"
+          />
         </Label>
         <Label className="flex flex-col gap-1">
           Email
@@ -43,6 +84,7 @@ export default function FormProfile({ user }: Props) {
             <Input type="file" />
           </div>
         </Label>
+        <Button className="w-auto self-start">Guardar cambios</Button>
       </form>
     </div>
   );
