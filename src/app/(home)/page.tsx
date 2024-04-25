@@ -4,10 +4,14 @@ import Categories from "./components/categories";
 import About from "./components/about";
 import Footer from "@/components/footer";
 
-export default function Home() {
+import getProfile from "@/services/get-profile";
+
+export default async function Home() {
+  const user: User | null = await getProfile();
+
   return (
     <main>
-      <Header />
+      <Header user={user} />
       <Hero />
       <Categories />
       <About />

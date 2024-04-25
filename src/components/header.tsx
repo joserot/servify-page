@@ -5,9 +5,10 @@ import { Searcher } from "./searcher";
 
 interface Props {
   showSearcher?: boolean;
+  user?: User | null;
 }
 
-export default function Header({ showSearcher = false }: Props) {
+export default function Header({ showSearcher = false, user }: Props) {
   return (
     <header
       className="
@@ -49,7 +50,7 @@ export default function Header({ showSearcher = false }: Props) {
         "
         >
           <ModeToggle />
-          <DropdownMenuHeader />
+          <DropdownMenuHeader user={user} />
         </div>
       </div>
     </header>

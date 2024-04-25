@@ -3,11 +3,15 @@ import Form from "./components/form";
 import Banner from "@/components/banner";
 import Header from "@/components/header";
 
-export default function ContactPage() {
+import getProfile from "@/services/get-profile";
+
+export default async function ContactPage() {
+  const user: User | null = await getProfile();
+
   return (
     <>
       <div className="w-full md:hidden">
-        <Header />
+        <Header user={user} />
       </div>
       <main className="flex">
         <Banner />

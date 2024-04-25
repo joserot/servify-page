@@ -9,6 +9,8 @@ import { Searcher } from "@/components/searcher";
 
 import getProfessionals from "./services/get-professionals";
 
+import getProfile from "@/services/get-profile";
+
 export default async function SearcherPage({
   searchParams,
 }: {
@@ -20,6 +22,8 @@ export default async function SearcherPage({
     page?: string;
   };
 }) {
+  const user: User | null = await getProfile();
+
   const location = searchParams?.location || "";
   const profession = searchParams?.profession || "";
   const locationService = searchParams?.locationService || "";
@@ -37,7 +41,7 @@ export default async function SearcherPage({
   return (
     <main className="bg-gray-200 dark:bg-gray-800 ">
       {/* <ModalLocation /> */}
-      <Header showSearcher />
+      <Header showSearcher user={user} />
       <article
         className="
         flex 

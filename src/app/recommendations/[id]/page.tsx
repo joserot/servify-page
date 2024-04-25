@@ -5,6 +5,8 @@ import FormRecommendations from "./components/form-recommendations";
 
 import getOneProfessional from "@/services/get-one-professional";
 
+import getProfile from "@/services/get-profile";
+
 export default async function RecommendationsPage({
   params,
 }: {
@@ -13,10 +15,11 @@ export default async function RecommendationsPage({
   const id = params.id;
 
   const professional: Professional = await getOneProfessional(id);
+  const user: User | null = await getProfile();
 
   return (
     <main className="bg-gray-200 dark:bg-gray-800 relative">
-      <Header />
+      <Header user={user} />
       <div
         className="
         min-h-[90vh]

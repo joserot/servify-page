@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -14,7 +16,13 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
-export function DropdownMenuHeader() {
+import logout from "@/services/logout";
+
+interface Props {
+  user?: User | null;
+}
+
+export function DropdownMenuHeader({ user }: Props) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -38,26 +46,55 @@ export function DropdownMenuHeader() {
             height={28}
             width={28}
             className="h-7 w-7 rounded-full "
-            src="/placeholder-user.webp"
+            src={user ? user.image : "/placeholder-user.webp"}
             alt="foto de perfil"
           />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
-        <DropdownMenuGroup>
-          <Link href={"/register"}>
-            <DropdownMenuItem>Registrate</DropdownMenuItem>
-          </Link>
-          <Link href={"/login"}>
-            <DropdownMenuItem>Iniciar sesión</DropdownMenuItem>
-          </Link>
-        </DropdownMenuGroup>
+      {!user ? (
+        <DropdownMenuContent className="w-56">
+          <DropdownMenuGroup>
+            <Link href={"/register"}>
+              <DropdownMenuItem>Registrate</DropdownMenuItem>
+            </Link>
+            <Link href={"/login"}>
+              <DropdownMenuItem>Iniciar sesión</DropdownMenuItem>
+            </Link>
+          </DropdownMenuGroup>
 
-        <DropdownMenuSeparator />
-        <Link href={"/offer-your-services"}>
-          <DropdownMenuItem>Ofrecé tus servicios</DropdownMenuItem>
-        </Link>
-      </DropdownMenuContent>
+          <DropdownMenuSeparator />
+          <Link href={"/offer-your-services"}>
+            <DropdownMenuItem>Ofrecé tus servicios</DropdownMenuItem>
+          </Link>
+        </DropdownMenuContent>
+      ) : (
+        <DropdownMenuContent className="w-56">
+          <div className="flex py-4 px-2 gap-3 items-center">
+            <img
+              src={user.image}
+              height={40}
+              width={40}
+              className="h-10 w-10 rounded-full "
+              alt={user.name}
+            />
+            <span>{user.name + " " + user.lastName}</span>
+          </div>
+
+          <DropdownMenuGroup>
+            <Link href={"/profile"}>
+              <DropdownMenuItem>Perfil</DropdownMenuItem>
+            </Link>
+            <Link href={"/contact"}>
+              <DropdownMenuItem>Contacto</DropdownMenuItem>
+            </Link>
+          </DropdownMenuGroup>
+
+          <DropdownMenuSeparator />
+          <button className="w-full" onClick={logout}>
+            <DropdownMenuItem>Cerrar sesión</DropdownMenuItem>
+          </button>
+        </DropdownMenuContent>
+      )}
     </DropdownMenu>
   );
 }

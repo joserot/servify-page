@@ -3,10 +3,14 @@ import Footer from "@/components/footer";
 import FormProfile from "./components/form-profile";
 import LogoutButton from "./components/logout-button";
 
-export default function ProfilePage() {
+import getProfile from "@/services/get-profile";
+
+export default async function ProfilePage() {
+  const user: User = await getProfile();
+
   return (
     <main className="bg-gray-200 dark:bg-gray-800 relative">
-      <Header />
+      <Header user={user} />
       <div
         className="
         min-h-[90vh]
@@ -24,7 +28,7 @@ export default function ProfilePage() {
         p-5
         md:p-10"
         >
-          <FormProfile />
+          <FormProfile user={user} />
           <LogoutButton />
         </div>
       </div>
