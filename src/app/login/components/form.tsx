@@ -8,6 +8,8 @@ import loginEmail from "@/services/login-email";
 
 import { useRouter } from "next/navigation";
 
+import revalidateUrl from "@/app/actions";
+
 export default function Form() {
   const router = useRouter();
 
@@ -22,6 +24,7 @@ export default function Form() {
     const response: any = await loginEmail({ email, password });
 
     if (response.status === 201) {
+      revalidateUrl("/");
       router.push("/");
     } else {
       toast({

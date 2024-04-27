@@ -8,6 +8,8 @@ import register from "@/services/register";
 
 import { useRouter } from "next/navigation";
 
+import revalidateUrl from "@/app/actions";
+
 export default function Form() {
   const router = useRouter();
 
@@ -24,6 +26,7 @@ export default function Form() {
     const response = await register({ name, lastName, email, password });
 
     if (response.status === 201) {
+      revalidateUrl("/");
       router.push("/");
     } else {
       toast({
