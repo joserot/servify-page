@@ -3,9 +3,17 @@ import ButtonAddProfessional from "./components/button-add-professional";
 import { TableProfessionals } from "./components/table-professionals";
 
 import getProfessionals from "./services/get-professionals";
+import getProfile from "@/services/get-profile";
+
+import validateUserRole from "../../functions/validate-user-role";
 
 export default async function DashboardUsersPage() {
   const professionals: Professional[] = await getProfessionals();
+  const user: User = await getProfile();
+
+  const validateUser = validateUserRole(user);
+
+  if (!validateUser) return null;
 
   return (
     <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">

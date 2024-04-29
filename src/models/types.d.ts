@@ -22,6 +22,7 @@ interface User {
   id: string;
   email: string;
   name: string;
+  roles: string[];
   lastName: string;
   createdAt: string;
   image: string;
