@@ -6,6 +6,6 @@ export default function userAdapter(user: any) {
     name: user.name,
     lastName: user.lastName,
     createdAt: user.createdAt,
-    image: user.image ? user.image : "/placeholder-user.webp",
+    image: user.avatar ? user.avatar : "/placeholder-user.webp",
   };
 }

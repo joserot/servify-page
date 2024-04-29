@@ -76,6 +76,10 @@ export const verificationsList = [
     value: "matricula-verificada",
     label: "Matrícula verificada",
   },
+  {
+    value: "10-experiencia",
+    label: "+10 años de experiencia",
+  },
 ];
 
 export const statusList = [

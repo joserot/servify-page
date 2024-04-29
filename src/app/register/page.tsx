@@ -4,8 +4,8 @@ import GoogleButton from "@/components/google-button";
 
 import Banner from "@/components/banner";
 import Header from "@/components/header";
-
-import Link from "next/link";
+import Terms from "./components/terms";
+import LoginLink from "./components/login-link";
 
 export default function RegisterPage() {
   return (
@@ -26,16 +26,8 @@ export default function RegisterPage() {
             <Form />
             <Separator />
             <GoogleButton />
-            <p className="mb-4 text-foreground text-center mt-5">
-              Al hacer click en continuar aceptas nuestros{" "}
-              <Link className="underline" href={"/"}>
-                términos y condiciones
-              </Link>{" "}
-              y{" "}
-              <Link className="underline" href={"/"}>
-                políticas de privacidad
-              </Link>{" "}
-            </p>
+            <Terms />
+            <LoginLink />
           </div>
         </div>
       </main>
