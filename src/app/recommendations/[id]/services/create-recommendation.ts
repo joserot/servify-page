@@ -5,7 +5,8 @@ export default async function createRecommendation(
   professionalId: string,
   like: boolean,
   name?: string,
-  text?: string
+  text?: string,
+  avatar?: string
 ) {
   try {
     const response: any = await axios.post(API_URL + "/recommendations", {
@@ -13,6 +14,7 @@ export default async function createRecommendation(
       like,
       name,
       text,
+      avatar,
     });
 
     if (response.status === 200 || response.status === 201) {

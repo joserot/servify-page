@@ -2,7 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 
 import getRecommendsOfProfessional from "../service/get-recommends-of-professional";
 
@@ -16,7 +16,7 @@ export default async function Recommends({ professionalId }: Props) {
   );
 
   const recommendsFilter = recommends.filter((r) => {
-    return r.name && r.like;
+    return r.name;
   });
 
   if (!recommendsFilter.length)
@@ -34,26 +34,32 @@ export default async function Recommends({ professionalId }: Props) {
             <div className="flex gap-3 items-center mb-1">
               <Avatar>
                 <AvatarImage
+                  className="object-cover"
                   src={r.image}
                   alt={r.name ? r.name : "Persona que recomienda"}
                 />
                 <AvatarFallback>{r.name ? r.name[0] : ""}</AvatarFallback>
               </Avatar>
 
-              {r.like ? (
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="font-bold block">{r.name}</span>
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="font-bold block">{r.name}</span>
+                  {r.like ? (
                     <FontAwesomeIcon
                       className="text-primary"
                       icon={faThumbsUp}
                     />
-                  </div>
-                  {r.text ? (
-                    <p className="text-sm text-foreground">{r.text}</p>
-                  ) : null}
+                  ) : (
+                    <FontAwesomeIcon
+                      className="text-red-500"
+                      icon={faThumbsDown}
+                    />
+                  )}
                 </div>
-              ) : null}
+                {r.text ? (
+                  <p className="text-sm text-foreground">{r.text}</p>
+                ) : null}
+              </div>
             </div>
 
             <Separator className="my-4" />

@@ -21,9 +21,10 @@ import revalidateUrl from "@/app/actions";
 
 interface Props {
   id: string;
+  user: User | null;
 }
 
-export default function FormRecommendations({ id }: Props) {
+export default function FormRecommendations({ id, user }: Props) {
   const { toast } = useToast();
 
   const [like, setLike] = useState<boolean>(true);
@@ -32,10 +33,13 @@ export default function FormRecommendations({ id }: Props) {
   const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const name = event.currentTarget.userName.value;
+    const name = !user
+      ? event.currentTarget.userName.value
+      : user.name + " " + user.lastName;
     const text = event.currentTarget.text.value;
+    const avatar = !user ? "" : user.image;
 
-    const response = await createRecommendation(id, like, name, text);
+    const response = await createRecommendation(id, like, name, text, avatar);
 
     if (response.status === 201 || response.status === 200) {
       setUploaded(true);
@@ -90,7 +94,7 @@ export default function FormRecommendations({ id }: Props) {
           </Button>
         </div>
       </div>
-      <Input required name="userName" placeholder="Nombre" />
+      {!user ? <Input required name="userName" placeholder="Nombre" /> : null}
       <Textarea name="text" placeholder="Recomendación (opcional)" />
       <Button className="self-end">Enviar</Button>
     </form>
