@@ -45,7 +45,7 @@ export function DropdownMenuHeader({ user }: Props) {
           <Image
             height={28}
             width={28}
-            className="h-7 w-7 rounded-full "
+            className="h-7 w-7 rounded-full object-cover object-center"
             src={user ? user.image : "/placeholder-user.webp"}
             alt="foto de perfil"
           />
@@ -70,11 +70,11 @@ export function DropdownMenuHeader({ user }: Props) {
       ) : (
         <DropdownMenuContent className="w-56">
           <div className="flex py-4 px-2 gap-3 items-center">
-            <img
-              src={user.image}
-              height={40}
+            <Image
               width={40}
-              className="h-10 w-10 rounded-full "
+              height={40}
+              src={user.image}
+              className="h-10 w-10 rounded-full object-cover object-center"
               alt={user.name}
             />
             <span>{user.name + " " + user.lastName}</span>

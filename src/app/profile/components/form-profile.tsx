@@ -11,6 +11,7 @@ import { useToast } from "@/components/ui/use-toast";
 import revalidateUrl from "@/app/actions";
 
 // import Link from "next/link";
+import Image from "next/image";
 
 interface Props {
   user: User;
@@ -73,15 +74,15 @@ export default function FormProfile({ user }: Props) {
         </span> */}
         <Label className="flex flex-col gap-1">
           Foto de perfil
-          <div className="flex gap-2 items-center">
-            <img
+          <div className="flex gap-2 items-center justify-start">
+            <Image
+              width={64}
+              height={64}
               src={user.image}
               alt="Foto de perfil"
-              width={30}
-              height={30}
-              className="w-16 h-16 rounded-full"
+              className="w-16 h-16 rounded-full object-cover object-center"
             />
-            <Input type="file" />
+            <Input className="w-full" type="file" />
           </div>
         </Label>
         <Button className="w-auto self-start">Guardar cambios</Button>

@@ -4,6 +4,9 @@ module.exports = {
       {
         hostname: "lh3.googleusercontent.com",
       },
+      {
+        hostname: "servify.nyc3.digitaloceanspaces.com",
+      },
     ],
   },
 };
