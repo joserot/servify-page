@@ -25,8 +25,9 @@ export default function FormProfile({ user }: Props) {
 
     const name = event.currentTarget.userName.value;
     const lastName = event.currentTarget.lastName.value;
+    const avatar = event.currentTarget.avatar.files[0];
 
-    const response = await editProfile(user.id, name, lastName);
+    const response = await editProfile(user.id, name, lastName, avatar);
 
     if (response.status === 200 || response.status === 201) {
       toast({
@@ -82,7 +83,7 @@ export default function FormProfile({ user }: Props) {
               alt="Foto de perfil"
               className="w-16 h-16 rounded-full object-cover object-center"
             />
-            <Input className="w-full" type="file" />
+            <Input name="avatar" className="w-full" type="file" />
           </div>
         </Label>
         <Button className="w-auto self-start">Guardar cambios</Button>

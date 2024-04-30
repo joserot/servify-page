@@ -12,7 +12,7 @@ const font = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: "Servify",
+  title: "Profesio",
   description: "Encuentra al profesional que necesitas",
 };
 

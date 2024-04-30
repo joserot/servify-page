@@ -11,16 +11,21 @@ export default async function editProfile(
 ) {
   const token = getCookie(ACCESS_TOKEN_NAME);
 
+  const formData = new FormData();
+
+  name && formData.append("name", name);
+  lastName && formData.append("lastName", lastName);
+  avatar && formData.append("avatar", avatar);
+
   try {
     const response: any = await axios.patch(
       API_URL + `/users/${id}`,
+      formData,
       {
-        name,
-        lastName,
-        avatar,
-      },
-      {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
       }
     );
 

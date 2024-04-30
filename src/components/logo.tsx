@@ -11,7 +11,7 @@ export default function Logo() {
             text-primary
             "
       >
-        Servify
+        Profesio
       </Link>
     </section>
   );

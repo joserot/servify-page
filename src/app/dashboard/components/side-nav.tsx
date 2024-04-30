@@ -43,7 +43,7 @@ export default function SideNav() {
             mb-5
             "
       >
-        Servify
+        Profesio
       </Link>
       <div className="flex grow justify-between space-x-2 flex-col md:space-x-0 md:space-y-2">
         <div className="flex flex-col gap-2">
