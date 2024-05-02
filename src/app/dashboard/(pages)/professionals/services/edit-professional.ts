@@ -41,7 +41,7 @@ export default async function editProfessional(
 
   if (jobsImages?.length) {
     for (let i = 0; i < jobsImages.length; i++) {
-      formData.append(`jobsImages[${i}]`, jobsImages[i]);
+      formData.append(`jobsImages`, jobsImages[i]);
     }
   }
 

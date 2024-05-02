@@ -4,28 +4,34 @@ import BigImage from "./big-image";
 
 import { useState } from "react";
 
-const images = [
-  "/service-2.jpg",
-  "/service-3.jpg",
-  "/service-4.jpg",
-  "/service-5.jpg",
-];
+interface Props {
+  professional: Professional;
+}
 
-export default function Jobs() {
+export default function Jobs({ professional }: Props) {
   const [image, setImage] = useState("");
 
-  const handleClick = (newImage: string) => {
-    console.log(newImage);
+  if (!professional.jobsImages.length)
+    return (
+      <div className="w-full pt-10">
+        <p>Aún no hay fotos de trabajos realizados</p>
+      </div>
+    );
 
+  const handleClick = (newImage: string) => {
     setImage(newImage);
   };
 
   return (
     <>
-      <BigImage image={image} setImage={setImage} imagesList={images} />
+      <BigImage
+        image={image}
+        setImage={setImage}
+        imagesList={professional.jobsImages}
+      />
 
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 pt-10">
-        {images.map((image, i) => {
+        {professional.jobsImages.map((image, i) => {
           return (
             <img
               onClick={() => handleClick(image)}

@@ -20,7 +20,7 @@ export default function Content({ professional, user }: Props) {
             <TabsTrigger value="password">Recomendaciones</TabsTrigger>
           </TabsList>
           <TabsContent value="account">
-            <Jobs />
+            <Jobs professional={professional} />
           </TabsContent>
           <TabsContent value="password">
             <Recommends professionalId={professional.id} />
