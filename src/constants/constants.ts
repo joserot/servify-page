@@ -1,4 +1,7 @@
-const API_URL = "http://localhost:5000/api";
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://servify-page-backend-production.up.railway.app/api"
+    : "http://localhost:5000/api";
 
 const ACCESS_TOKEN_NAME = "servify-token";
 
