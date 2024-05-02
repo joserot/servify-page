@@ -4,36 +4,46 @@ import { getCookie } from "cookies-next";
 import { ACCESS_TOKEN_NAME } from "@/constants/constants";
 
 export default async function addProfessional(
-  email: number,
+  email: string,
   name: string,
   lastName: string,
   profession: string,
   location: string,
   locationService: string,
-  phone: number,
+  phone: string,
   description: string,
   verifications?: string[],
-  price?: number
+  price?: string,
+  avatar?: string
 ) {
   const token = getCookie(ACCESS_TOKEN_NAME);
+
+  const formData = new FormData();
+
+  formData.append("email", email);
+  formData.append("name", name);
+  formData.append("lastName", lastName);
+  formData.append("profession", profession);
+  formData.append("location", location);
+  formData.append("locationService", locationService);
+  formData.append("phone", phone);
+  formData.append("description", description);
+  verifications?.length &&
+    verifications.forEach((verification, i) => {
+      formData.append(`verifications[${i}]`, verification);
+    });
+  price && formData.append("price", price);
+  avatar && formData.append("avatar", avatar);
 
   try {
     const response: any = await axios.post(
       API_URL + "/professionals",
+      formData,
       {
-        email,
-        name,
-        lastName,
-        profession,
-        location,
-        locationService,
-        phone,
-        description,
-        verifications,
-        price,
-      },
-      {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
       }
     );
 

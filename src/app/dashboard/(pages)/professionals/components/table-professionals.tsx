@@ -46,7 +46,7 @@ export function TableProfessionals({ professionals }: Props) {
           <TableRow key={professional.id}>
             <TableCell className="font-medium">
               <img
-                className="rounded-full w-10 h-10"
+                className="rounded-full w-10 h-10 object-cover"
                 src={professional.image}
                 width={30}
                 height={30}

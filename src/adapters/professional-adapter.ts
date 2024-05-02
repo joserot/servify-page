@@ -5,7 +5,7 @@ export default function professionalAdapter(professional: any) {
     name: professional.name,
     lastName: professional.lastName,
     createdAt: professional.createdAt,
-    image: professional.image ? professional.image : "/placeholder-user.webp",
+    image: professional.avatar ? professional.avatar : "/placeholder-user.webp",
     location: professional.location,
     locationService: professional.locationService,
     service: professional.profession,

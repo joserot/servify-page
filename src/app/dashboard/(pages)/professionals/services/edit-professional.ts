@@ -5,38 +5,55 @@ import { ACCESS_TOKEN_NAME } from "@/constants/constants";
 
 export default async function editProfessional(
   id: string,
-  email?: number,
+  email?: string,
   name?: string,
   lastName?: string,
   profession?: string,
   location?: string,
   locationService?: string,
-  phone?: number,
+  phone?: string,
   description?: string,
   verifications?: string[],
-  price?: number,
-  active?: boolean
+  price?: string,
+  active?: string,
+  avatar?: string,
+  jobsImages?: string[]
 ) {
   const token = getCookie(ACCESS_TOKEN_NAME);
+
+  const formData = new FormData();
+
+  email && formData.append("email", email);
+  name && formData.append("name", name);
+  lastName && formData.append("lastName", lastName);
+  profession && formData.append("profession", profession);
+  location && formData.append("location", location);
+  locationService && formData.append("locationService", locationService);
+  phone && formData.append("phone", phone);
+  description && formData.append("description", description);
+  verifications?.length &&
+    verifications.forEach((verification, i) => {
+      formData.append(`verifications[${i}]`, verification);
+    });
+  price && formData.append("price", price);
+  active && formData.append("active", active);
+  avatar && formData.append("avatar", avatar);
+
+  if (jobsImages?.length) {
+    for (let i = 0; i < jobsImages.length; i++) {
+      formData.append(`jobsImages[${i}]`, jobsImages[i]);
+    }
+  }
 
   try {
     const response: any = await axios.patch(
       API_URL + `/professionals/${id}`,
+      formData,
       {
-        email,
-        name,
-        lastName,
-        profession,
-        location,
-        locationService,
-        phone,
-        description,
-        verifications,
-        price,
-        active,
-      },
-      {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
       }
     );
 

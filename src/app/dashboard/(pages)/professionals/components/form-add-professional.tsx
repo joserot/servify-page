@@ -61,6 +61,7 @@ export default function FormAddProfessional({ setOpen }: Props) {
       .map((c) => {
         return c.value;
       });
+    const avatar = event.currentTarget.image.files[0];
 
     const response = await addProfessional(
       email,
@@ -72,7 +73,8 @@ export default function FormAddProfessional({ setOpen }: Props) {
       phone,
       description,
       verifications,
-      Number(price)
+      price,
+      avatar
     );
 
     if (response.status === 201 || response.status === 200) {
