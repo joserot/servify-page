@@ -11,7 +11,11 @@ import {
 
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
+import { useRef } from "react";
+
 export default function OrderBy() {
+  const ref = useRef();
+
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -39,7 +43,14 @@ export default function OrderBy() {
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Selecciona" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent
+            ref={(ref) => {
+              if (!ref) return;
+              ref.ontouchstart = (e) => {
+                e.preventDefault();
+              };
+            }}
+          >
             <SelectGroup>
               <SelectItem value="likes">Más me gustas</SelectItem>
               <SelectItem value="price">Mejor precio</SelectItem>
