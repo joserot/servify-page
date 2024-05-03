@@ -6,6 +6,8 @@ import "@/styles/globals.css";
 
 import { ThemeProvider } from "@/components/ui/theme-provider";
 
+import NextTopLoader from "nextjs-toploader";
+
 const font = Nunito({
   subsets: ["latin"],
   weight: ["200", "300", "400", "500", "600", "700", "800"],
@@ -24,13 +26,16 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={font.className}>
+        <NextTopLoader color="#2563eb" height={3} />
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
           disableTransitionOnChange
         >
-          {children}
-          <Toaster />
+          <>
+            {children}
+            <Toaster />
+          </>
         </ThemeProvider>
       </body>
     </html>
