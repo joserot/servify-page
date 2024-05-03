@@ -3,13 +3,16 @@ import Footer from "@/components/footer";
 import Filters from "./components/filters";
 import OrderBy from "./components/order-by";
 import Cards from "./components/cards";
-import ButtonFilters from "./components/button-filters";
-import ModalLocation from "./components/modal-location";
+// import ButtonFilters from "./components/button-filters";
+// import ModalLocation from "./components/modal-location";
 import { Searcher } from "@/components/searcher";
+import CardsSkeleton from "./components/cards-skeleton";
 
 import getProfessionals from "./services/get-professionals";
 
 import getProfile from "@/services/get-profile";
+
+import { Suspense } from "react";
 
 export default async function SearcherPage({
   searchParams,
@@ -67,11 +70,11 @@ export default async function SearcherPage({
             <Searcher background={false} />
           </div>
           <OrderBy />
-          {!professionals || !professionals.length ? (
-            <p>No se encontraron profesionales</p>
-          ) : (
+          {!professionals ||
+            (!professionals.length && <p>No se encontraron profesionales</p>)}
+          <Suspense fallback={<CardsSkeleton />}>
             <Cards professionals={professionals} />
-          )}
+          </Suspense>
         </div>
         {/* <ButtonFilters /> */}
       </article>
