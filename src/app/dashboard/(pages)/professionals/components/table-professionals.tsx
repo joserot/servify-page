@@ -20,6 +20,8 @@ import getLabel from "@/utils/get-label";
 
 import { categoriesList, locationsList } from "@/data/data";
 
+import getDateFormat from "@/utils/get-date-format";
+
 interface Props {
   professionals: Professional[];
 }
@@ -63,7 +65,7 @@ export function TableProfessionals({ professionals }: Props) {
             </TableCell>
             <TableCell>{professional.email}</TableCell>
             <TableCell>{professional.active ? "Activo" : "Inactivo"}</TableCell>
-            <TableCell>{professional.createdAt}</TableCell>
+            <TableCell>{getDateFormat(professional.createdAt)}</TableCell>
             <TableCell className="flex gap-2 items-center">
               <ButtonEditProfessional id={professional.id} />
               <Button>
