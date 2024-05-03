@@ -38,7 +38,11 @@ export default async function RecommendationsPage({
         md:p-10"
         >
           <Hero professional={professional} />
-          <FormRecommendations id={professional.id} user={user} />
+          <FormRecommendations
+            professionalName={professional.name}
+            id={professional.id}
+            user={user}
+          />
         </div>
       </div>
       <Footer />

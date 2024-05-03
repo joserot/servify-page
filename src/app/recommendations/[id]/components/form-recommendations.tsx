@@ -9,6 +9,7 @@ import {
   faThumbsUp,
   faThumbsDown,
   faCircleCheck,
+  faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 
 import createRecommendation from "../services/create-recommendation";
@@ -19,16 +20,42 @@ import { useState } from "react";
 
 import revalidateUrl from "@/app/actions";
 
+const initialAttributes = [
+  {
+    name: "Paciencia",
+    checked: false,
+  },
+  {
+    name: "Puntualidad",
+    checked: false,
+  },
+  {
+    name: "Amabilidad",
+    checked: false,
+  },
+  {
+    name: "Compromiso",
+    checked: false,
+  },
+];
+
 interface Props {
   id: string;
   user: User | null;
+  professionalName: string;
 }
 
-export default function FormRecommendations({ id, user }: Props) {
+export default function FormRecommendations({
+  id,
+  user,
+  professionalName,
+}: Props) {
   const { toast } = useToast();
 
   const [like, setLike] = useState<boolean>(true);
   const [uploaded, setUploaded] = useState<boolean>(false);
+  const [attributes, setAttributes] = useState(initialAttributes);
+  const [recommendation, setRecommendation] = useState("");
 
   const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -52,6 +79,35 @@ export default function FormRecommendations({ id, user }: Props) {
     }
   };
 
+  const handleAttributeClick = (
+    event: React.SyntheticEvent<HTMLButtonElement>,
+    atr: string
+  ) => {
+    event.preventDefault();
+
+    changeRecommendationText(atr);
+
+    const updatedAttributes = attributes.map((attr) =>
+      attr.name === atr ? { ...attr, checked: !attr.checked } : attr
+    );
+
+    setAttributes(updatedAttributes);
+  };
+
+  const changeRecommendationText = (atr: string) => {
+    let recommendationText = recommendation;
+
+    const thisAtr = attributes.find((attribute) => attribute.name === atr);
+    if (thisAtr && !thisAtr.checked) {
+      recommendationText = recommendationText + atr + " ";
+      setRecommendation(recommendationText);
+    } else if (thisAtr && thisAtr.checked) {
+      const atrRegex = new RegExp(`\\b${thisAtr.name}\\b`, "g");
+      recommendationText = recommendationText.replace(atrRegex, "");
+      setRecommendation(recommendationText);
+    }
+  };
+
   if (uploaded)
     return (
       <div className="w-full flex flex-col justify-center items-center gap-3">
@@ -66,7 +122,7 @@ export default function FormRecommendations({ id, user }: Props) {
     );
 
   return (
-    <form onSubmit={handleSubmit} className="w-full flex flex-col gap-2">
+    <form onSubmit={handleSubmit} className="w-full flex flex-col gap-3">
       <div>
         <span className="block mb-2 text-lg font-bold">
           Califica el servicio
@@ -94,8 +150,46 @@ export default function FormRecommendations({ id, user }: Props) {
           </Button>
         </div>
       </div>
-      {!user ? <Input required name="userName" placeholder="Nombre" /> : null}
-      <Textarea name="text" placeholder="Recomendación (opcional)" />
+      {!user ? (
+        <Input required name="userName" placeholder="Tu nombre" />
+      ) : null}
+
+      {like ? (
+        <div>
+          <span className="font-medium">
+            Selecciona cualidades de {professionalName} (opcional)
+          </span>
+          <div className="flex flex-wrap gap-2">
+            {attributes.map((attribute) => {
+              return (
+                <Button
+                  onClick={(e) => handleAttributeClick(e, attribute.name)}
+                  key={attribute.name}
+                  className="flex items-center gap-2"
+                  variant="outline"
+                >
+                  {attribute.name}
+                  {
+                    <FontAwesomeIcon
+                      className={attribute.checked ? "opacity-1" : "opacity-0"}
+                      icon={faCheck}
+                    />
+                  }
+                </Button>
+              );
+            })}
+          </div>
+        </div>
+      ) : null}
+
+      <Textarea
+        name="text"
+        placeholder="Recomendación (opcional)"
+        value={recommendation}
+        onChange={(e) => {
+          setRecommendation(e.target.value);
+        }}
+      />
       <Button className="self-end">Enviar</Button>
     </form>
   );
