@@ -13,6 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import ContactButton from "./contact-button";
 
 import getLabel from "@/utils/get-label";
+import getMoneyFormat from "@/utils/get-money-format";
 
 import {
   categoriesList,
@@ -69,8 +70,9 @@ export default function Hero({ professional, user }: Props) {
             className={`
               font-semibold 
               mb-1
-              sm:text-lg 
-              md:text-xl
+              text-lg
+              sm:text-xl 
+              md:text-2xl
              `}
           >
             {professional.name + " " + professional.lastName}
@@ -121,7 +123,7 @@ export default function Hero({ professional, user }: Props) {
               gap-2`}
           >
             <FontAwesomeIcon icon={faMoneyCheck} className="text-primary" />
-            {"Desde " + professional.price + " ARS"}
+            {"Desde " + getMoneyFormat(professional.price)}
           </span>
 
           <span className="text-foreground text-sm py-2">

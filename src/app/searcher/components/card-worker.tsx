@@ -14,6 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { useRouter } from "next/navigation";
 
 import getLabel from "@/utils/get-label";
+import getMoneyFormat from "@/utils/get-money-format";
 
 import {
   categoriesList,
@@ -54,7 +55,7 @@ export default function CardWorker({ worker }: Props) {
     >
       <div className="hidden md:block absolute top-3 right-3">
         <span className="text-primary font-bold text-lg">
-          {"Desde " + worker.price + " ARS"}
+          {"Desde " + getMoneyFormat(worker.price)}
         </span>
       </div>
       <div
