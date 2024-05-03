@@ -6,13 +6,12 @@ import Cards from "./components/cards";
 // import ButtonFilters from "./components/button-filters";
 // import ModalLocation from "./components/modal-location";
 import { Searcher } from "@/components/searcher";
-import CardsSkeleton from "./components/cards-skeleton";
-
-import getProfessionals from "./services/get-professionals";
 
 import getProfile from "@/services/get-profile";
 
 import { Suspense } from "react";
+
+import CardsSkeleton from "./components/cards-skeleton";
 
 export default async function SearcherPage({
   searchParams,
@@ -33,13 +32,6 @@ export default async function SearcherPage({
   const orderBy = searchParams?.orderBy || "";
 
   const currentPage = Number(searchParams?.page) || 1;
-
-  const professionals: Professional[] = await getProfessionals(
-    location,
-    profession,
-    locationService,
-    orderBy
-  );
 
   return (
     <main className="bg-gray-200 dark:bg-gray-800 ">
@@ -70,10 +62,16 @@ export default async function SearcherPage({
             <Searcher background={false} />
           </div>
           <OrderBy />
-          {!professionals ||
-            (!professionals.length && <p>No se encontraron profesionales</p>)}
-          <Suspense fallback={<CardsSkeleton />}>
-            <Cards professionals={professionals} />
+          <Suspense
+            key={location + profession + locationService + orderBy}
+            fallback={<CardsSkeleton />}
+          >
+            <Cards
+              location={location}
+              profession={profession}
+              locationService={locationService}
+              orderBy={orderBy}
+            />
           </Suspense>
         </div>
         {/* <ButtonFilters /> */}

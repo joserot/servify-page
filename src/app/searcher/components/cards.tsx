@@ -1,10 +1,30 @@
 import CardWorker from "./card-worker";
+import getProfessionals from "@/app/searcher/services/get-professionals";
 
 interface Props {
-  professionals: Professional[];
+  location: string;
+  profession: string;
+  locationService: string;
+  orderBy: string;
 }
 
-export default function Cards({ professionals }: Props) {
+export default async function Cards({
+  location,
+  profession,
+  locationService,
+  orderBy,
+}: Props) {
+  const professionals: Professional[] = await getProfessionals(
+    location,
+    profession,
+    locationService,
+    orderBy
+  );
+
+  if (!professionals || !professionals.length) {
+    return <p>No se encontraron profesionales</p>;
+  }
+
   return (
     <section
       className="
