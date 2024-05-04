@@ -20,7 +20,7 @@ export default async function ContactPage() {
             <span className="block mb-4 text-3xl font-bold text-center">
               Contacto
             </span>
-            <Form />
+            <Form user={user} />
           </div>
         </div>
       </main>

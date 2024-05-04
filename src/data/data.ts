@@ -77,6 +77,10 @@ export const verificationsList = [
     label: "Matrícula verificada",
   },
   {
+    value: "5-experiencia",
+    label: "+5 años de experiencia",
+  },
+  {
     value: "10-experiencia",
     label: "+10 años de experiencia",
   },
