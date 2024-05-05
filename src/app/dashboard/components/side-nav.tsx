@@ -8,6 +8,7 @@ import {
   faRightToBracket,
   faUsers,
   faUserTie,
+  faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { usePathname } from "next/navigation";
@@ -26,6 +27,11 @@ const linksList = [
     label: "Profesionales",
     value: "/dashboard/professionals",
     icon: faUserTie,
+  },
+  {
+    label: "Contactos",
+    value: "/dashboard/contacts",
+    icon: faEnvelope,
   },
 ];
 
