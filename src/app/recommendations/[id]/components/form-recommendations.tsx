@@ -66,6 +66,15 @@ export default function FormRecommendations({
     const text = event.currentTarget.text.value;
     const avatar = !user ? "" : user.image;
 
+    if (text.trim().length < 10 && !like) {
+      toast({
+        variant: "destructive",
+        title: `Introduce al menos 10 carácteres sobre cómo puede mejorar ${professionalName}`,
+      });
+
+      return;
+    }
+
     const response = await createRecommendation(id, like, name, text, avatar);
 
     if (response.status === 201 || response.status === 200) {
@@ -133,6 +142,7 @@ export default function FormRecommendations({
             onClick={(event) => {
               event.preventDefault();
               setLike(true);
+              setRecommendation("");
             }}
             className="flex items-center gap-2"
           >
@@ -142,6 +152,7 @@ export default function FormRecommendations({
             onClick={(event) => {
               event.preventDefault();
               setLike(false);
+              setRecommendation("");
             }}
             variant={!like ? "destructive" : "outline"}
             className="flex items-center gap-2"
@@ -184,7 +195,11 @@ export default function FormRecommendations({
 
       <Textarea
         name="text"
-        placeholder="Recomendación (opcional)"
+        placeholder={
+          like
+            ? "Recomendación (opcional)"
+            : `Introduce al menos 10 carácteres sobre cómo puede mejorar ${professionalName}`
+        }
         value={recommendation}
         onChange={(e) => {
           setRecommendation(e.target.value);
