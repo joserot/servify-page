@@ -12,6 +12,10 @@ export default async function addProfessional(
   locationService: string,
   phone: string,
   description: string,
+  startDay: string,
+  endDay: string,
+  startTime: string,
+  endTime: string,
   verifications?: string[],
   price?: string,
   avatar?: string
@@ -28,6 +32,10 @@ export default async function addProfessional(
   formData.append("locationService", locationService);
   formData.append("phone", phone);
   formData.append("description", description);
+  formData.append("startDay", startDay);
+  formData.append("endDay", endDay);
+  formData.append("startTime", startTime);
+  formData.append("endTime", endTime);
   verifications?.length &&
     verifications.forEach((verification, i) => {
       formData.append(`verifications[${i}]`, verification);

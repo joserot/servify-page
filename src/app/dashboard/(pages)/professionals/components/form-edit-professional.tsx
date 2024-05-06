@@ -27,6 +27,8 @@ import {
   modalityList,
   verificationsList,
   statusList,
+  daysList,
+  timesList,
 } from "@/data/data";
 
 import revalidateUrl from "@/app/actions";
@@ -79,6 +81,10 @@ export default function FormEditProfessional({ id, setOpen }: Props) {
     const service = event.currentTarget.service.value;
     const location = event.currentTarget.location.value;
     const locationService = event.currentTarget.locationService.value;
+    const startDay = event.currentTarget.startDay.value;
+    const endDay = event.currentTarget.endDay.value;
+    const startTime = event.currentTarget.startTime.value;
+    const endTime = event.currentTarget.endTime.value;
     const phone = event.currentTarget.phone.value;
     const description = event.currentTarget.description.value;
     const active = event.currentTarget.active.value === "activo" ? "1" : "0";
@@ -103,6 +109,10 @@ export default function FormEditProfessional({ id, setOpen }: Props) {
       locationService,
       phone,
       description,
+      startDay,
+      endDay,
+      startTime,
+      endTime,
       verifications,
       price,
       active,
@@ -206,6 +216,93 @@ export default function FormEditProfessional({ id, setOpen }: Props) {
           </SelectGroup>
         </SelectContent>
       </Select>
+
+      <Label>
+        Desde día
+        <Select
+          defaultValue={professionalData.startDay}
+          required
+          name="startDay"
+        >
+          <SelectTrigger>
+            <SelectValue placeholder="Selecciona el día" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {daysList.map((day) => {
+                return (
+                  <SelectItem key={day.value} value={day.value}>
+                    {day.label}
+                  </SelectItem>
+                );
+              })}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </Label>
+      <Label>
+        Hasta día
+        <Select defaultValue={professionalData.endDay} required name="endDay">
+          <SelectTrigger>
+            <SelectValue placeholder="Selecciona el día" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {daysList.map((day) => {
+                return (
+                  <SelectItem key={day.value} value={day.value}>
+                    {day.label}
+                  </SelectItem>
+                );
+              })}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </Label>
+
+      <Label>
+        Desde horario
+        <Select
+          defaultValue={professionalData.startTime}
+          required
+          name="startTime"
+        >
+          <SelectTrigger>
+            <SelectValue placeholder="Selecciona el horario" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {timesList.map((time) => {
+                return (
+                  <SelectItem key={time.value} value={time.value}>
+                    {time.label}
+                  </SelectItem>
+                );
+              })}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </Label>
+
+      <Label>
+        Hasta horario
+        <Select defaultValue={professionalData.endTime} required name="endTime">
+          <SelectTrigger>
+            <SelectValue placeholder="Selecciona el horario" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {timesList.map((time) => {
+                return (
+                  <SelectItem key={time.value} value={time.value}>
+                    {time.label}
+                  </SelectItem>
+                );
+              })}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </Label>
 
       <Select
         defaultValue={professionalData.active ? "activo" : "inactivo"}

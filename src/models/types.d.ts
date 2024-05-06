@@ -10,6 +10,10 @@ interface Professional {
   locationService: string;
   phone: string;
   description: string;
+  startDay: string;
+  endDay: string;
+  startTime: string;
+  endTime: string;
   active: boolean;
   verifications: string[];
   price: number;

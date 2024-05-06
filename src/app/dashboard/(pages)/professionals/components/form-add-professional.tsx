@@ -25,6 +25,8 @@ import {
   locationsList,
   modalityList,
   verificationsList,
+  daysList,
+  timesList,
 } from "@/data/data";
 
 import revalidateUrl from "@/app/actions";
@@ -52,6 +54,10 @@ export default function FormAddProfessional({ setOpen }: Props) {
     const service = event.currentTarget.service.value;
     const location = event.currentTarget.location.value;
     const locationService = event.currentTarget.locationService.value;
+    const startDay = event.currentTarget.startDay.value;
+    const endDay = event.currentTarget.endDay.value;
+    const startTime = event.currentTarget.startTime.value;
+    const endTime = event.currentTarget.endTime.value;
     const phone = event.currentTarget.phone.value;
     const description = event.currentTarget.description.value;
     const verifications = checkboxes
@@ -72,6 +78,10 @@ export default function FormAddProfessional({ setOpen }: Props) {
       locationService,
       phone,
       description,
+      startDay,
+      endDay,
+      startTime,
+      endTime,
       verifications,
       price,
       avatar
@@ -151,6 +161,84 @@ export default function FormAddProfessional({ setOpen }: Props) {
           </SelectGroup>
         </SelectContent>
       </Select>
+      <Label>
+        Desde día
+        <Select required name="startDay">
+          <SelectTrigger>
+            <SelectValue placeholder="Selecciona el día" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {daysList.map((day) => {
+                return (
+                  <SelectItem key={day.value} value={day.value}>
+                    {day.label}
+                  </SelectItem>
+                );
+              })}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </Label>
+      <Label>
+        Hasta día
+        <Select required name="endDay">
+          <SelectTrigger>
+            <SelectValue placeholder="Selecciona el día" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {daysList.map((day) => {
+                return (
+                  <SelectItem key={day.value} value={day.value}>
+                    {day.label}
+                  </SelectItem>
+                );
+              })}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </Label>
+
+      <Label>
+        Desde horario
+        <Select required name="startTime">
+          <SelectTrigger>
+            <SelectValue placeholder="Selecciona el horario" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {timesList.map((time) => {
+                return (
+                  <SelectItem key={time.value} value={time.value}>
+                    {time.label}
+                  </SelectItem>
+                );
+              })}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </Label>
+
+      <Label>
+        Hasta horario
+        <Select required name="endTime">
+          <SelectTrigger>
+            <SelectValue placeholder="Selecciona el horario" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {timesList.map((time) => {
+                return (
+                  <SelectItem key={time.value} value={time.value}>
+                    {time.label}
+                  </SelectItem>
+                );
+              })}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </Label>
       <Input required placeholder="Teléfono" name="phone" />
       <Textarea required placeholder="Descripción" name="description" />
 

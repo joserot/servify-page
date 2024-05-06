@@ -13,6 +13,10 @@ export default async function editProfessional(
   locationService?: string,
   phone?: string,
   description?: string,
+  startDay?: string,
+  endDay?: string,
+  startTime?: string,
+  endTime?: string,
   verifications?: string[],
   price?: string,
   active?: string,
@@ -31,6 +35,10 @@ export default async function editProfessional(
   locationService && formData.append("locationService", locationService);
   phone && formData.append("phone", phone);
   description && formData.append("description", description);
+  startDay && formData.append("startDay", startDay);
+  endDay && formData.append("endDay", endDay);
+  startTime && formData.append("startTime", startTime);
+  endTime && formData.append("endTime", endTime);
   verifications?.length &&
     verifications.forEach((verification, i) => {
       formData.append(`verifications[${i}]`, verification);
