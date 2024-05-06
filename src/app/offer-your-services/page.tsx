@@ -23,7 +23,7 @@ export default async function OfferYourServicesPage() {
             <p className="mb-4 text-foreground text-center">
               Da a conocer tu trabajo y consigue clientes en tu ciudad
             </p>
-            <Form />
+            <Form user={user} />
           </div>
         </div>
       </main>
