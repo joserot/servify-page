@@ -43,3 +43,12 @@ interface Contact {
   message: string;
   date: string;
 }
+
+interface ContactProfessional {
+  id: string;
+  email: string;
+  phone: string;
+  service: string;
+  location: string;
+  date: string;
+}
