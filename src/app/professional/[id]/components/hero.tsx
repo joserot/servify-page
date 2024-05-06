@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMapLocationDot,
   faHouse,
-  faStar,
+  faArrowRight,
   faBriefcase,
   faMoneyCheck,
 } from "@fortawesome/free-solid-svg-icons";
@@ -21,6 +21,7 @@ import {
   modalityList,
   verificationsList,
 } from "@/data/data";
+import Link from "next/link";
 
 interface Props {
   professional: Professional;
@@ -167,7 +168,16 @@ export default function Hero({ professional, user }: Props) {
             })}
           </div>
         ) : null}
-        <p className="text-sm text-foreground">{professional.description}</p>
+        <p className="text-foreground">{professional.description}</p>
+        {user ? (
+          <Link
+            className="my-2 text-primary flex gap-2 items-center hover:underline hover:gap-4 transition-all"
+            href={`/recommendations/${professional.id}`}
+          >
+            Recomienda a {professional.name}
+            <FontAwesomeIcon icon={faArrowRight} />
+          </Link>
+        ) : null}
       </div>
     </div>
   );
