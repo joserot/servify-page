@@ -16,9 +16,9 @@ export default function ModalLogin() {
         <p className="mb-4 text-foreground text-center">
           Inicia sesión para contactar con especialistas en tu ciudad
         </p>
-        <Form />
-        <Separator />
         <GoogleButton />
+        <Separator />
+        <Form />
         <p className="mb-4 text-foreground text-center mt-5">
           Al hacer click en continuar aceptas nuestros{" "}
           <Link className="underline" href={"/"}>

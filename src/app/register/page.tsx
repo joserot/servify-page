@@ -23,9 +23,9 @@ export default function RegisterPage() {
             <p className="mb-4 text-foreground text-center">
               Registrate para contactar con especialistas en tu ciudad
             </p>
-            <Form />
-            <Separator />
             <GoogleButton />
+            <Separator />
+            <Form />
             <Terms />
             <LoginLink />
           </div>

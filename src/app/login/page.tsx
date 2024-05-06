@@ -23,9 +23,10 @@ export default function LoginPage() {
             <p className="mb-4 text-foreground text-center">
               Inicia sesión para contactar con especialistas en tu ciudad
             </p>
-            <Form />
-            <Separator />
             <GoogleButton />
+            <Separator />
+            <Form />
+
             <Terms />
             <RegisterLink />
           </div>

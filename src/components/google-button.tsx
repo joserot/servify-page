@@ -14,7 +14,7 @@ export default function GoogleButton() {
       variant={"outline"}
     >
       <Image src="/google.webp" width={20} height={20} alt="logo de Google" />
-      Google
+      Ingresar con Google
     </Button>
   );
 }
