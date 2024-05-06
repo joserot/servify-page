@@ -5,8 +5,10 @@ import getProfile from "@/services/get-profile";
 
 import validateUserRole from "../../functions/validate-user-role";
 
+import getContacts from "./services/get-contacts";
+
 export default async function DashboardUContactPage() {
-  // const professionals: Professional[] = await getProfessionals();
+  const contacts: Contact[] = await getContacts();
   const user: User = await getProfile();
 
   const validateUser = validateUserRole(user);
@@ -22,11 +24,11 @@ export default async function DashboardUContactPage() {
         <div className="flex mb-5 gap-5 items-center flex-wrap">
           <span className="text-3xl font-bold block">Contactos</span>
         </div>
-        {/* {!professionals ? (
-          <p>No hay profesionales registrados</p>
+        {!contacts ? (
+          <p>No hay contactos</p>
         ) : (
-          <TableProfessionals professionals={professionals} />
-        )} */}
+          <TableContacts contacts={contacts} />
+        )}
       </div>
     </div>
   );

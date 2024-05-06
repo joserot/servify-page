@@ -35,3 +35,11 @@ interface Recommend {
   text?: string;
   image?: string;
 }
+
+interface Contact {
+  id: string;
+  email: string;
+  subject: string;
+  message: string;
+  date: string;
+}

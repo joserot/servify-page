@@ -6,57 +6,47 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
 
-import getLabel from "@/utils/get-label";
-
-import { categoriesList, locationsList } from "@/data/data";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 import getDateFormat from "@/utils/get-date-format";
 
 interface Props {
-  professionals: Professional[];
+  contacts: Contact[];
 }
 
-export function TableContacts({ professionals }: Props) {
-  if (!professionals || !professionals.length) return null;
+export function TableContacts({ contacts }: Props) {
+  if (!contacts || !contacts.length) return null;
 
   return (
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[100px]">Foto</TableHead>
-          <TableHead>Nombre</TableHead>
-          <TableHead>Profesión</TableHead>
-          <TableHead>Ubicación</TableHead>
+          <TableHead>Fecha</TableHead>
           <TableHead>Email</TableHead>
-          <TableHead>Activo/Inactivo</TableHead>
-          <TableHead>Fecha de creación</TableHead>
+          <TableHead>Asunto</TableHead>
+          <TableHead>Mensaje</TableHead>
           <TableHead>Acciones</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {professionals.map((professional) => (
-          <TableRow key={professional.id}>
-            <TableCell className="font-medium">
-              <img
-                className="rounded-full w-10 h-10 object-cover"
-                src={professional.image}
-                width={30}
-                height={30}
-              />
+        {contacts.map((contact) => (
+          <TableRow key={contact.id}>
+            <TableCell>{getDateFormat(contact.date)}</TableCell>
+            <TableCell>{contact.email}</TableCell>
+            <TableCell>{contact.subject}</TableCell>
+            <TableCell>
+              {contact.message.length > 20
+                ? contact.message.slice(0, 20) + "..."
+                : contact.message}
             </TableCell>
             <TableCell>
-              {professional.name + " " + professional.lastName}
+              <Button>
+                <FontAwesomeIcon icon={faEye} />
+              </Button>
             </TableCell>
-            <TableCell>
-              {getLabel(professional.service, categoriesList)}
-            </TableCell>
-            <TableCell>
-              {getLabel(professional.location, locationsList)}
-            </TableCell>
-            <TableCell>{professional.email}</TableCell>
-            <TableCell>{professional.active ? "Activo" : "Inactivo"}</TableCell>
-            <TableCell>{getDateFormat(professional.createdAt)}</TableCell>
           </TableRow>
         ))}
       </TableBody>
