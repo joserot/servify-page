@@ -5,8 +5,10 @@ import {
   faArrowRight,
   faBriefcase,
   faMoneyCheck,
+  faCheck,
+  faCalendar,
+  faClock,
 } from "@fortawesome/free-solid-svg-icons";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 import { Badge } from "@/components/ui/badge";
 
@@ -126,6 +128,36 @@ export default function Hero({ professional, user }: Props) {
             <FontAwesomeIcon icon={faMoneyCheck} className="text-primary" />
             {"Desde " + getMoneyFormat(professional.price)}
           </span>
+
+          {professional.startDay && professional.endDay ? (
+            <span
+              className={`
+              text-sm 
+              sm:text-base
+              text-foreground
+              flex
+              items-center
+              gap-2`}
+            >
+              <FontAwesomeIcon icon={faCalendar} className="text-primary" />
+              {professional.startDay + " a " + professional.endDay}
+            </span>
+          ) : null}
+
+          {professional.startTime && professional.endTime ? (
+            <span
+              className={`
+              text-sm 
+              sm:text-base
+              text-foreground
+              flex
+              items-center
+              gap-2`}
+            >
+              <FontAwesomeIcon icon={faClock} className="text-primary" />
+              {professional.startTime + " a " + professional.endTime}
+            </span>
+          ) : null}
 
           <span className="text-foreground text-sm py-2">
             {professional.likes > 0 ? (
