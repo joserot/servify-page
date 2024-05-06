@@ -6,10 +6,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 import getDateFormat from "@/utils/get-date-format";
 
@@ -28,7 +24,6 @@ export function TableContacts({ contacts }: Props) {
           <TableHead>Email</TableHead>
           <TableHead>Asunto</TableHead>
           <TableHead>Mensaje</TableHead>
-          <TableHead>Acciones</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -38,14 +33,9 @@ export function TableContacts({ contacts }: Props) {
             <TableCell>{contact.email}</TableCell>
             <TableCell>{contact.subject}</TableCell>
             <TableCell>
-              {contact.message.length > 20
-                ? contact.message.slice(0, 20) + "..."
+              {contact.message.length > 40
+                ? contact.message.slice(0, 40) + "..."
                 : contact.message}
-            </TableCell>
-            <TableCell>
-              <Button>
-                <FontAwesomeIcon icon={faEye} />
-              </Button>
             </TableCell>
           </TableRow>
         ))}

@@ -34,6 +34,7 @@ interface Recommend {
   name?: string;
   text?: string;
   image?: string;
+  createdAt: string;
 }
 
 interface Contact {

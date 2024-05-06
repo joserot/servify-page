@@ -10,6 +10,7 @@ import {
   faUserTie,
   faEnvelope,
   faEnvelopesBulk,
+  faRankingStar,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { usePathname } from "next/navigation";
@@ -38,6 +39,11 @@ const linksList = [
     label: "Contactos profesionales",
     value: "/dashboard/contacts-professionals",
     icon: faEnvelopesBulk,
+  },
+  {
+    label: "Recomendaciones",
+    value: "/dashboard/recommendations",
+    icon: faRankingStar,
   },
 ];
 

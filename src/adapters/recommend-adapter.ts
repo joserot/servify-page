@@ -5,5 +5,6 @@ export default function recommendAdapter(recommend: any) {
     name: recommend.name,
     text: recommend.text,
     image: recommend.avatar ? recommend.avatar : "/placeholder-user.webp",
+    createdAt: recommend.createdAt,
   };
 }
