@@ -11,11 +11,7 @@ import {
 
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
-import { useRef } from "react";
-
 export default function OrderBy() {
-  const ref = useRef();
-
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();

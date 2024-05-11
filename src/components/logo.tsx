@@ -1,3 +1,4 @@
+import { PROJECT_NAME } from "@/constants/constants";
 import Link from "next/link";
 
 export default function Logo() {
@@ -11,7 +12,7 @@ export default function Logo() {
             text-primary
             "
       >
-        Profesio
+        {PROJECT_NAME}
       </Link>
     </section>
   );

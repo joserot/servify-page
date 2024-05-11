@@ -7,4 +7,6 @@ const ACCESS_TOKEN_NAME = "servify-token";
 
 const NAME_TOKEN_NAME = "name-servify-token";
 
-export { API_URL, ACCESS_TOKEN_NAME, NAME_TOKEN_NAME };
+const PROJECT_NAME = "Profesio";
+
+export { API_URL, ACCESS_TOKEN_NAME, NAME_TOKEN_NAME, PROJECT_NAME };

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PROJECT_NAME } from "@/constants/constants";
 
 export default function Banner() {
   return (
@@ -12,7 +13,7 @@ export default function Banner() {
             text-white
             "
         >
-          Servify
+          {PROJECT_NAME}
         </Link>
       </section>
       <p className="text-xl text-white">

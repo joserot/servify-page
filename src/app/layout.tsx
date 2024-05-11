@@ -8,13 +8,15 @@ import { ThemeProvider } from "@/components/ui/theme-provider";
 
 import NextTopLoader from "nextjs-toploader";
 
+import { PROJECT_NAME } from "@/constants/constants";
+
 const font = Nunito({
   subsets: ["latin"],
   weight: ["200", "300", "400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
-  title: "Profesio",
+  title: PROJECT_NAME,
   description: "Encuentra al profesional que necesitas",
 };
 

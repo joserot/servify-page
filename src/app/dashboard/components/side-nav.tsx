@@ -19,6 +19,8 @@ import clsx from "clsx";
 
 import { Button } from "@/components/ui/button";
 
+import { PROJECT_NAME } from "@/constants/constants";
+
 const linksList = [
   {
     label: "Usuarios",
@@ -61,7 +63,7 @@ export default function SideNav() {
             mb-5
             "
       >
-        Profesio
+        {PROJECT_NAME}
       </Link>
       <div className="flex grow justify-between space-x-2 flex-col md:space-x-0 md:space-y-2">
         <div className="flex flex-col gap-2">
