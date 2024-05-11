@@ -182,7 +182,7 @@ export default function FormRecommendations({
                   {attribute.name}
                   {
                     <FontAwesomeIcon
-                      className={attribute.checked ? "opacity-1" : "opacity-0"}
+                      className={attribute.checked ? "block" : "hidden"}
                       icon={faCheck}
                     />
                   }
