@@ -82,7 +82,7 @@ export default function Hero({ professional, user }: Props) {
               font-semibold 
               mb-1
               text-2xl
-              max-w-[250px]
+              md:max-w-[250px]
              `}
           >
             {professional.name + " " + professional.lastName}
