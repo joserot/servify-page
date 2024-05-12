@@ -25,6 +25,8 @@ import {
 } from "@/data/data";
 import Link from "next/link";
 
+import BreadcrumbProfessional from "./breadcrumb-professional";
+
 interface Props {
   professional: Professional;
   user: User | null;
@@ -33,9 +35,16 @@ interface Props {
 export default function Hero({ professional, user }: Props) {
   return (
     <div className="mb-10">
+      <BreadcrumbProfessional
+        location={professional.location}
+        service={professional.service}
+        name={professional.name + " " + professional.lastName}
+      />
       <div
         className="
         flex 
+        flex-col
+        md:flex-row
         gap-5
         md:gap-10
         items-center"
@@ -47,10 +56,8 @@ export default function Hero({ professional, user }: Props) {
             height={150}
             alt={professional.name + " " + professional.lastName}
             className="
-            w-24
-            h-24
-            md:w-40 
-            md:h-40 
+            w-40 
+            h-40 
             rounded-full 
             object-cover   
             border
@@ -59,7 +66,8 @@ export default function Hero({ professional, user }: Props) {
         </div>
         <div
           className="
-          w-2/3
+          w-full
+          md:w-2/3
           flex
           flex-col
           justify-start
@@ -73,9 +81,7 @@ export default function Hero({ professional, user }: Props) {
             className={`
               font-semibold 
               mb-1
-              text-lg
-              sm:text-xl 
-              md:text-2xl
+              text-2xl
               max-w-[250px]
              `}
           >
@@ -83,8 +89,6 @@ export default function Hero({ professional, user }: Props) {
           </h3>
           <span
             className={`
-              text-sm 
-              sm:text-base
               text-foreground
               flex
               items-center
@@ -95,8 +99,6 @@ export default function Hero({ professional, user }: Props) {
           </span>
           <span
             className={`
-              text-sm 
-              sm:text-base
               text-foreground
               flex
               items-center
@@ -107,8 +109,6 @@ export default function Hero({ professional, user }: Props) {
           </span>
           <span
             className={`
-              text-sm 
-              sm:text-base
               text-foreground
               flex
               items-center
@@ -119,8 +119,6 @@ export default function Hero({ professional, user }: Props) {
           </span>
           <span
             className={`
-              text-sm 
-              sm:text-base
               text-foreground
               flex
               items-center
@@ -133,8 +131,6 @@ export default function Hero({ professional, user }: Props) {
           {professional.startDay && professional.endDay ? (
             <span
               className={`
-              text-sm 
-              sm:text-base
               text-foreground
               flex
               items-center
@@ -148,8 +144,6 @@ export default function Hero({ professional, user }: Props) {
           {professional.startTime && professional.endTime ? (
             <span
               className={`
-              text-sm 
-              sm:text-base
               text-foreground
               flex
               items-center

@@ -1,5 +1,5 @@
 import CardWorker from "./card-worker";
-import getProfessionals from "@/app/searcher/services/get-professionals";
+import getProfessionals from "@/app/[location]/services/get-professionals";
 import TitleSearch from "./title-search";
 
 interface Props {
