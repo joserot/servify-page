@@ -1,11 +1,12 @@
-"use client";
-
 import existInList from "./exist-in-list";
 
 import { locationsList } from "@/data/data";
 
 export default function getLocationLocalStorage() {
-  const locationLocalStorage = localStorage?.getItem("location");
+  let locationLocalStorage = null;
+
+  const ISSERVER = typeof window === "undefined";
+  if (!ISSERVER) locationLocalStorage = localStorage?.getItem("location");
 
   if (!locationLocalStorage) return null;
 

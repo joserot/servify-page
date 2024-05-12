@@ -53,7 +53,7 @@ export function Searcher({ background = true }: Props) {
 function SearcherBar({ background = true }: Props) {
   const params = useParams<{ location: string; service: string }>();
 
-  const locationLocalStorage = getLocationLocalStorage();
+  let locationLocalStorage = getLocationLocalStorage();
 
   const professionQuery = params.service;
   const locationQuery = params.location || locationLocalStorage || "";
