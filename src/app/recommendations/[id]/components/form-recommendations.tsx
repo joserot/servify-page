@@ -3,6 +3,7 @@
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { LoadingButton } from "@/components/ui/loading-button";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -52,6 +53,7 @@ export default function FormRecommendations({
 }: Props) {
   const { toast } = useToast();
 
+  const [isLoading, setIsLoading] = useState(false);
   const [like, setLike] = useState<boolean>(true);
   const [uploaded, setUploaded] = useState<boolean>(false);
   const [attributes, setAttributes] = useState(initialAttributes);
@@ -75,7 +77,11 @@ export default function FormRecommendations({
       return;
     }
 
+    setIsLoading(true);
+
     const response = await createRecommendation(id, like, name, text, avatar);
+
+    setIsLoading(false);
 
     if (response.status === 201 || response.status === 200) {
       setUploaded(true);
@@ -205,7 +211,9 @@ export default function FormRecommendations({
           setRecommendation(e.target.value);
         }}
       />
-      <Button className="self-end">Enviar</Button>
+      <LoadingButton loading={isLoading} className="self-end">
+        Enviar
+      </LoadingButton>
     </form>
   );
 }
