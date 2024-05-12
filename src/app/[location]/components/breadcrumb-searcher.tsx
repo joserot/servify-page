@@ -22,7 +22,7 @@ export default function BreadcrumbSearcher({ location, service }: Props) {
   if (!service) return null;
 
   return (
-    <Breadcrumb className="py-5">
+    <Breadcrumb className="pb-5">
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>

@@ -25,7 +25,7 @@ export default function BreadcrumbProfessional({
   name,
 }: Props) {
   return (
-    <Breadcrumb className="py-10">
+    <Breadcrumb className="pb-10">
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
