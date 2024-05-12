@@ -34,9 +34,7 @@ export default function Filters() {
       className="
       hidden
       lg:flex
-      justify-center
-      items-center
-      w-1/3
+      w-full
       h-full
       min-h-screen
       "

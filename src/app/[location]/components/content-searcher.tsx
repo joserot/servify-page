@@ -4,6 +4,7 @@ import Filters from "./filters";
 import OrderBy from "./order-by";
 import Cards from "./cards";
 import { Searcher } from "@/components/searcher";
+import BreadcrumbSearcher from "./breadcrumb-searcher";
 
 import getProfile from "@/services/get-profile";
 
@@ -45,7 +46,10 @@ export default async function ContentSearcher({
         h-full
         min-h-[90vh]"
       >
-        <Filters />
+        <div className="w-full md:w-1/3">
+          <BreadcrumbSearcher location={location} service={profession} />
+          <Filters />
+        </div>
         <div
           className="
         w-full 
