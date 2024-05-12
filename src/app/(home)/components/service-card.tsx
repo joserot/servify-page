@@ -6,6 +6,10 @@ import ModalLocation from "@/components/modal-location";
 
 import { useState } from "react";
 
+import { useRouter } from "next/navigation";
+
+import getLocationLocalStorage from "@/utils/get-location-local-storage";
+
 interface Props {
   label: string;
   value: string;
@@ -13,10 +17,18 @@ interface Props {
 }
 
 export default function ServicesCard({ label, value, image }: Props) {
+  const router = useRouter();
+
   const [isOpenModalLocations, setIsOpenModalLocations] = useState(false);
 
+  const locationLocalStorage = getLocationLocalStorage();
+
   const handleClick = () => {
-    setIsOpenModalLocations(true);
+    if (!locationLocalStorage) {
+      setIsOpenModalLocations(true);
+    } else {
+      router.push(`/${locationLocalStorage}/${value}`);
+    }
   };
 
   return (

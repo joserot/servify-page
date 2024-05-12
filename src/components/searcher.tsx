@@ -36,6 +36,8 @@ import { Suspense } from "react";
 
 import ModalLocation from "./modal-location";
 
+import getLocationLocalStorage from "@/utils/get-location-local-storage";
+
 interface Props {
   background?: boolean;
 }
@@ -51,8 +53,10 @@ export function Searcher({ background = true }: Props) {
 function SearcherBar({ background = true }: Props) {
   const params = useParams<{ location: string; service: string }>();
 
+  const locationLocalStorage = getLocationLocalStorage();
+
   const professionQuery = params.service;
-  const locationQuery = params.location;
+  const locationQuery = params.location || locationLocalStorage || "";
 
   const [openCategories, setOpenCategories] = useState(false);
   const [category, setCategory] = useState<string | null>(professionQuery);
@@ -74,8 +78,10 @@ function SearcherBar({ background = true }: Props) {
       setIsOpenModalLocations(true);
       return;
     } else if (!category && location) {
+      localStorage.setItem("location", location);
       router.push(`/${location}`);
     } else {
+      localStorage.setItem("location", location ? location : "");
       router.push(`/${location}/${category}`);
     }
   };
