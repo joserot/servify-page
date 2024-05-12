@@ -42,7 +42,7 @@ export default function Banner({ text, images }: Props) {
         w-1/2
         min-h-[100vh]
         bg-gradient-to-r
-        from-blue-500
+        from-blue-400
         to-primary
         bg-no-repeat
         bg-cover

@@ -1,7 +1,7 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { LoadingButton } from "@/components/ui/loading-button";
 import { useToast } from "@/components/ui/use-toast";
 
 import register from "@/services/register";
@@ -10,10 +10,14 @@ import { useRouter } from "next/navigation";
 
 import revalidateUrl from "@/app/actions";
 
+import { useState } from "react";
+
 export default function Form() {
   const router = useRouter();
 
   const { toast } = useToast();
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -23,7 +27,11 @@ export default function Form() {
     const email = event.currentTarget.email.value;
     const password = event.currentTarget.password.value;
 
+    setIsLoading(true);
+
     const response = await register({ name, lastName, email, password });
+
+    setIsLoading(false);
 
     if (response.status === 201) {
       revalidateUrl("/");
@@ -47,7 +55,7 @@ export default function Form() {
         placeholder="Contraseña"
         name="password"
       />
-      <Button>Registrarse</Button>
+      <LoadingButton loading={isLoading}>Registrarse</LoadingButton>
     </form>
   );
 }

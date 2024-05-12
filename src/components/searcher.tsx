@@ -103,7 +103,7 @@ function SearcherBar({ background = true }: Props) {
       gap-2
       relative
       overflow-hidden
-      ${background ? "bg-gray-400" : ""}
+      ${background ? "bg-gray-300" : ""}
       rounded-md
       p-2
       md:p-0
@@ -233,8 +233,8 @@ function SearcherBar({ background = true }: Props) {
         md:h-9
         md:w-9"
         >
-          <span className="md:hidden">Buscar</span>
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
+          <span className="text-white md:hidden">Buscar</span>
+          <FontAwesomeIcon className="text-white" icon={faMagnifyingGlass} />
         </Button>
       </form>
     </>

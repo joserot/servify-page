@@ -1,7 +1,6 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 
 import sendMessage from "../services/send-message";
@@ -13,6 +12,8 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
+import { LoadingButton } from "@/components/ui/loading-button";
+
 interface Props {
   user: User | null;
 }
@@ -21,6 +22,7 @@ export default function Form({ user }: Props) {
   const { toast } = useToast();
 
   const [sent, setSent] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -29,7 +31,11 @@ export default function Form({ user }: Props) {
     const subject = event.currentTarget.subject.value;
     const message = event.currentTarget.message.value;
 
+    setIsLoading(true);
+
     const response = await sendMessage(email, subject, message);
+
+    setIsLoading(false);
 
     if (response.status === 200 || response.status === 201) {
       toast({
@@ -38,8 +44,6 @@ export default function Form({ user }: Props) {
       });
 
       setSent(true);
-
-      event.currentTarget.reset();
     } else {
       toast({
         variant: "destructive",
@@ -67,7 +71,9 @@ export default function Form({ user }: Props) {
       {!user && <Input type="email" placeholder="Email" name="email" />}
       <Input type="text" placeholder="Asunto" name="subject" />
       <Textarea placeholder="Mensaje" name="message" />
-      <Button className="text-bold text-white">Enviar</Button>
+      <LoadingButton loading={isLoading} className="text-bold text-white">
+        Enviar
+      </LoadingButton>
     </form>
   );
 }

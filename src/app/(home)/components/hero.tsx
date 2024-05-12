@@ -10,7 +10,9 @@ export default function Hero() {
             w-full
             md:w-11/12 
             max-w-7xl 
-            bg-primary
+            bg-gradient-to-r
+        from-blue-400
+        to-primary
             md:rounded-3xl 
             flex
             flex-col
@@ -37,7 +39,7 @@ export default function Hero() {
             items-start 
             flex-col"
         >
-          <h1 className="scroll-m-20 text-background text-4xl font-extrabold lg:text-5xl mb-6 ">
+          <h1 className="scroll-m-20 text-white text-4xl font-extrabold lg:text-5xl mb-6 ">
             Encontrá un profesional para el servicio que necesitas
           </h1>
           <Searcher />

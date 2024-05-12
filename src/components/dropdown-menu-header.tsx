@@ -87,6 +87,9 @@ export function DropdownMenuHeader({ user }: Props) {
             <Link href={"/contact"}>
               <DropdownMenuItem>Contacto</DropdownMenuItem>
             </Link>
+            <Link href={"/offer-your-services"}>
+              <DropdownMenuItem>Ofrecé tus servicios</DropdownMenuItem>
+            </Link>
           </DropdownMenuGroup>
 
           <DropdownMenuSeparator />

@@ -5,7 +5,7 @@ import existInList from "./exist-in-list";
 import { locationsList } from "@/data/data";
 
 export default function getLocationLocalStorage() {
-  const locationLocalStorage = localStorage.getItem("location");
+  const locationLocalStorage = localStorage?.getItem("location");
 
   if (!locationLocalStorage) return null;
 
