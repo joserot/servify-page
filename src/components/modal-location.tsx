@@ -46,6 +46,8 @@ export default function ModalLocation({ isOpen, service, setOpen }: Props) {
   const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    if (!location) return;
+
     localStorage.setItem("location", location);
 
     if (!service) {
