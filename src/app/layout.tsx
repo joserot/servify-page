@@ -18,14 +18,19 @@ const font = Nunito({
 const siteUrl = "https://servify-page.vercel.app";
 const ogImg = "servify.png";
 const description = "Encuentra al profesional que necesitas";
+const canonical = "https://servify-page.vercel.app";
 
 export const metadata: Metadata = {
   title: PROJECT_NAME,
   description: description,
   metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: `/${canonical}`,
+  },
   openGraph: {
     title: PROJECT_NAME,
     description: description,
+    url: canonical,
     siteName: PROJECT_NAME,
     images: [
       {
@@ -33,6 +38,7 @@ export const metadata: Metadata = {
       },
     ],
     locale: "es",
+    type: "website",
   },
   twitter: {
     title: PROJECT_NAME,
