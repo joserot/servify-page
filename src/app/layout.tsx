@@ -15,9 +15,30 @@ const font = Nunito({
   weight: ["200", "300", "400", "500", "600", "700", "800"],
 });
 
+const siteUrl = "https://servify-page.vercel.app";
+const ogImg = "servify.png";
+const description = "Encuentra al profesional que necesitas";
+
 export const metadata: Metadata = {
   title: PROJECT_NAME,
-  description: "Encuentra al profesional que necesitas",
+  description: description,
+  metadataBase: new URL(siteUrl),
+  openGraph: {
+    title: PROJECT_NAME,
+    description: description,
+    siteName: PROJECT_NAME,
+    images: [
+      {
+        url: ogImg,
+      },
+    ],
+    locale: "es",
+  },
+  twitter: {
+    title: PROJECT_NAME,
+    description: description,
+    images: [ogImg],
+  },
 };
 
 export default function RootLayout({
