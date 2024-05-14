@@ -3,7 +3,10 @@ import Footer from "@/components/footer";
 import Filters from "./filters";
 import OrderBy from "./order-by";
 import Cards from "./cards";
-import { Searcher } from "@/components/searcher";
+import dynamic from "next/dynamic";
+const Searcher = dynamic(() => import("@/components/searcher"), {
+  ssr: false,
+});
 import BreadcrumbSearcher from "./breadcrumb-searcher";
 
 import getProfile from "@/services/get-profile";

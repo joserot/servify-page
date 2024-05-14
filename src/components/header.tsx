@@ -1,7 +1,10 @@
 import Logo from "./logo";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 import { DropdownMenuHeader } from "./dropdown-menu-header";
-import { Searcher } from "./searcher";
+import dynamic from "next/dynamic";
+const Searcher = dynamic(() => import("@/components/searcher"), {
+  ssr: false,
+});
 
 interface Props {
   showSearcher?: boolean;

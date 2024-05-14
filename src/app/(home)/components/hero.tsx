@@ -1,8 +1,10 @@
-"use client";
-
 import Image from "next/image";
 
-import { Searcher } from "@/components/searcher";
+import dynamic from "next/dynamic";
+
+const Searcher = dynamic(() => import("@/components/searcher"), {
+  ssr: false,
+});
 
 export default function Hero() {
   return (

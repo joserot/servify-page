@@ -42,7 +42,7 @@ interface Props {
   background?: boolean;
 }
 
-export function Searcher({ background = true }: Props) {
+export default function Searcher({ background = true }: Props) {
   return (
     <Suspense>
       <SearcherBar background={background} />
