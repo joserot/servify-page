@@ -1,4 +1,5 @@
 import { Toaster } from "@/components/ui/toaster";
+import { Metadata } from "next";
 
 import "@/styles/globals.css";
 
@@ -16,7 +17,13 @@ const ogImg = "/servify.png";
 const description =
   "Encuentra al profesional para el servicio que necesitas en tu ciudad";
 
-genPageMetadata(PROJECT_NAME, description, SITE_URL, ogImg, SITE_URL);
+export const metadata: Metadata = genPageMetadata(
+  PROJECT_NAME,
+  description,
+  SITE_URL,
+  ogImg,
+  SITE_URL
+);
 
 export default function RootLayout({
   children,
