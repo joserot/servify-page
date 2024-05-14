@@ -1,5 +1,3 @@
-import type { Metadata } from "next";
-import { Nunito } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 
 import "@/styles/globals.css";
@@ -8,45 +6,17 @@ import { ThemeProvider } from "@/components/ui/theme-provider";
 
 import NextTopLoader from "nextjs-toploader";
 
-import { PROJECT_NAME } from "@/constants/constants";
+import { PROJECT_NAME, SITE_URL } from "@/constants/constants";
 
-const font = Nunito({
-  subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
-});
+import genPageMetadata from "./gen-page-metadata";
 
-const siteUrl = "https://servify-page.vercel.app";
+import { nunitoFont } from "./font";
+
 const ogImg = "servify.png";
 const description =
   "Encuentra al profesional para el servicio que necesitas en tu ciudad";
-const canonical = "https://servify-page.vercel.app";
 
-export const metadata: Metadata = {
-  title: PROJECT_NAME,
-  description: description,
-  metadataBase: new URL(siteUrl),
-  alternates: {
-    canonical: `/${canonical}`,
-  },
-  openGraph: {
-    title: PROJECT_NAME,
-    description: description,
-    url: canonical,
-    siteName: PROJECT_NAME,
-    images: [
-      {
-        url: ogImg,
-      },
-    ],
-    locale: "es",
-    type: "website",
-  },
-  twitter: {
-    title: PROJECT_NAME,
-    description: description,
-    images: [ogImg],
-  },
-};
+genPageMetadata(PROJECT_NAME, description, SITE_URL, ogImg, SITE_URL);
 
 export default function RootLayout({
   children,
@@ -55,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={font.className}>
+      <body className={nunitoFont.className}>
         <NextTopLoader color="#2563eb" height={3} />
         <ThemeProvider
           attribute="class"
