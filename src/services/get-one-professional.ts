@@ -15,6 +15,6 @@ export default async function getOneProfessional(id: string) {
 
     throw new Error();
   } catch (error: any) {
-    return error;
+    return null;
   }
 }

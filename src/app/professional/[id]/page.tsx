@@ -8,6 +8,8 @@ import getOneProfessional from "@/services/get-one-professional";
 
 import getProfile from "@/services/get-profile";
 
+import { redirect } from "next/navigation";
+
 export default async function ProfessionalPage({
   params,
 }: {
@@ -15,9 +17,12 @@ export default async function ProfessionalPage({
 }) {
   const id = params.id;
 
-  const professional: Professional = await getOneProfessional(id);
-
+  const professional: Professional | null = await getOneProfessional(id);
   const user: User | null = await getProfile();
+
+  if (!professional) {
+    redirect("/404");
+  }
 
   return (
     <main className="bg-gray-200 dark:bg-gray-800 relative">
