@@ -12,7 +12,7 @@ import genPageMetadata from "./gen-page-metadata";
 
 import { nunitoFont } from "./font";
 
-const ogImg = "servify.png";
+const ogImg = "/servify.png";
 const description =
   "Encuentra al profesional para el servicio que necesitas en tu ciudad";
 
