@@ -56,7 +56,7 @@ function SearcherBar({ background = true }: Props) {
   let locationLocalStorage = getLocationLocalStorage();
 
   const professionQuery = params.service;
-  const locationQuery = params.location || locationLocalStorage || "";
+  const locationQuery = locationLocalStorage || params.location || "";
 
   const [openCategories, setOpenCategories] = useState(false);
   const [category, setCategory] = useState<string | null>(professionQuery);

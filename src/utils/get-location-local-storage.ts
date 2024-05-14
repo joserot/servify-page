@@ -6,7 +6,11 @@ export default function getLocationLocalStorage() {
   let locationLocalStorage = null;
 
   const ISSERVER = typeof window === "undefined";
-  if (!ISSERVER) locationLocalStorage = localStorage?.getItem("location");
+  if (ISSERVER) {
+    return null;
+  } else {
+    locationLocalStorage = localStorage?.getItem("location") || "";
+  }
 
   if (!locationLocalStorage) return null;
 
