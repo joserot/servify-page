@@ -8,7 +8,7 @@ import getOneProfessional from "@/services/get-one-professional";
 
 import getProfile from "@/services/get-profile";
 
-import { redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 
 export default async function ProfessionalPage({
   params,
@@ -21,7 +21,7 @@ export default async function ProfessionalPage({
   const user: User | null = await getProfile();
 
   if (!professional) {
-    redirect("/404");
+    notFound();
   }
 
   return (

@@ -3,7 +3,7 @@ import ContentSearcher from "../components/content-searcher";
 import { locationsList, categoriesList } from "@/data/data";
 import existInList from "@/utils/exist-in-list";
 
-import { redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 
 export default async function SearcherPage({
   searchParams,
@@ -29,7 +29,7 @@ export default async function SearcherPage({
   const existService = existInList(profession, categoriesList);
 
   if (!existLocation || !existService) {
-    redirect("/404");
+    notFound();
   }
 
   return (
