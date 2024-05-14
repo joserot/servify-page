@@ -17,7 +17,8 @@ const font = Nunito({
 
 const siteUrl = "https://servify-page.vercel.app";
 const ogImg = "servify.png";
-const description = "Encuentra al profesional que necesitas";
+const description =
+  "Encuentra al profesional para el servicio que necesitas en tu ciudad";
 const canonical = "https://servify-page.vercel.app";
 
 export const metadata: Metadata = {
