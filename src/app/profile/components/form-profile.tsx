@@ -1,12 +1,13 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { LoadingButton } from "@/components/ui/loading-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 import editProfile from "../service/edit-profile";
 
 import { useToast } from "@/components/ui/use-toast";
+import { useState } from "react";
 
 import revalidateUrl from "@/app/actions";
 
@@ -20,6 +21,8 @@ interface Props {
 export default function FormProfile({ user }: Props) {
   const { toast } = useToast();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -27,7 +30,11 @@ export default function FormProfile({ user }: Props) {
     const lastName = event.currentTarget.lastName.value;
     const avatar = event.currentTarget.avatar.files[0];
 
+    setIsLoading(true);
+
     const response = await editProfile(user.id, name, lastName, avatar);
+
+    setIsLoading(false);
 
     if (response.status === 200 || response.status === 201) {
       toast({
@@ -53,6 +60,7 @@ export default function FormProfile({ user }: Props) {
             defaultValue={user.name}
             placeholder="Nombre"
             name="userName"
+            required
           />
         </Label>
         <Label className="flex flex-col gap-1">
@@ -61,11 +69,12 @@ export default function FormProfile({ user }: Props) {
             defaultValue={user.lastName}
             placeholder="Apellido"
             name="lastName"
+            required
           />
         </Label>
         <Label className="flex flex-col gap-1">
           Email
-          <Input value={user.email} placeholder="Email" disabled />
+          <Input required value={user.email} placeholder="Email" disabled />
         </Label>
         {/* <span className="text-sm">
           ¿Olvidaste tu contraseña?{" "}
@@ -86,7 +95,9 @@ export default function FormProfile({ user }: Props) {
             <Input name="avatar" className="w-full" type="file" />
           </div>
         </Label>
-        <Button className="w-auto self-start">Guardar cambios</Button>
+        <LoadingButton loading={isLoading} className="w-auto self-start">
+          Guardar cambios
+        </LoadingButton>
       </form>
     </div>
   );

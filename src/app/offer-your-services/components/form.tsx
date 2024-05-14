@@ -67,10 +67,12 @@ export default function Form({ user }: Props) {
 
   return (
     <form onSubmit={handleSubmit} className="w-full  flex flex-col gap-4">
-      {!user && <Input type="email" placeholder="Email" name="email" />}
-      <Input type="tel" placeholder="Teléfono" name="phone" />
-      <Input type="text" placeholder="Profesión" name="service" />
-      <Input type="text" placeholder="Ubicación" name="location" />
+      {!user && (
+        <Input required type="email" placeholder="Email" name="email" />
+      )}
+      <Input required type="tel" placeholder="Teléfono" name="phone" />
+      <Input required type="text" placeholder="Profesión" name="service" />
+      <Input required type="text" placeholder="Ubicación" name="location" />
       <LoadingButton loading={isLoading} className="text-bold text-white">
         ¡Ofrecé tus servicios!
       </LoadingButton>

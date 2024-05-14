@@ -68,9 +68,11 @@ export default function Form({ user }: Props) {
 
   return (
     <form onSubmit={handleSubmit} className="w-full  flex flex-col gap-4">
-      {!user && <Input type="email" placeholder="Email" name="email" />}
-      <Input type="text" placeholder="Asunto" name="subject" />
-      <Textarea placeholder="Mensaje" name="message" />
+      {!user && (
+        <Input required type="email" placeholder="Email" name="email" />
+      )}
+      <Input required type="text" placeholder="Asunto" name="subject" />
+      <Textarea required placeholder="Mensaje" name="message" />
       <LoadingButton loading={isLoading} className="text-bold text-white">
         Enviar
       </LoadingButton>
