@@ -12,7 +12,7 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
+import { LoadingButton } from "@/components/ui/loading-button";
 
 import { useToast } from "@/components/ui/use-toast";
 
@@ -40,6 +40,8 @@ interface Props {
 
 export default function FormEditProfessional({ id, setOpen }: Props) {
   const { toast } = useToast();
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const [professionalData, setProfessionalData] = useState<Professional | null>(
     null
@@ -99,6 +101,8 @@ export default function FormEditProfessional({ id, setOpen }: Props) {
     const avatar = event.currentTarget.image.files[0];
     const jobs = event.currentTarget.jobs.files;
 
+    setIsLoading(true);
+
     const response = await editProfessional(
       id,
       email,
@@ -119,6 +123,8 @@ export default function FormEditProfessional({ id, setOpen }: Props) {
       avatar,
       jobs
     );
+
+    setIsLoading(false);
 
     if (response.status === 201 || response.status === 200) {
       revalidateUrl("/dashboard/professionals");
@@ -376,7 +382,7 @@ export default function FormEditProfessional({ id, setOpen }: Props) {
         );
       })}
 
-      <Button>Editar profesional</Button>
+      <LoadingButton loading={isLoading}>Editar profesional</LoadingButton>
     </form>
   );
 }

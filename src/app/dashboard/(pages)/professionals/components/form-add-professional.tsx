@@ -12,7 +12,7 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
+import { LoadingButton } from "@/components/ui/loading-button";
 
 import { useToast } from "@/components/ui/use-toast";
 
@@ -37,6 +37,8 @@ interface Props {
 
 export default function FormAddProfessional({ setOpen }: Props) {
   const { toast } = useToast();
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const [checkboxes, setCheckboxes] = useState(
     verificationsList.map((v) => {
@@ -69,6 +71,8 @@ export default function FormAddProfessional({ setOpen }: Props) {
       });
     const avatar = event.currentTarget.image.files[0];
 
+    setIsLoading(true);
+
     const response = await addProfessional(
       email,
       name,
@@ -86,6 +90,8 @@ export default function FormAddProfessional({ setOpen }: Props) {
       price,
       avatar
     );
+
+    setIsLoading(false);
 
     if (response.status === 201 || response.status === 200) {
       revalidateUrl("/dashboard/professionals");
@@ -270,7 +276,7 @@ export default function FormAddProfessional({ setOpen }: Props) {
         );
       })}
 
-      <Button>Agregar profesional</Button>
+      <LoadingButton loading={isLoading}>Agregar profesional</LoadingButton>
     </form>
   );
 }
