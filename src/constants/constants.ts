@@ -11,4 +11,13 @@ const NAME_TOKEN_NAME = "name-servify-token";
 
 const PROJECT_NAME = "Profesio";
 
-export { API_URL, ACCESS_TOKEN_NAME, NAME_TOKEN_NAME, PROJECT_NAME, SITE_URL };
+const OG_IMG = "/servify.png";
+
+export {
+  API_URL,
+  ACCESS_TOKEN_NAME,
+  NAME_TOKEN_NAME,
+  PROJECT_NAME,
+  SITE_URL,
+  OG_IMG,
+};

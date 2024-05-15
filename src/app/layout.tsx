@@ -7,13 +7,12 @@ import { ThemeProvider } from "@/components/ui/theme-provider";
 
 import NextTopLoader from "nextjs-toploader";
 
-import { PROJECT_NAME, SITE_URL } from "@/constants/constants";
+import { PROJECT_NAME, SITE_URL, OG_IMG } from "@/constants/constants";
 
 import genPageMetadata from "./gen-page-metadata";
 
 import { nunitoFont } from "./font";
 
-const ogImg = "/servify.png";
 const description =
   "Encuentra al profesional para el servicio que necesitas en tu ciudad";
 
@@ -21,8 +20,8 @@ export const metadata: Metadata = genPageMetadata(
   PROJECT_NAME,
   description,
   SITE_URL,
-  ogImg,
-  SITE_URL
+  OG_IMG,
+  ""
 );
 
 export default function RootLayout({

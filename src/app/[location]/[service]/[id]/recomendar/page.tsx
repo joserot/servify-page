@@ -12,11 +12,36 @@ import { notFound } from "next/navigation";
 import { locationsList, categoriesList } from "@/data/data";
 import existInList from "@/utils/exist-in-list";
 
-export default async function RecommendationsPage({
-  params,
-}: {
-  params: { id: string; location: string; service: string };
-}) {
+import { Metadata } from "next";
+
+import { SITE_URL, OG_IMG } from "@/constants/constants";
+
+import getLabel from "@/utils/get-label";
+
+import genPageMetadata from "@/app/gen-page-metadata";
+
+interface Props {
+  params: { location: string; service: string; id: string };
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const id = params.id;
+  const location = params.location;
+  const service = params.service;
+
+  return genPageMetadata(
+    "Recomendar",
+    `Encuentra ${getLabel(service, categoriesList)} en ${getLabel(
+      location,
+      locationsList
+    )}`,
+    `${SITE_URL}/${location}/${service}/${id}/recomendar`,
+    OG_IMG,
+    ``
+  );
+}
+
+export default async function RecommendationsPage({ params }: Props) {
   const id = params.id;
   const location = params.location;
   const profession = params.service;

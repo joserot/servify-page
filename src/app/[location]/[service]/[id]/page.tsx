@@ -14,11 +14,39 @@ import existInList from "@/utils/exist-in-list";
 
 import { locationsList, categoriesList } from "@/data/data";
 
-export default async function ProfessionalPage({
-  params,
-}: {
+import { Metadata } from "next";
+
+import { SITE_URL, OG_IMG } from "@/constants/constants";
+
+import getLabel from "@/utils/get-label";
+
+import genPageMetadata from "@/app/gen-page-metadata";
+
+interface Props {
   params: { location: string; service: string; id: string };
-}) {
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const id = params.id;
+  const location = params.location;
+  const service = params.service;
+
+  return genPageMetadata(
+    `${getLabel(service, categoriesList)} en ${getLabel(
+      location,
+      locationsList
+    )}`,
+    `Encuentra ${getLabel(service, categoriesList)} en ${getLabel(
+      location,
+      locationsList
+    )}`,
+    `${SITE_URL}/${location}/${service}/${id}`,
+    OG_IMG,
+    ``
+  );
+}
+
+export default async function ProfessionalPage({ params }: Props) {
   const id = params.id;
   const location = params.location;
   const service = params.service;
