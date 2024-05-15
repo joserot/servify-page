@@ -62,36 +62,36 @@ export default function FormRecommendations({
   const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const name = !user
-      ? event.currentTarget.userName.value
-      : user.name + " " + user.lastName;
-    const text = event.currentTarget.text.value;
-    const avatar = !user ? "" : user.image;
+    // const name = !user
+    //   ? event.currentTarget.userName.value
+    //   : user.name + " " + user.lastName;
+    // const text = event.currentTarget.text.value;
+    // const avatar = !user ? "" : user.image;
 
-    if (text.trim().length < 10 && !like) {
-      toast({
-        variant: "destructive",
-        title: `Introduce al menos 10 carácteres sobre cómo puede mejorar ${professionalName}`,
-      });
+    // if (text.trim().length < 10 && !like) {
+    //   toast({
+    //     variant: "destructive",
+    //     title: `Introduce al menos 10 carácteres sobre cómo puede mejorar ${professionalName}`,
+    //   });
 
-      return;
-    }
+    //   return;
+    // }
 
-    setIsLoading(true);
+    // setIsLoading(true);
 
-    const response = await createRecommendation(id, like, name, text, avatar);
+    // const response = await createRecommendation(id, like, name, text, avatar);
 
-    setIsLoading(false);
+    // setIsLoading(false);
 
-    if (response.status === 201 || response.status === 200) {
-      setUploaded(true);
-      revalidateUrl("/searcher");
-    } else {
-      toast({
-        variant: "destructive",
-        title: response,
-      });
-    }
+    // if (response.status === 201 || response.status === 200) {
+    //   setUploaded(true);
+    //   revalidateUrl("/searcher");
+    // } else {
+    //   toast({
+    //     variant: "destructive",
+    //     title: response,
+    //   });
+    // }
   };
 
   const handleAttributeClick = (
