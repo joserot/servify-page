@@ -30,7 +30,8 @@ interface Props {
 export default function CardWorker({ worker }: Props) {
   const router = useRouter();
 
-  const handleClick = () => router.push(`/professional/${worker.id}`);
+  const handleClick = () =>
+    router.push(`/${worker.location}/${worker.service}/${worker.id}`);
 
   return (
     <div

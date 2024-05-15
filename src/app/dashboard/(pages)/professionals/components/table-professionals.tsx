@@ -69,7 +69,10 @@ export function TableProfessionals({ professionals }: Props) {
             <TableCell className="flex gap-2 items-center">
               <ButtonEditProfessional id={professional.id} />
               <Button>
-                <Link target="_blank" href={`/professional/${professional.id}`}>
+                <Link
+                  target="_blank"
+                  href={`/${professional.location}/${professional.service}/${professional.id}`}
+                >
                   <FontAwesomeIcon className="w-3" icon={faEye} />
                 </Link>
               </Button>

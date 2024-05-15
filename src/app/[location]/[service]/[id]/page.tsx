@@ -10,17 +10,26 @@ import getProfile from "@/services/get-profile";
 
 import { notFound } from "next/navigation";
 
+import existInList from "@/utils/exist-in-list";
+
+import { locationsList, categoriesList } from "@/data/data";
+
 export default async function ProfessionalPage({
   params,
 }: {
-  params: { id: string };
+  params: { location: string; service: string; id: string };
 }) {
   const id = params.id;
+  const location = params.location;
+  const service = params.service;
 
   const professional: Professional | null = await getOneProfessional(id);
   const user: User | null = await getProfile();
 
-  if (!professional) {
+  const existLocation = existInList(location, locationsList);
+  const existService = existInList(service, categoriesList);
+
+  if (!professional || !existLocation || !existService) {
     notFound();
   }
 

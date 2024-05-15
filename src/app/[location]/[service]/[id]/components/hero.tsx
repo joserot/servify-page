@@ -199,7 +199,7 @@ export default function Hero({ professional, user }: Props) {
         {user ? (
           <Link
             className="my-2 text-primary flex gap-2 items-center hover:underline hover:gap-4 transition-all"
-            href={`/recommendations/${professional.id}`}
+            href={`/${professional.location}/${professional.service}/${professional.id}/recomendar`}
           >
             Recomienda a {professional.name}
             <FontAwesomeIcon icon={faArrowRight} />
