@@ -1,7 +1,11 @@
 export default function getDateFormat(date: string) {
-  const year = new Date(date).getFullYear();
-  const month = new Date(date).getMonth() + 1;
-  const day = new Date(date).getDay() + 1;
+  const dateFormat = new Date(date);
+  const options: any = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
 
-  return `${day}/${month}/${year}`;
+  return dateFormat.toLocaleDateString("es-ES", options);
 }
