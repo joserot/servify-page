@@ -16,7 +16,7 @@ export default function LoginPage() {
       <main className="flex">
         <Banner
           text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac tincidunt elit. Pellentesque mollis velit mauris, id accumsan quam faucibus nec. Aenean cursus, nisi eget porta vestibulum, lacus risus interdum quam, in dignissim urna mi vitae libero. Phasellus tristique viverra laoreet"
-          images={["/banner-2.jpg", "/banner-1.jpg", "/banner-3.jpg"]}
+          images={["/banner-1.jpg"]}
         />
         <div className="w-full py-20 md:py-5 md:w-1/2 md:min-h-[100vh]">
           <div className="mx-auto w-11/12 max-w-[500px] h-full flex flex-col justify-center items-center">
