@@ -97,6 +97,17 @@ export const statusList = [
   },
 ];
 
+export const featuredList = [
+  {
+    value: "destacado",
+    label: "Destacado",
+  },
+  {
+    value: "no-destacado",
+    label: "No destacado",
+  },
+];
+
 export const daysList = [
   {
     label: "Lunes",

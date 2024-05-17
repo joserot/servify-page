@@ -38,6 +38,8 @@ interface Recommend {
   name?: string;
   text?: string;
   image?: string;
+  active: boolean;
+  featured: boolean;
   createdAt: string;
 }
 

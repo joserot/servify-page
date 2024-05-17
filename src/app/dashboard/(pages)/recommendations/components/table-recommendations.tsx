@@ -6,18 +6,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTrash,
-  faThumbsDown,
-  faThumbsUp,
-} from "@fortawesome/free-solid-svg-icons";
+import { faThumbsDown, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
 import getDateFormat from "@/utils/get-date-format";
 
 import ButtonDeleteRecommend from "./button-delete-recommend";
+import ButtonEditRecommend from "./button-edit-recommend";
 
 interface Props {
   recommendations: Recommend[];
@@ -37,6 +33,8 @@ export function TableRecommendations({ recommendations }: Props) {
           </TableHead>
           <TableHead>Nombre</TableHead>
           <TableHead>Texto</TableHead>
+          <TableHead>Activo/Inactivo</TableHead>
+          <TableHead>Destacado</TableHead>
           <TableHead>Acciones</TableHead>
         </TableRow>
       </TableHeader>
@@ -57,7 +55,10 @@ export function TableRecommendations({ recommendations }: Props) {
                 ? recommend.text.slice(0, 40) + "..."
                 : recommend.text}
             </TableCell>
-            <TableCell>
+            <TableCell>{recommend.active ? "Activo" : "Inactivo"}</TableCell>
+            <TableCell>{recommend.featured ? "Si" : "No"}</TableCell>
+            <TableCell className="flex gap-2 items-center">
+              <ButtonEditRecommend id={recommend.id} />
               <ButtonDeleteRecommend id={recommend.id} />
             </TableCell>
           </TableRow>

@@ -10,7 +10,7 @@ export default async function getRecommendsOfProfessional(
 ) {
   try {
     const response: any = await axios.get(
-      API_URL + `/recommendations/${professionalId}`
+      API_URL + `/recommendations/professional/${professionalId}`
     );
 
     if (response.status === 200) {
