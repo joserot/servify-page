@@ -51,9 +51,9 @@ export default function ServicesCard({ label, value, image }: Props) {
       transition-shadow
       flex sm:flex-col
       dark:border
-      border-gray-500
       dark:hover:shadow-slate-50
-      dark:hover:shadow-sm "
+      dark:hover:shadow-sm 
+      bg-card"
       >
         <Image
           src={image}
