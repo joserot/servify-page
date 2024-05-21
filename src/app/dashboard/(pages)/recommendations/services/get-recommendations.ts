@@ -7,7 +7,7 @@ import { getCookies } from "next-client-cookies/server";
 
 import recommendAdapter from "@/adapters/recommend-adapter";
 
-export default async function getRecommendations() {
+export default async function getRecommendations(id: string) {
   const cookies = getCookies();
   const token: any = cookies.get(ACCESS_TOKEN_NAME);
 
@@ -16,9 +16,12 @@ export default async function getRecommendations() {
   }
 
   try {
-    const response: any = await axios.get(API_URL + "/recommendations", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const response: any = await axios.get(
+      API_URL + `/recommendations?id=${id}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
 
     if (response.status === 200) {
       return response.data.map((recommend: any) => {

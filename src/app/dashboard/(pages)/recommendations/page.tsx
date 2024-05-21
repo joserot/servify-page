@@ -1,14 +1,24 @@
 import SideNav from "../../components/side-nav";
 import { TableRecommendations } from "./components/table-recommendations";
 
+import Filters from "./components/filters";
+
 import getProfile from "@/services/get-profile";
 
 import validateUserRole from "../../functions/validate-user-role";
 
 import getRecommendations from "./services/get-recommendations";
 
-export default async function DashboardUContactPage() {
-  const recommendations: Recommend[] = await getRecommendations();
+interface Props {
+  searchParams?: {
+    id?: string;
+  };
+}
+
+export default async function DashboardUContactPage({ searchParams }: Props) {
+  const id = searchParams?.id || "";
+
+  const recommendations: Recommend[] = await getRecommendations(id);
   const user: User = await getProfile();
 
   const validateUser = validateUserRole(user);
@@ -23,6 +33,9 @@ export default async function DashboardUContactPage() {
       <div className="flex-grow p-6 md:overflow-y-auto md:p-12">
         <div className="flex mb-5 gap-5 items-center flex-wrap">
           <span className="text-3xl font-bold block">Recomendaciones</span>
+        </div>
+        <div className="mb-5">
+          <Filters />
         </div>
         {!recommendations ? (
           <p>No hay recomendaciones</p>

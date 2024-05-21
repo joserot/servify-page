@@ -39,7 +39,7 @@ export default function ButtonDeleteRecommend({ id }: Props) {
 
   return (
     <ModalDelete
-      title="¿Desea eliminar este profesional?"
+      title="¿Desea eliminar esta recomendacion?"
       callback={handleClick}
       open={open}
       setOpen={setOpen}
