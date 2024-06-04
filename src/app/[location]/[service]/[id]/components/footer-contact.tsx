@@ -12,6 +12,8 @@ import sendWhatsapp from "@/utils/send-whatsapp";
 
 import { useState } from "react";
 
+import { PROJECT_NAME } from "@/constants/constants";
+
 interface Props {
   professional: Professional;
   user: User | null;
@@ -28,7 +30,7 @@ export default function FooterContact({ professional, user }: Props) {
     } else {
       sendWhatsapp(
         professional.phone,
-        "Me contacto desde servify por sus servicios"
+        `Me contacto desde ${PROJECT_NAME} por sus servicios`
       );
     }
   };

@@ -57,7 +57,7 @@ export default async function RecommendationsPage({ params }: Props) {
   }
 
   return (
-    <main className="bg-gray-200 dark:bg-gray-800 relative">
+    <main className="md:bg-gray-200 md:dark:bg-gray-800 relative">
       <Header user={user} />
       <div
         className="
@@ -66,13 +66,13 @@ export default async function RecommendationsPage({ params }: Props) {
       >
         <div
           className="        
-        bg-background 
+        md:bg-background 
         md:w-11/12
         max-w-3xl
         mx-auto
         my-10
         md:rounded-md
-        shadow-sm
+        md:shadow-sm
         p-5
         md:p-10"
         >

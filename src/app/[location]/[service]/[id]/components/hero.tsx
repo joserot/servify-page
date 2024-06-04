@@ -8,6 +8,7 @@ import {
   faCheck,
   faCalendar,
   faClock,
+  faPhone,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { Badge } from "@/components/ui/badge";
@@ -126,6 +127,17 @@ export default function Hero({ professional, user }: Props) {
           >
             <FontAwesomeIcon icon={faMoneyCheck} className="text-primary" />
             {"Desde " + getMoneyFormat(professional.price)}
+          </span>
+
+          <span
+            className={`
+              text-foreground
+              flex
+              items-center
+              gap-2`}
+          >
+            <FontAwesomeIcon icon={faPhone} className="text-primary" />
+            {professional.phone}
           </span>
 
           {professional.startDay && professional.endDay ? (
