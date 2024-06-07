@@ -32,9 +32,9 @@ export default async function ProfessionalPage() {
           p-5
           md:p-10"
         >
-          <Revision />
           <Menu />
           <Separator />
+          {/* <Revision /> */}
           <span className="block text-3xl font-bold my-5">Tu perfil</span>
           <Form />
         </div>

@@ -27,11 +27,15 @@ import {
 } from "@/data/data";
 
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+
+import sendWhatsapp from "@/utils/send-whatsapp";
 
 export default function Form() {
   const { toast } = useToast();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [phone, setPhone] = useState("");
 
   const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -85,6 +89,24 @@ export default function Form() {
     // }
   };
 
+  const testWhatsApp = async (
+    event: React.SyntheticEvent<HTMLButtonElement>,
+    phone: string
+  ) => {
+    event.preventDefault();
+
+    if (!phone) {
+      toast({
+        variant: "destructive",
+        title: "Introduce el número de WhatsApp",
+      });
+
+      return;
+    }
+
+    sendWhatsapp(phone, "Prueba numero de WhatsApp");
+  };
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -93,7 +115,7 @@ export default function Form() {
       <span className="block text-xl font-semibold">Información personal</span>
 
       <Label className="flex md:items-center flex-col md:flex-row gap-1 md:gap-3 w-full ">
-        <span className="md:min-w-[100px]">Foto de perfil</span>
+        <span className="md:w-[150px] md:flex-shrink-0">Foto de perfil</span>
         <div className="w-full flex gap-2 items-center">
           <Image
             width={64}
@@ -109,7 +131,7 @@ export default function Form() {
       <Separator />
 
       <Label className="flex md:items-center flex-col md:flex-row gap-1 md:gap-3 w-full ">
-        <span className="md:min-w-[100px]">Nombre</span>
+        <span className="md:w-[150px] md:flex-shrink-0">Nombre</span>
         <Input
           required
           placeholder="Ej. Juan"
@@ -121,7 +143,7 @@ export default function Form() {
       <Separator />
 
       <Label className="flex md:items-center flex-col md:flex-row gap-1 md:gap-3 w-full ">
-        <span className="md:min-w-[100px]">Apellido</span>
+        <span className="md:w-[150px] md:flex-shrink-0">Apellido</span>
         <Input
           required
           placeholder="Ej. Perez"
@@ -133,7 +155,7 @@ export default function Form() {
       <Separator />
 
       <Label className="flex md:items-center flex-col md:flex-row gap-1 md:gap-3 w-full ">
-        <span className="md:min-w-[100px]">Email</span>
+        <span className="md:w-[150px] md:flex-shrink-0">Email</span>
         <Input
           required
           type="email"
@@ -147,7 +169,7 @@ export default function Form() {
       <Separator />
 
       <Label className="flex md:items-center flex-col md:flex-row gap-1 md:gap-3 w-full ">
-        <span className="md:min-w-[100px]">Descripción</span>
+        <span className="md:w-[150px] md:flex-shrink-0">Descripción</span>
         <Textarea
           required
           placeholder="Me dedico a esto hace 5 años..."
@@ -161,50 +183,58 @@ export default function Form() {
         Información sobre tu servicio
       </span>
 
-      <div className="flex flex-col gap-4 md:flex-row">
-        <Label className="flex flex-col gap-1 w-full md:w-1/2">
+      <Label className="flex md:items-center flex-col md:flex-row gap-1 md:gap-3 w-full ">
+        <span className="md:w-[150px] md:flex-shrink-0">
           ¿Que servicio ofreces?
-          <Select required name="service">
-            <SelectTrigger>
-              <SelectValue placeholder="Selecciona la profesion" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                {categoriesList.map((category) => {
-                  return (
-                    <SelectItem key={category.value} value={category.value}>
-                      {category.label}
-                    </SelectItem>
-                  );
-                })}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </Label>
+        </span>
+        <Select required name="service">
+          <SelectTrigger>
+            <SelectValue placeholder="Selecciona la profesion" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {categoriesList.map((category) => {
+                return (
+                  <SelectItem key={category.value} value={category.value}>
+                    {category.label}
+                  </SelectItem>
+                );
+              })}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </Label>
 
-        <Label className="flex flex-col gap-1 w-full md:w-1/2">
+      <Separator />
+
+      <Label className="flex md:items-center flex-col md:flex-row gap-1 md:gap-3 w-full ">
+        <span className="md:w-[150px] md:flex-shrink-0">
           ¿En qué ubicación ofreces?
-          <Select required name="location">
-            <SelectTrigger>
-              <SelectValue placeholder="Selecciona la ubicación" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                {locationsList.map((location) => {
-                  return (
-                    <SelectItem key={location.value} value={location.value}>
-                      {location.label}
-                    </SelectItem>
-                  );
-                })}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </Label>
-      </div>
+        </span>
+        <Select required name="location">
+          <SelectTrigger>
+            <SelectValue placeholder="Selecciona la ubicación" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {locationsList.map((location) => {
+                return (
+                  <SelectItem key={location.value} value={location.value}>
+                    {location.label}
+                  </SelectItem>
+                );
+              })}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </Label>
 
-      <Label className="flex flex-col gap-1">
-        ¿En donde ofreces el servicio?
+      <Separator />
+
+      <Label className="flex md:items-center flex-col md:flex-row gap-1 md:gap-3 w-full ">
+        <span className="md:w-[150px] md:flex-shrink-0">
+          ¿En donde ofreces el servicio?
+        </span>
         <Select required name="locationService">
           <SelectTrigger>
             <SelectValue placeholder="Selecciona la ubicación del servicio" />
@@ -223,20 +253,41 @@ export default function Form() {
         </Select>
       </Label>
 
-      <Label className="flex flex-col gap-1 w-full">
-        Teléfono de contacto
-        <Input required placeholder="Ej. +543756435953" name="phone" />
+      <Separator />
+
+      <Label className="flex md:items-center flex-col md:flex-row gap-1  md:gap-3 w-full ">
+        <span className="md:w-[150px] md:flex-shrink-0">
+          WhatsApp de contacto
+        </span>
+        <Input
+          className="md:flex-grow-1"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        />
+        <Button
+          className="md:flex-shrink-0"
+          onClick={(e) => {
+            testWhatsApp(e, phone);
+          }}
+          variant="secondary"
+        >
+          Probar link
+        </Button>
       </Label>
 
-      <Label className="flex flex-col gap-1 w-full">
-        Precio mínimo (En pesos)
+      <Separator />
+
+      <Label className="flex md:items-center flex-col md:flex-row gap-1 md:gap-3 w-full ">
+        <span className="md:w-[150px] md:flex-shrink-0">
+          Precio mínimo (En pesos)
+        </span>
         <Input type="number" required placeholder="Ej. 10000" name="price" />
       </Label>
 
       <Separator />
 
       <span className="block text-xl font-semibold">
-        Información sobre tus horarios
+        Información sobre tus horarios de trabajo
       </span>
 
       <div className="flex flex-col gap-4 md:flex-row">
@@ -279,6 +330,8 @@ export default function Form() {
           </Select>
         </Label>
       </div>
+
+      <Separator />
 
       <div className="flex flex-col gap-4 md:flex-row">
         <Label className="flex flex-col gap-1 w-full md:w-1/2">

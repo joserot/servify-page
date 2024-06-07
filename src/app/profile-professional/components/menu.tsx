@@ -10,22 +10,22 @@ import {
 const linksList = [
   {
     label: "Destaca tu perfil",
-    value: "/profile/details",
+    value: "/profile-professional/details",
     icon: faStar,
   },
   {
     label: "Agrega fotos de tus trabajos",
-    value: "/profile/photos",
+    value: "/profile-professional/photos",
     icon: faImages,
   },
   {
     label: "Obtén recomendaciones",
-    value: "/profile/recommendations",
+    value: "/profile-professional/recommendations",
     icon: faComments,
   },
   {
     label: "Vista previa de tu perfil",
-    value: "/profile/preview",
+    value: "/profile-professional/preview",
     icon: faIdCard,
   },
 ];

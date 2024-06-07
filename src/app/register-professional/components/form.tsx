@@ -114,20 +114,11 @@ export default function Form() {
           <Input
             required
             type="password"
-            placeholder="********"
+            placeholder="**************"
             name="password"
           />
         </Label>
       </div>
-
-      <Label className="flex flex-col gap-1 w-full">
-        Descripción
-        <Textarea
-          required
-          placeholder="Me dedico a esto hace 5 años..."
-          name="description"
-        />
-      </Label>
 
       <Separator />
 
@@ -198,7 +189,7 @@ export default function Form() {
       </Label>
 
       <Label className="flex flex-col gap-1 w-full">
-        Teléfono de contacto
+        WhatsApp de contacto
         <Input required placeholder="Ej. +543756435953" name="phone" />
       </Label>
 
@@ -206,95 +197,6 @@ export default function Form() {
         Precio mínimo (En pesos)
         <Input type="number" required placeholder="Ej. 10000" name="price" />
       </Label>
-
-      <Separator />
-
-      <span className="block text-xl font-semibold">
-        Información sobre tus horarios
-      </span>
-
-      <div className="flex flex-col gap-4 md:flex-row">
-        <Label className="flex flex-col gap-1 w-full md:w-1/2">
-          Desde el día
-          <Select required name="startDay">
-            <SelectTrigger>
-              <SelectValue placeholder="Selecciona el día" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                {daysList.map((day) => {
-                  return (
-                    <SelectItem key={day.value} value={day.value}>
-                      {day.label}
-                    </SelectItem>
-                  );
-                })}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </Label>
-        <Label className="flex flex-col gap-1 w-full md:w-1/2">
-          Hasta el día
-          <Select required name="endDay">
-            <SelectTrigger>
-              <SelectValue placeholder="Selecciona el día" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                {daysList.map((day) => {
-                  return (
-                    <SelectItem key={day.value} value={day.value}>
-                      {day.label}
-                    </SelectItem>
-                  );
-                })}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </Label>
-      </div>
-
-      <div className="flex flex-col gap-4 md:flex-row">
-        <Label className="flex flex-col gap-1 w-full md:w-1/2">
-          Desde el horario
-          <Select required name="startTime">
-            <SelectTrigger>
-              <SelectValue placeholder="Selecciona el horario" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                {timesList.map((time) => {
-                  return (
-                    <SelectItem key={time.value} value={time.value}>
-                      {time.label}
-                    </SelectItem>
-                  );
-                })}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </Label>
-
-        <Label className="flex flex-col gap-1 w-full md:w-1/2">
-          Hasta el horario
-          <Select required name="endTime">
-            <SelectTrigger>
-              <SelectValue placeholder="Selecciona el horario" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                {timesList.map((time) => {
-                  return (
-                    <SelectItem key={time.value} value={time.value}>
-                      {time.label}
-                    </SelectItem>
-                  );
-                })}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </Label>
-      </div>
 
       <LoadingButton loading={isLoading}>Registrate</LoadingButton>
     </form>
