@@ -19,6 +19,12 @@ const linksList = [
   //   icon: faStar,
   // },
   {
+    label: "Vista previa de tu perfil",
+    value:
+      "https://servify-page.vercel.app/posadas/electricista/6634200e8abb990e6fd8a377",
+    icon: faIdCard,
+  },
+  {
     label: "Agrega fotos de tus trabajos",
     value: "/profile-professional/photos",
     icon: faImages,
@@ -28,11 +34,7 @@ const linksList = [
     value: "/profile-professional/recommendations",
     icon: faComments,
   },
-  // {
-  //   label: "Vista previa de tu perfil",
-  //   value: "/profile-professional/preview",
-  //   icon: faIdCard,
-  // },
+
   {
     label: "Editar tu perfil",
     value: "/profile-professional",
@@ -52,6 +54,7 @@ export default function Menu() {
       {filterLinksList.map((link) => {
         return (
           <Link
+            target={link.value.includes("http") ? "_blank" : "_self"}
             key={link.value}
             className="
               text-lg
