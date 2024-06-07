@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -5,14 +7,17 @@ import {
   faComments,
   faStar,
   faIdCard,
+  faPen,
 } from "@fortawesome/free-solid-svg-icons";
 
+import { usePathname } from "next/navigation";
+
 const linksList = [
-  {
-    label: "Destaca tu perfil",
-    value: "/profile-professional/details",
-    icon: faStar,
-  },
+  // {
+  //   label: "Destaca tu perfil",
+  //   value: "/profile-professional/details",
+  //   icon: faStar,
+  // },
   {
     label: "Agrega fotos de tus trabajos",
     value: "/profile-professional/photos",
@@ -23,20 +28,30 @@ const linksList = [
     value: "/profile-professional/recommendations",
     icon: faComments,
   },
+  // {
+  //   label: "Vista previa de tu perfil",
+  //   value: "/profile-professional/preview",
+  //   icon: faIdCard,
+  // },
   {
-    label: "Vista previa de tu perfil",
-    value: "/profile-professional/preview",
-    icon: faIdCard,
+    label: "Editar tu perfil",
+    value: "/profile-professional",
+    icon: faPen,
   },
 ];
 
 export default function Menu() {
+  const pathname = usePathname();
+
+  const filterLinksList = linksList.filter((link) => {
+    return link.value !== pathname;
+  });
+
   return (
     <nav className="flex flex-col gap-2 items-start justify-start mb-5">
-      {linksList.map((link) => {
+      {filterLinksList.map((link) => {
         return (
           <Link
-            target="_blank"
             key={link.value}
             className="
               text-lg
