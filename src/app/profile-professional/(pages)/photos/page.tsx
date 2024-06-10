@@ -7,6 +7,7 @@ import { Separator } from "@/components/ui/separator";
 
 import Menu from "../../components/menu";
 import Content from "./components/content";
+import Revision from "../../components/revision";
 
 export default async function ProfessionalPage() {
   const user: User | null = await getProfile();
@@ -32,7 +33,8 @@ export default async function ProfessionalPage() {
           md:p-10"
         >
           <Menu />
-          <Separator />
+          {/* <Separator /> */}
+          <Revision />
           <span className="block text-3xl font-bold my-5 text-center">
             Sube fotos de tus trabajos
           </span>

@@ -20,8 +20,7 @@ const linksList = [
   // },
   {
     label: "Vista previa de tu perfil",
-    value:
-      "https://servify-page.vercel.app/posadas/electricista/6634200e8abb990e6fd8a377",
+    value: "/profile-professional/preview",
     icon: faIdCard,
   },
   {
@@ -45,26 +44,24 @@ const linksList = [
 export default function Menu() {
   const pathname = usePathname();
 
-  const filterLinksList = linksList.filter((link) => {
-    return link.value !== pathname;
-  });
-
   return (
     <nav className="flex flex-col gap-2 items-start justify-start mb-5">
-      {filterLinksList.map((link) => {
+      {linksList.map((link) => {
+        const active = pathname === link.value;
+
         return (
           <Link
-            target={link.value.includes("http") ? "_blank" : "_self"}
             key={link.value}
-            className="
+            className={`
               text-lg
               text-primary
+              ${active ? "font-bold" : ""}
               flex
               gap-2
               items-center
               transition-all
               hover:underline
-              "
+              `}
             href={link.value}
           >
             {link.label}
