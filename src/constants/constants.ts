@@ -3,7 +3,10 @@ const API_URL =
     ? "https://servify-page-backend-production.up.railway.app/api"
     : "http://localhost:5000/api";
 
-const SITE_URL = "https://servify-page.vercel.app";
+const SITE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://servify-page.vercel.app"
+    : "http://localhost:3000";
 
 const ACCESS_TOKEN_NAME = "servify-token";
 

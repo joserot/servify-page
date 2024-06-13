@@ -9,7 +9,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { LoadingButton } from "@/components/ui/loading-button";
 import { Separator } from "@/components/ui/separator";
@@ -18,16 +17,17 @@ import { useToast } from "@/components/ui/use-toast";
 
 import { useState } from "react";
 
-import {
-  categoriesList,
-  locationsList,
-  modalityList,
-  daysList,
-  timesList,
-} from "@/data/data";
+import { categoriesList, locationsList, modalityList } from "@/data/data";
+
+import registerProfessional from "../service/register-professional";
+
+import revalidateUrl from "@/app/actions";
+
+import { useRouter } from "next/navigation";
 
 export default function Form() {
   const { toast } = useToast();
+  const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -37,50 +37,38 @@ export default function Form() {
     const name = event.currentTarget.userName.value;
     const lastName = event.currentTarget.lastName.value;
     const email = event.currentTarget.email.value;
+    const password = event.currentTarget.password.value;
     const price = event.currentTarget.price.value;
     const service = event.currentTarget.service.value;
     const location = event.currentTarget.location.value;
     const locationService = event.currentTarget.locationService.value;
-    const startDay = event.currentTarget.startDay.value;
-    const endDay = event.currentTarget.endDay.value;
-    const startTime = event.currentTarget.startTime.value;
-    const endTime = event.currentTarget.endTime.value;
     const phone = event.currentTarget.phone.value;
-    const description = event.currentTarget.description.value;
-
-    return;
 
     setIsLoading(true);
 
-    // const response = await addProfessional(
-    //   email,
-    //   name,
-    //   lastName,
-    //   service,
-    //   location,
-    //   locationService,
-    //   phone,
-    //   description,
-    //   startDay,
-    //   endDay,
-    //   startTime,
-    //   endTime,
-    //   verifications,
-    //   price,
-    //   avatar
-    // );
+    const response = await registerProfessional(
+      name,
+      lastName,
+      email,
+      password,
+      service,
+      location,
+      locationService,
+      phone,
+      price
+    );
 
-    // setIsLoading(false);
+    setIsLoading(false);
 
-    // if (response.status === 201 || response.status === 200) {
-    //   revalidateUrl("/dashboard/professionals");
-    //   setOpen(false);
-    // } else {
-    //   toast({
-    //     variant: "destructive",
-    //     title: response,
-    //   });
-    // }
+    if (response.status === 201 || response.status === 200) {
+      revalidateUrl("/profile-professional");
+      router.push("/profile-professional");
+    } else {
+      toast({
+        variant: "destructive",
+        title: response,
+      });
+    }
   };
 
   return (

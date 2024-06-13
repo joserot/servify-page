@@ -155,12 +155,14 @@ export default function FormEditProfessional({ id, setOpen }: Props) {
         required
         placeholder="Nombre"
         name="userName"
+        disabled
       />
       <Input
         defaultValue={professionalData.lastName}
         required
         placeholder="Apellido"
         name="lastName"
+        disabled
       />
       <Input
         defaultValue={professionalData.email}
@@ -168,6 +170,7 @@ export default function FormEditProfessional({ id, setOpen }: Props) {
         placeholder="Email"
         type="email"
         name="email"
+        disabled
       />
 
       <Select defaultValue={professionalData.service} required name="service">
@@ -225,11 +228,7 @@ export default function FormEditProfessional({ id, setOpen }: Props) {
 
       <Label>
         Desde día
-        <Select
-          defaultValue={professionalData.startDay}
-          required
-          name="startDay"
-        >
+        <Select defaultValue={professionalData.startDay} name="startDay">
           <SelectTrigger>
             <SelectValue placeholder="Selecciona el día" />
           </SelectTrigger>
@@ -248,7 +247,7 @@ export default function FormEditProfessional({ id, setOpen }: Props) {
       </Label>
       <Label>
         Hasta día
-        <Select defaultValue={professionalData.endDay} required name="endDay">
+        <Select defaultValue={professionalData.endDay} name="endDay">
           <SelectTrigger>
             <SelectValue placeholder="Selecciona el día" />
           </SelectTrigger>
@@ -268,11 +267,7 @@ export default function FormEditProfessional({ id, setOpen }: Props) {
 
       <Label>
         Desde horario
-        <Select
-          defaultValue={professionalData.startTime}
-          required
-          name="startTime"
-        >
+        <Select defaultValue={professionalData.startTime} name="startTime">
           <SelectTrigger>
             <SelectValue placeholder="Selecciona el horario" />
           </SelectTrigger>
@@ -292,7 +287,7 @@ export default function FormEditProfessional({ id, setOpen }: Props) {
 
       <Label>
         Hasta horario
-        <Select defaultValue={professionalData.endTime} required name="endTime">
+        <Select defaultValue={professionalData.endTime} name="endTime">
           <SelectTrigger>
             <SelectValue placeholder="Selecciona el horario" />
           </SelectTrigger>
@@ -339,7 +334,6 @@ export default function FormEditProfessional({ id, setOpen }: Props) {
       />
       <Textarea
         defaultValue={professionalData.description}
-        required
         placeholder="Descripción"
         name="description"
       />

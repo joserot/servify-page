@@ -8,13 +8,19 @@ import { faCopy } from "@fortawesome/free-solid-svg-icons";
 
 import { useToast } from "@/components/ui/use-toast";
 
-export default function CopyLink() {
+import { SITE_URL } from "@/constants/constants";
+
+interface Props {
+  professional: Professional;
+}
+
+export default function CopyLink({ professional }: Props) {
   const { toast } = useToast();
 
+  const link = `${SITE_URL}/${professional.location}/${professional.service}/${professional.id}/recomendar`;
+
   const copyLink = async () => {
-    await navigator.clipboard.writeText(
-      "https://servify-page.vercel.app/posadas/electricista/6634200e8abb990e6fd8a377/recomendar"
-    );
+    await navigator.clipboard.writeText(link);
 
     toast({
       title: "¡Link copiado!",
@@ -23,10 +29,7 @@ export default function CopyLink() {
 
   return (
     <div className="w-full flex justify-center items-center gap-2 max-w-[500px] mx-auto py-10">
-      <Input
-        value="https://servify-page.vercel.app/posadas/electricista/6634200e8abb990e6fd8a377/recomendar"
-        disabled
-      />
+      <Input value={link} disabled />
       <Button onClick={copyLink}>
         <FontAwesomeIcon icon={faCopy} />
       </Button>

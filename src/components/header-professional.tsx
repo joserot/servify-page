@@ -1,7 +1,6 @@
 import Logo from "./logo";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 import { DropdownMenuHeader } from "./dropdown-menu-header";
-import HeaderProfessional from "./header-professional";
 import dynamic from "next/dynamic";
 const Searcher = dynamic(() => import("@/components/searcher"), {
   ssr: false,
@@ -12,10 +11,10 @@ interface Props {
   user?: User | null;
 }
 
-export default function Header({ showSearcher = false, user }: Props) {
-  if (user?.roles.includes("professional"))
-    return <HeaderProfessional showSearcher={showSearcher} user={user} />;
-
+export default function HeaderProfessional({
+  showSearcher = false,
+  user,
+}: Props) {
   return (
     <header
       className="
@@ -26,7 +25,7 @@ export default function Header({ showSearcher = false, user }: Props) {
             sticky
             top-0
             shadow-md
-            bg-background
+            bg-primary
             z-10
 
             "
@@ -41,7 +40,7 @@ export default function Header({ showSearcher = false, user }: Props) {
             items-center
             justify-between"
       >
-        <Logo />
+        <Logo color="white" />
 
         {showSearcher && (
           <div className="hidden lg:block border-2 border-gray-200 rounded-full min-w-[500px]">

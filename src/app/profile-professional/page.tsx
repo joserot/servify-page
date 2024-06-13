@@ -3,14 +3,11 @@ import Footer from "@/components/footer";
 
 import getProfile from "@/services/get-profile";
 
-import Form from "./components/form";
-import Revision from "./components/revision";
+import Content from "./components/content";
 import Menu from "./components/menu";
 
-import { Separator } from "@/components/ui/separator";
-
 export default async function ProfessionalPage() {
-  const user: User | null = await getProfile();
+  const user: User = await getProfile();
 
   return (
     <main className="md:bg-gray-200 md:dark:bg-gray-800 relative">
@@ -33,10 +30,8 @@ export default async function ProfessionalPage() {
           md:p-10"
         >
           <Menu />
-          {/* <Separator /> */}
-          <Revision />
           <span className="block text-3xl font-bold my-5">Tu perfil</span>
-          <Form />
+          <Content user={user} />
         </div>
       </div>
 

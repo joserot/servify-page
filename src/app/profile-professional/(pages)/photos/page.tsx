@@ -3,14 +3,11 @@ import Footer from "@/components/footer";
 
 import getProfile from "@/services/get-profile";
 
-import { Separator } from "@/components/ui/separator";
-
 import Menu from "../../components/menu";
 import Content from "./components/content";
-import Revision from "../../components/revision";
 
 export default async function ProfessionalPage() {
-  const user: User | null = await getProfile();
+  const user: User = await getProfile();
 
   return (
     <main className="md:bg-gray-200 md:dark:bg-gray-800 relative">
@@ -33,8 +30,6 @@ export default async function ProfessionalPage() {
           md:p-10"
         >
           <Menu />
-          {/* <Separator /> */}
-          <Revision />
           <span className="block text-3xl font-bold my-5 text-center">
             Sube fotos de tus trabajos
           </span>
@@ -42,7 +37,7 @@ export default async function ProfessionalPage() {
             Sube hasta 10 fotos de tus ultimos trabajos realizados, estos se
             mostrarán en tu perfil
           </p>
-          <Content />
+          <Content user={user} />
         </div>
       </div>
 

@@ -31,18 +31,26 @@ import { Button } from "@/components/ui/button";
 
 import sendWhatsapp from "@/utils/send-whatsapp";
 
-export default function Form() {
+import editMyProfessional from "../services/edit-my-professional";
+
+import revalidateUrl from "@/app/actions";
+
+interface Props {
+  professional: Professional;
+}
+
+export default function Form({ professional }: Props) {
   const { toast } = useToast();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState(professional.phone);
 
   const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const name = event.currentTarget.userName.value;
     const lastName = event.currentTarget.lastName.value;
-    const email = event.currentTarget.email.value;
+    const avatar = event.currentTarget.image.files[0];
     const price = event.currentTarget.price.value;
     const service = event.currentTarget.service.value;
     const location = event.currentTarget.location.value;
@@ -51,42 +59,40 @@ export default function Form() {
     const endDay = event.currentTarget.endDay.value;
     const startTime = event.currentTarget.startTime.value;
     const endTime = event.currentTarget.endTime.value;
-    const phone = event.currentTarget.phone.value;
     const description = event.currentTarget.description.value;
-
-    return;
 
     setIsLoading(true);
 
-    // const response = await addProfessional(
-    //   email,
-    //   name,
-    //   lastName,
-    //   service,
-    //   location,
-    //   locationService,
-    //   phone,
-    //   description,
-    //   startDay,
-    //   endDay,
-    //   startTime,
-    //   endTime,
-    //   verifications,
-    //   price,
-    //   avatar
-    // );
+    const response = await editMyProfessional(
+      professional.id,
+      name,
+      lastName,
+      service,
+      location,
+      locationService,
+      phone,
+      description,
+      startDay,
+      endDay,
+      startTime,
+      endTime,
+      price,
+      avatar
+    );
 
-    // setIsLoading(false);
+    setIsLoading(false);
 
-    // if (response.status === 201 || response.status === 200) {
-    //   revalidateUrl("/dashboard/professionals");
-    //   setOpen(false);
-    // } else {
-    //   toast({
-    //     variant: "destructive",
-    //     title: response,
-    //   });
-    // }
+    if (response.status === 201 || response.status === 200) {
+      revalidateUrl("/profile-professional");
+      toast({
+        title: "Cambios guardados",
+      });
+    } else {
+      toast({
+        variant: "destructive",
+        title: response,
+      });
+    }
   };
 
   const testWhatsApp = async (
@@ -120,11 +126,11 @@ export default function Form() {
           <Image
             width={64}
             height={64}
-            src={"/placeholder-user.webp"}
+            src={professional.image}
             alt="Foto de perfil"
             className="w-16 h-16 rounded-full object-cover object-center"
           />
-          <Input required name="photo" type="file" />
+          <Input name="image" type="file" />
         </div>
       </Label>
 
@@ -133,10 +139,11 @@ export default function Form() {
       <Label className="flex md:items-center flex-col md:flex-row gap-1 md:gap-3 w-full ">
         <span className="md:w-[150px] md:flex-shrink-0">Nombre</span>
         <Input
+          disabled
           required
           placeholder="Ej. Juan"
           name="userName"
-          defaultValue="Juan"
+          defaultValue={professional.name}
         />
       </Label>
 
@@ -145,10 +152,11 @@ export default function Form() {
       <Label className="flex md:items-center flex-col md:flex-row gap-1 md:gap-3 w-full ">
         <span className="md:w-[150px] md:flex-shrink-0">Apellido</span>
         <Input
+          disabled
           required
           placeholder="Ej. Perez"
           name="lastName"
-          defaultValue="Perez"
+          defaultValue={professional.lastName}
         />
       </Label>
 
@@ -161,7 +169,7 @@ export default function Form() {
           type="email"
           placeholder="Ej. juan@perez.com"
           name="email"
-          defaultValue="juan@perez.com"
+          defaultValue={professional.email}
           disabled
         />
       </Label>
@@ -171,9 +179,9 @@ export default function Form() {
       <Label className="flex md:items-center flex-col md:flex-row gap-1 md:gap-3 w-full ">
         <span className="md:w-[150px] md:flex-shrink-0">Descripción</span>
         <Textarea
-          required
-          placeholder="Me dedico a esto hace 5 años..."
+          placeholder="Ej. Me dedico a esto hace 5 años..."
           name="description"
+          defaultValue={professional.description}
         />
       </Label>
 
@@ -187,7 +195,7 @@ export default function Form() {
         <span className="md:w-[150px] md:flex-shrink-0">
           ¿Que servicio ofreces?
         </span>
-        <Select required name="service">
+        <Select defaultValue={professional.service} required name="service">
           <SelectTrigger>
             <SelectValue placeholder="Selecciona la profesion" />
           </SelectTrigger>
@@ -211,7 +219,7 @@ export default function Form() {
         <span className="md:w-[150px] md:flex-shrink-0">
           ¿En qué ubicación ofreces?
         </span>
-        <Select required name="location">
+        <Select defaultValue={professional.location} required name="location">
           <SelectTrigger>
             <SelectValue placeholder="Selecciona la ubicación" />
           </SelectTrigger>
@@ -235,7 +243,11 @@ export default function Form() {
         <span className="md:w-[150px] md:flex-shrink-0">
           ¿En donde ofreces el servicio?
         </span>
-        <Select required name="locationService">
+        <Select
+          defaultValue={professional.locationService}
+          required
+          name="locationService"
+        >
           <SelectTrigger>
             <SelectValue placeholder="Selecciona la ubicación del servicio" />
           </SelectTrigger>
@@ -281,7 +293,13 @@ export default function Form() {
         <span className="md:w-[150px] md:flex-shrink-0">
           Precio mínimo (En pesos)
         </span>
-        <Input type="number" required placeholder="Ej. 10000" name="price" />
+        <Input
+          defaultValue={professional.price}
+          type="number"
+          required
+          placeholder="Ej. 10000"
+          name="price"
+        />
       </Label>
 
       <Separator />
@@ -293,7 +311,7 @@ export default function Form() {
       <div className="flex flex-col gap-4 md:flex-row">
         <Label className="flex flex-col gap-1 w-full md:w-1/2">
           Desde el día
-          <Select required name="startDay">
+          <Select defaultValue={professional.startDay} name="startDay">
             <SelectTrigger>
               <SelectValue placeholder="Selecciona el día" />
             </SelectTrigger>
@@ -312,7 +330,7 @@ export default function Form() {
         </Label>
         <Label className="flex flex-col gap-1 w-full md:w-1/2">
           Hasta el día
-          <Select required name="endDay">
+          <Select defaultValue={professional.endDay} name="endDay">
             <SelectTrigger>
               <SelectValue placeholder="Selecciona el día" />
             </SelectTrigger>
@@ -336,7 +354,7 @@ export default function Form() {
       <div className="flex flex-col gap-4 md:flex-row">
         <Label className="flex flex-col gap-1 w-full md:w-1/2">
           Desde el horario
-          <Select required name="startTime">
+          <Select defaultValue={professional.startTime} name="startTime">
             <SelectTrigger>
               <SelectValue placeholder="Selecciona el horario" />
             </SelectTrigger>
@@ -356,7 +374,7 @@ export default function Form() {
 
         <Label className="flex flex-col gap-1 w-full md:w-1/2">
           Hasta el horario
-          <Select required name="endTime">
+          <Select defaultValue={professional.endTime} name="endTime">
             <SelectTrigger>
               <SelectValue placeholder="Selecciona el horario" />
             </SelectTrigger>
@@ -375,7 +393,7 @@ export default function Form() {
         </Label>
       </div>
 
-      <div className="w-full md:bg-card sticky bottom-0 py-5">
+      <div className="w-full bg-card sticky bottom-0 py-5">
         <LoadingButton className="w-full" loading={isLoading}>
           Guardar cambios
         </LoadingButton>

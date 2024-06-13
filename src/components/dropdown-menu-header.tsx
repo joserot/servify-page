@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -42,62 +43,130 @@ export function DropdownMenuHeader({ user }: Props) {
           variant="outline"
         >
           <FontAwesomeIcon icon={faBars} />
-          <Image
-            height={28}
-            width={28}
-            className="h-7 w-7 rounded-full object-cover object-center"
-            src={user ? user.image : "/placeholder-user.webp"}
-            alt="foto de perfil"
-          />
+          <Avatar className="h-7 w-7">
+            <AvatarImage
+              className="object-cover"
+              src={user ? user.image : "/placeholder-user.webp"}
+              alt="foto de perfil"
+            />
+            <AvatarFallback>
+              {user ? user.name[0] + user.lastName[0] : ""}
+            </AvatarFallback>
+          </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      {!user ? (
-        <DropdownMenuContent className="w-56">
-          <DropdownMenuGroup>
-            <Link href={"/register"}>
-              <DropdownMenuItem>Registrate</DropdownMenuItem>
-            </Link>
-            <Link href={"/login"}>
-              <DropdownMenuItem>Iniciar sesión</DropdownMenuItem>
-            </Link>
-          </DropdownMenuGroup>
+      <LinksMenu user={user} />
+    </DropdownMenu>
+  );
+}
 
-          <DropdownMenuSeparator />
+function LinksMenu({ user }: Props) {
+  let typeUser = null;
+
+  if (user?.roles.includes("professional")) {
+    typeUser = "professional";
+  } else if (user) {
+    typeUser = "user";
+  }
+
+  if (!user) {
+    return (
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuGroup>
+          <Link href={"/register"}>
+            <DropdownMenuItem>Registrate</DropdownMenuItem>
+          </Link>
+          <Link href={"/login"}>
+            <DropdownMenuItem>Iniciar sesión</DropdownMenuItem>
+          </Link>
+        </DropdownMenuGroup>
+
+        <DropdownMenuSeparator />
+        <Link href={"/offer-your-services"}>
+          <DropdownMenuItem>Ofrecé tus servicios</DropdownMenuItem>
+        </Link>
+      </DropdownMenuContent>
+    );
+  }
+
+  if (typeUser === "professional") {
+    return (
+      <DropdownMenuContent className="w-56">
+        <div className="flex py-4 px-2 gap-3 items-center">
+          <Avatar className="h-10 w-10">
+            <AvatarImage
+              className="object-cover"
+              src={user ? user.image : "/placeholder-user.webp"}
+              alt="foto de perfil"
+            />
+            <AvatarFallback>
+              {user ? user.name[0] + user.lastName[0] : ""}
+            </AvatarFallback>
+          </Avatar>
+
+          <span>{user.name + " " + user.lastName}</span>
+        </div>
+
+        <DropdownMenuGroup>
+          <Link href={"/profile-professional"}>
+            <DropdownMenuItem>Perfil</DropdownMenuItem>
+          </Link>
+          <Link href={"/profile-professional/preview"}>
+            <DropdownMenuItem>Vista previa de tu perfil</DropdownMenuItem>
+          </Link>
+          <Link href={"/profile-professional/photos"}>
+            <DropdownMenuItem>Agrega fotos de tus trabajos</DropdownMenuItem>
+          </Link>
+          <Link href={"/profile-professional/recommendations"}>
+            <DropdownMenuItem>Obtén recomendaciones</DropdownMenuItem>
+          </Link>
+          <Link href={"/contact"}>
+            <DropdownMenuItem>Soporte</DropdownMenuItem>
+          </Link>
+        </DropdownMenuGroup>
+
+        <DropdownMenuSeparator />
+        <button className="w-full" onClick={logout}>
+          <DropdownMenuItem>Cerrar sesión</DropdownMenuItem>
+        </button>
+      </DropdownMenuContent>
+    );
+  }
+
+  if (typeUser === "user") {
+    return (
+      <DropdownMenuContent className="w-56">
+        <div className="flex py-4 px-2 gap-3 items-center">
+          <Avatar className="h-10 w-10">
+            <AvatarImage
+              className="object-cover"
+              src={user ? user.image : "/placeholder-user.webp"}
+              alt="foto de perfil"
+            />
+            <AvatarFallback>
+              {user ? user.name[0] + user.lastName[0] : ""}
+            </AvatarFallback>
+          </Avatar>
+          <span>{user.name + " " + user.lastName}</span>
+        </div>
+
+        <DropdownMenuGroup>
+          <Link href={"/profile"}>
+            <DropdownMenuItem>Perfil</DropdownMenuItem>
+          </Link>
+          <Link href={"/contact"}>
+            <DropdownMenuItem>Contacto</DropdownMenuItem>
+          </Link>
           <Link href={"/offer-your-services"}>
             <DropdownMenuItem>Ofrecé tus servicios</DropdownMenuItem>
           </Link>
-        </DropdownMenuContent>
-      ) : (
-        <DropdownMenuContent className="w-56">
-          <div className="flex py-4 px-2 gap-3 items-center">
-            <Image
-              width={40}
-              height={40}
-              src={user.image}
-              className="h-10 w-10 rounded-full object-cover object-center"
-              alt={user.name}
-            />
-            <span>{user.name + " " + user.lastName}</span>
-          </div>
+        </DropdownMenuGroup>
 
-          <DropdownMenuGroup>
-            <Link href={"/profile"}>
-              <DropdownMenuItem>Perfil</DropdownMenuItem>
-            </Link>
-            <Link href={"/contact"}>
-              <DropdownMenuItem>Contacto</DropdownMenuItem>
-            </Link>
-            <Link href={"/offer-your-services"}>
-              <DropdownMenuItem>Ofrecé tus servicios</DropdownMenuItem>
-            </Link>
-          </DropdownMenuGroup>
-
-          <DropdownMenuSeparator />
-          <button className="w-full" onClick={logout}>
-            <DropdownMenuItem>Cerrar sesión</DropdownMenuItem>
-          </button>
-        </DropdownMenuContent>
-      )}
-    </DropdownMenu>
-  );
+        <DropdownMenuSeparator />
+        <button className="w-full" onClick={logout}>
+          <DropdownMenuItem>Cerrar sesión</DropdownMenuItem>
+        </button>
+      </DropdownMenuContent>
+    );
+  }
 }

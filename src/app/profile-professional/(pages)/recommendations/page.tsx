@@ -3,14 +3,11 @@ import Footer from "@/components/footer";
 
 import getProfile from "@/services/get-profile";
 
-import { Separator } from "@/components/ui/separator";
-
 import Menu from "../../components/menu";
-import Qr from "./components/qr";
-import CopyLink from "./components/copy-link";
+import Content from "./components/content";
 
 export default async function ProfessionalPage() {
-  const user: User | null = await getProfile();
+  const user: User = await getProfile();
 
   return (
     <main className="md:bg-gray-200 md:dark:bg-gray-800 relative">
@@ -33,7 +30,6 @@ export default async function ProfessionalPage() {
           md:p-10"
         >
           <Menu />
-          <Separator />
           <span className="block text-3xl font-bold my-5 text-center">
             Obtén recomendaciones
           </span>
@@ -41,8 +37,7 @@ export default async function ProfessionalPage() {
             Haz que tus clientes escaneen el código QR o vayan al link para
             recomendarte
           </p>
-          <Qr />
-          <CopyLink />
+          <Content user={user} />
         </div>
       </div>
 

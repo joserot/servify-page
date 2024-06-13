@@ -1,6 +1,7 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
+import { Label } from "@radix-ui/react-dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 
@@ -33,13 +34,24 @@ export default function Form() {
 
   return (
     <form onSubmit={handleSubmit} className="w-full  flex flex-col gap-4">
-      <Input required type="email" placeholder="Email" name="email" />
-      <Input
-        required
-        type="password"
-        placeholder="Contraseña"
-        name="password"
-      />
+      <Label className="flex flex-col gap-1 w-full">
+        Email
+        <Input
+          required
+          type="email"
+          placeholder="Ej. juanperez@email.com"
+          name="email"
+        />
+      </Label>
+      <Label className="flex flex-col gap-1 w-full">
+        Contraseña
+        <Input
+          required
+          type="password"
+          placeholder="*********"
+          name="password"
+        />
+      </Label>
       <Button className="text-bold text-white">Iniciar sesión</Button>
     </form>
   );

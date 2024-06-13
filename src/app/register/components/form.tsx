@@ -1,6 +1,7 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { LoadingButton } from "@/components/ui/loading-button";
 import { useToast } from "@/components/ui/use-toast";
 
@@ -46,15 +47,32 @@ export default function Form() {
 
   return (
     <form onSubmit={handleSubmit} className="w-full  flex flex-col gap-4">
-      <Input required type="text" placeholder="Nombre" name="userName" />
-      <Input required type="text" placeholder="Apellido" name="lastName" />
-      <Input required type="email" placeholder="Email" name="email" />
-      <Input
-        required
-        type="password"
-        placeholder="Contraseña"
-        name="password"
-      />
+      <Label className="flex flex-col gap-1 w-full">
+        Nombre
+        <Input required type="text" placeholder="Ej. Juan" name="userName" />
+      </Label>
+      <Label className="flex flex-col gap-1 w-full">
+        Apellido
+        <Input required type="text" placeholder="Ej. Pérez" name="lastName" />
+      </Label>
+      <Label className="flex flex-col gap-1 w-full">
+        Email
+        <Input
+          required
+          type="email"
+          placeholder="Ej. juanperez@email.com"
+          name="email"
+        />
+      </Label>
+      <Label className="flex flex-col gap-1 w-full">
+        Contraseña
+        <Input
+          required
+          type="password"
+          placeholder="*********"
+          name="password"
+        />
+      </Label>
       <LoadingButton loading={isLoading}>Registrarse</LoadingButton>
     </form>
   );

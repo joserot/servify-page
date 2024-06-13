@@ -2,11 +2,17 @@
 
 import QRCode from "react-qr-code";
 
-export default function Qr() {
+import { SITE_URL } from "@/constants/constants";
+
+interface Props {
+  professional: Professional;
+}
+
+export default function Qr({ professional }: Props) {
   return (
     <div className="w-full flex justify-center">
       <QRCode
-        value="https://servify-page.vercel.app/posadas/electricista/6634200e8abb990e6fd8a377/recomendar"
+        value={`${SITE_URL}/${professional.location}/${professional.service}/${professional.id}/recomendar`}
         size={200}
       />
     </div>

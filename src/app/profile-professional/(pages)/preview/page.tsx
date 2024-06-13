@@ -3,23 +3,12 @@ import Footer from "@/components/footer";
 
 import getProfile from "@/services/get-profile";
 
-import { Separator } from "@/components/ui/separator";
-
 import Menu from "../../components/menu";
-import Revision from "../../components/revision";
 
-import Hero from "./components/hero";
-import getOneProfessional from "@/services/get-one-professional";
+import Content from "./components/content";
 
 export default async function ProfessionalPage() {
-  const user: User | null = await getProfile();
-  const professional: Professional | null = await getOneProfessional(
-    "66316927d63290f5f8d153b6"
-  );
-
-  if (!professional) {
-    return <div>No se encontró el perfil</div>;
-  }
+  const user: User = await getProfile();
 
   return (
     <main className="md:bg-gray-200 md:dark:bg-gray-800 relative">
@@ -42,9 +31,7 @@ export default async function ProfessionalPage() {
           md:p-10"
         >
           <Menu />
-          {/* <Separator /> */}
-          <Revision />
-          <Hero professional={professional} user={user} />
+          <Content user={user} />
         </div>
       </div>
 

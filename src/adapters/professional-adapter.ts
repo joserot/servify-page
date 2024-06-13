@@ -1,11 +1,13 @@
 export default function professionalAdapter(professional: any) {
   return {
     id: professional._id,
-    email: professional.email,
-    name: professional.name,
-    lastName: professional.lastName,
+    email: professional.userId.email,
+    name: professional.userId.name,
+    lastName: professional.userId.lastName,
     createdAt: professional.createdAt,
-    image: professional.avatar ? professional.avatar : "/placeholder-user.webp",
+    image: professional.userId.avatar
+      ? professional.userId.avatar
+      : "/placeholder-user.webp",
     location: professional.location,
     locationService: professional.locationService,
     service: professional.profession,

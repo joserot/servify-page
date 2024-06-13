@@ -12,6 +12,8 @@ import {
 
 import { usePathname } from "next/navigation";
 
+import { Separator } from "@/components/ui/separator";
+
 const linksList = [
   // {
   //   label: "Destaca tu perfil",
@@ -69,6 +71,7 @@ export default function Menu() {
           </Link>
         );
       })}
+      <Separator />
     </nav>
   );
 }
