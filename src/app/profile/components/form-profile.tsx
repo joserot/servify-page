@@ -3,6 +3,7 @@
 import { LoadingButton } from "@/components/ui/loading-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import editProfile from "../service/edit-profile";
 
@@ -12,7 +13,6 @@ import { useState } from "react";
 import revalidateUrl from "@/app/actions";
 
 // import Link from "next/link";
-import Image from "next/image";
 
 interface Props {
   user: User;
@@ -85,13 +85,16 @@ export default function FormProfile({ user }: Props) {
         <Label className="flex flex-col gap-1">
           Foto de perfil
           <div className="flex gap-2 items-center justify-start">
-            <Image
-              width={64}
-              height={64}
-              src={user.image}
-              alt="Foto de perfil"
-              className="w-16 h-16 rounded-full object-cover object-center"
-            />
+            <Avatar className="object-cover w-16 h-16 border border-gray-300">
+              <AvatarImage
+                className="object-cover"
+                src={user ? user.image : "/placeholder-user.webp"}
+                alt="foto de perfil"
+              />
+              <AvatarFallback className="text-xl">
+                {user ? user.name[0] + user.lastName[0] : ""}
+              </AvatarFallback>
+            </Avatar>
             <Input name="avatar" className="w-full" type="file" />
           </div>
         </Label>

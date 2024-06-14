@@ -10,6 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import { useRouter } from "next/navigation";
 
@@ -76,19 +77,16 @@ export default function CardWorker({ worker }: Props) {
           items-start
           py-2`}
         >
-          <img
-            src={worker.image}
-            alt={worker.service}
-            width={400}
-            height={400}
-            className="
-              w-28 
-              h-28
-              object-cover
-              rounded
-              border
-              border-gray-300"
-          />
+          <Avatar className="object-cover h-28 w-28 rounded border border-gray-300">
+            <AvatarImage
+              className="object-cover"
+              src={worker ? worker.image : "/placeholder-user.webp"}
+              alt="foto de perfil"
+            />
+            <AvatarFallback className="text-xl rounded">
+              {worker ? worker.name[0] + worker.lastName[0] : ""}
+            </AvatarFallback>
+          </Avatar>
         </div>
         <div
           className="

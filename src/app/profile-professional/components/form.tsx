@@ -13,6 +13,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { LoadingButton } from "@/components/ui/loading-button";
 import { Separator } from "@/components/ui/separator";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import { useToast } from "@/components/ui/use-toast";
 
@@ -26,7 +27,6 @@ import {
   timesList,
 } from "@/data/data";
 
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
 import sendWhatsapp from "@/utils/send-whatsapp";
@@ -123,13 +123,18 @@ export default function Form({ professional }: Props) {
       <Label className="flex md:items-center flex-col md:flex-row gap-1 md:gap-3 w-full ">
         <span className="md:w-[150px] md:flex-shrink-0">Foto de perfil</span>
         <div className="w-full flex gap-2 items-center">
-          <Image
-            width={64}
-            height={64}
-            src={professional.image}
-            alt="Foto de perfil"
-            className="w-16 h-16 rounded-full object-cover object-center"
-          />
+          <Avatar className="object-cover w-16 h-16 border border-gray-300">
+            <AvatarImage
+              className="object-cover"
+              src={professional ? professional.image : "/placeholder-user.webp"}
+              alt="foto de perfil"
+            />
+            <AvatarFallback className="text-xl">
+              {professional
+                ? professional.name[0] + professional.lastName[0]
+                : ""}
+            </AvatarFallback>
+          </Avatar>
           <Input name="image" type="file" />
         </div>
       </Label>

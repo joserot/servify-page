@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import getLabel from "@/utils/get-label";
 import getMoneyFormat from "@/utils/get-money-format";
@@ -40,19 +41,18 @@ export default function Hero({ professional, user }: Props) {
         items-center"
       >
         <div>
-          <img
-            src={professional.image}
-            width={150}
-            height={150}
-            alt={professional.name + " " + professional.lastName}
-            className="
-            w-40 
-            h-40 
-            rounded-full 
-            object-cover   
-            border
-          border-gray-300"
-          />
+          <Avatar className="object-cover h-40 w-40 border border-gray-300">
+            <AvatarImage
+              className="object-cover"
+              src={professional ? professional.image : "/placeholder-user.webp"}
+              alt="foto de perfil"
+            />
+            <AvatarFallback className="text-xl">
+              {professional
+                ? professional.name[0] + professional.lastName[0]
+                : ""}
+            </AvatarFallback>
+          </Avatar>
         </div>
         <div
           className="
