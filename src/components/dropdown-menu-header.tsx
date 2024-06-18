@@ -76,6 +76,9 @@ function LinksMenu({ user }: Props) {
           <Link href={"/register"}>
             <DropdownMenuItem>Registrate</DropdownMenuItem>
           </Link>
+          <Link href={"/register-professional"}>
+            <DropdownMenuItem>Registrate como profesional</DropdownMenuItem>
+          </Link>
           <Link href={"/login"}>
             <DropdownMenuItem>Iniciar sesión</DropdownMenuItem>
           </Link>
