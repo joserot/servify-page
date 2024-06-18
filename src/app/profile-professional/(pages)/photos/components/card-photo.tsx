@@ -11,7 +11,7 @@ export default function CardPhoto({ src }: Props) {
   return (
     <div>
       <img
-        className="h-auto w-full object-cover rounded-sm cursor-pointer"
+        className="h-[200px] w-full object-cover rounded-sm cursor-pointer"
         width={200}
         height={200}
         alt="Trabajo realizado"

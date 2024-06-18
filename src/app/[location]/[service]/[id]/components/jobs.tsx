@@ -35,7 +35,7 @@ export default function Jobs({ professional }: Props) {
           return (
             <img
               onClick={() => handleClick(image)}
-              className="h-auto w-full object-cover rounded-sm cursor-pointer hover:scale-110 transition-all"
+              className="h-[200px] w-full object-cover rounded-sm cursor-pointer hover:scale-110 transition-all"
               key={i}
               src={image}
               width={200}
