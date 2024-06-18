@@ -2,38 +2,76 @@
 
 import { Dialog, DialogContent, DialogFooter } from "@/components/ui/dialog";
 
-import { Button } from "@/components/ui/button";
+import { LoadingButton } from "@/components/ui/loading-button";
 import { Input } from "@/components/ui/input";
 
 import { useState } from "react";
 
+import { useToast } from "@/components/ui/use-toast";
+
+import addPhotos from "../services/add-photos";
+
+import revalidateUrl from "@/app/actions";
+
 interface Props {
   professional: Professional;
+  user: User;
   isOpen: boolean;
   setOpen: (open: boolean) => void;
 }
 
 export default function ModalAddPhotos({
   professional,
+  user,
   isOpen,
   setOpen,
 }: Props) {
-  const [files, setFiles] = useState<string[]>([]);
+  const [files, setFiles] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
-  const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (!files.length) {
+      toast({
+        variant: "destructive",
+        title: "Introduce alguna foto",
+      });
+
+      return;
+    }
+
+    setIsLoading(true);
+
+    const response = await addPhotos(professional.id, user.id, files);
+
+    setIsLoading(false);
+
+    if (response.status === 201 || response.status === 200) {
+      revalidateUrl("/profile-professional/photos");
+      toast({
+        title: "Cambios guardados",
+      });
+      setOpen(false);
+    } else {
+      toast({
+        variant: "destructive",
+        title: response,
+      });
+    }
   };
 
   function handleChange(e: React.SyntheticEvent<HTMLInputElement>) {
     const filesList = e.currentTarget.files;
 
-    let filesArray: string[] = [];
+    let filesArray: any[] = [];
 
     if (filesList) {
       for (let i = 0; i < filesList.length; i++) {
         if (filesArray.length < 10) {
           {
-            filesArray.push(URL.createObjectURL(filesList[i]));
+            filesArray.push(filesList[i]);
           }
         }
       }
@@ -54,6 +92,7 @@ export default function ModalAddPhotos({
             mostrarán en tu perfil
           </p>
           <form
+            id="form-submit-photos"
             onSubmit={handleSubmit}
             className="
                  w-full 
@@ -68,7 +107,7 @@ export default function ModalAddPhotos({
                   return (
                     <img
                       key={i}
-                      src={file}
+                      src={URL.createObjectURL(file)}
                       className="h-[200px] w-full object-cover rounded-sm"
                     />
                   );
@@ -86,7 +125,13 @@ export default function ModalAddPhotos({
           </form>
         </div>
         <DialogFooter className="sticky bottom-0 left-0 w-full bg-background py-2 pb-6">
-          <Button className="w-full">Subir</Button>
+          <LoadingButton
+            form="form-submit-photos"
+            className="w-full"
+            loading={isLoading}
+          >
+            Guardar cambios
+          </LoadingButton>
         </DialogFooter>
       </DialogContent>
     </Dialog>

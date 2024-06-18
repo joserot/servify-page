@@ -22,7 +22,14 @@ export default async function Content({ user }: Props) {
         {professionalData.jobsImages.length ? (
           <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
             {professionalData.jobsImages.map((card, i) => {
-              return <CardPhoto key={i} src={card} />;
+              return (
+                <CardPhoto
+                  key={i}
+                  src={card}
+                  user={user}
+                  professional={professionalData}
+                />
+              );
             })}
           </div>
         ) : (
@@ -32,9 +39,11 @@ export default async function Content({ user }: Props) {
             </p>
           </div>
         )}
-        <div className="w-full bg-card sticky bottom-0 py-5">
-          <ButtonAddPhotos professional={professionalData} />
-        </div>
+        {professionalData.jobsImages.length < 10 ? (
+          <div className="w-full bg-card sticky bottom-0 py-5">
+            <ButtonAddPhotos professional={professionalData} user={user} />
+          </div>
+        ) : null}
       </div>
     </>
   );

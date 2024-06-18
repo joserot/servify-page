@@ -9,9 +9,10 @@ import { useState } from "react";
 
 interface Props {
   professional: Professional;
+  user: User;
 }
 
-export default function ButtonAddPhotos({ professional }: Props) {
+export default function ButtonAddPhotos({ professional, user }: Props) {
   const [open, setOpen] = useState<boolean>(false);
 
   const handleClick = (event: React.SyntheticEvent<HTMLButtonElement>) => {
@@ -27,6 +28,7 @@ export default function ButtonAddPhotos({ professional }: Props) {
       </DialogTrigger>
       <ModalAddPhotos
         professional={professional}
+        user={user}
         isOpen={open}
         setOpen={setOpen}
       />
