@@ -15,6 +15,8 @@ import { LoadingButton } from "@/components/ui/loading-button";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
+import ModalChangePassword from "@/components/modal-change-password";
+
 import { useToast } from "@/components/ui/use-toast";
 
 import { useState } from "react";
@@ -43,6 +45,7 @@ export default function Form({ professional }: Props) {
   const { toast } = useToast();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isOpenModalPassword, setOpenModalPassword] = useState(false);
   const [phone, setPhone] = useState(professional.phone);
 
   const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
@@ -177,6 +180,18 @@ export default function Form({ professional }: Props) {
           defaultValue={professional.email}
           disabled
         />
+      </Label>
+
+      <Separator />
+
+      <Label className="flex md:items-center flex-col md:flex-row gap-1 md:gap-3 w-full ">
+        <span className="md:w-[150px] md:flex-shrink-0">Contraseña</span>
+        <ModalChangePassword
+          open={isOpenModalPassword}
+          setOpen={setOpenModalPassword}
+        >
+          <Button variant={"secondary"}>Cambiar contraseña</Button>
+        </ModalChangePassword>
       </Label>
 
       <Separator />

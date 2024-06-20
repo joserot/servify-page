@@ -4,6 +4,9 @@ import { LoadingButton } from "@/components/ui/loading-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+
+import ModalChangePassword from "@/components/modal-change-password";
 
 import editProfile from "../service/edit-profile";
 
@@ -22,6 +25,7 @@ export default function FormProfile({ user }: Props) {
   const { toast } = useToast();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isOpenModalPassword, setOpenModalPassword] = useState(false);
 
   const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -76,12 +80,19 @@ export default function FormProfile({ user }: Props) {
           Email
           <Input required value={user.email} placeholder="Email" disabled />
         </Label>
-        {/* <span className="text-sm">
-          ¿Olvidaste tu contraseña?{" "}
-          <Link className="text-primary hover:underline" href="/">
-            Actualizar contraseña
-          </Link>
-        </span> */}
+
+        <Label className="flex flex-col gap-1">
+          Contraseña
+          <ModalChangePassword
+            open={isOpenModalPassword}
+            setOpen={setOpenModalPassword}
+          >
+            <Button className="self-start" variant={"secondary"}>
+              Cambiar contraseña
+            </Button>
+          </ModalChangePassword>
+        </Label>
+
         <Label className="flex flex-col gap-1">
           Foto de perfil
           <div className="flex gap-2 items-center justify-start">
