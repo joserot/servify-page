@@ -81,17 +81,19 @@ export default function FormProfile({ user }: Props) {
           <Input required value={user.email} placeholder="Email" disabled />
         </Label>
 
-        <Label className="flex flex-col gap-1">
-          Contraseña
-          <ModalChangePassword
-            open={isOpenModalPassword}
-            setOpen={setOpenModalPassword}
-          >
-            <Button className="self-start" variant={"secondary"}>
-              Cambiar contraseña
-            </Button>
-          </ModalChangePassword>
-        </Label>
+        {user.password ? (
+          <Label className="flex flex-col gap-1">
+            Contraseña
+            <ModalChangePassword
+              open={isOpenModalPassword}
+              setOpen={setOpenModalPassword}
+            >
+              <Button className="self-start" variant={"secondary"}>
+                Cambiar contraseña
+              </Button>
+            </ModalChangePassword>
+          </Label>
+        ) : null}
 
         <Label className="flex flex-col gap-1">
           Foto de perfil
