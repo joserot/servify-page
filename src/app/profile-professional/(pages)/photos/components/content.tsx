@@ -18,6 +18,13 @@ export default async function Content({ user }: Props) {
   return (
     <>
       <Revision active={professionalData.active} />
+      <span className="block text-3xl font-bold my-5 text-center">
+        Sube fotos de tus trabajos
+      </span>
+      <p className="text-foreground text-center mb-5">
+        Sube hasta 10 fotos de tus ultimos trabajos realizados, estos se
+        mostrarán en tu perfil
+      </p>
       <div className="w-full flex flex-col gap-5 relative">
         {professionalData.jobsImages.length ? (
           <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">

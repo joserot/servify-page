@@ -12,8 +12,6 @@ import {
 
 import { usePathname } from "next/navigation";
 
-import { Separator } from "@/components/ui/separator";
-
 const linksList = [
   // {
   //   label: "Destaca tu perfil",
@@ -21,10 +19,16 @@ const linksList = [
   //   icon: faStar,
   // },
   {
+    label: "Editar tu perfil",
+    value: "/profile-professional",
+    icon: faPen,
+  },
+  {
     label: "Vista previa de tu perfil",
     value: "/profile-professional/preview",
     icon: faIdCard,
   },
+
   {
     label: "Agrega fotos de tus trabajos",
     value: "/profile-professional/photos",
@@ -35,19 +39,13 @@ const linksList = [
     value: "/profile-professional/recommendations",
     icon: faComments,
   },
-
-  {
-    label: "Editar tu perfil",
-    value: "/profile-professional",
-    icon: faPen,
-  },
 ];
 
 export default function Menu() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex flex-col gap-2 items-start justify-start mb-5">
+    <nav className="w-full grid grid-cols-1 md:grid-cols-2 gap-2 mb-6">
       {linksList.map((link) => {
         const active = pathname === link.value;
 
@@ -55,12 +53,17 @@ export default function Menu() {
           <Link
             key={link.value}
             className={`
+              border
+              border-primary
+              p-2
+              rounded-md
               text-lg
               text-primary
-              ${active ? "font-bold" : ""}
+              ${active ? "font-bold bg-primary text-white" : ""}
               flex
               gap-2
               items-center
+              justify-center
               transition-all
               hover:underline
               `}
@@ -71,7 +74,6 @@ export default function Menu() {
           </Link>
         );
       })}
-      <Separator />
     </nav>
   );
 }

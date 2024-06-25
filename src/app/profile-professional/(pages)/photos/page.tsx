@@ -30,13 +30,7 @@ export default async function ProfessionalPage() {
           md:p-10"
         >
           <Menu />
-          <span className="block text-3xl font-bold my-5 text-center">
-            Sube fotos de tus trabajos
-          </span>
-          <p className="text-foreground text-center mb-5">
-            Sube hasta 10 fotos de tus ultimos trabajos realizados, estos se
-            mostrarán en tu perfil
-          </p>
+
           <Content user={user} />
         </div>
       </div>

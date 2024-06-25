@@ -20,7 +20,7 @@ export default function ButtonAddProfessional() {
           <FontAwesomeIcon className="w-3" icon={faPlus} /> Agregar profesional
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] overflow-y-auto max-h-screen">
         <div className="mx-auto w-11/12 max-w-[500px] h-full flex flex-col justify-center items-center">
           <span className="block mb-4 text-3xl font-bold text-center">
             Agregar profesional

@@ -30,7 +30,7 @@ export default async function ProfessionalPage() {
           md:p-10"
         >
           <Menu />
-          <span className="block text-3xl font-bold my-5">Tu perfil</span>
+
           <Content user={user} />
         </div>
       </div>
