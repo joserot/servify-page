@@ -58,8 +58,6 @@ export default function Form() {
       price
     );
 
-    setIsLoading(false);
-
     if (response.status === 201 || response.status === 200) {
       revalidateUrl("/profile-professional");
       router.push("/profile-professional");
@@ -68,6 +66,7 @@ export default function Form() {
         variant: "destructive",
         title: response,
       });
+      setIsLoading(false);
     }
   };
 

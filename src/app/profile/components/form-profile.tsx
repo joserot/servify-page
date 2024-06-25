@@ -108,7 +108,12 @@ export default function FormProfile({ user }: Props) {
                 {user ? user.name[0] + user.lastName[0] : ""}
               </AvatarFallback>
             </Avatar>
-            <Input name="avatar" className="w-full" type="file" />
+            <Input
+              name="avatar"
+              className="w-full"
+              type="file"
+              accept="image/*"
+            />
           </div>
         </Label>
         <LoadingButton loading={isLoading} className="w-auto self-start">

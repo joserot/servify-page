@@ -138,7 +138,7 @@ export default function Form({ professional }: Props) {
                 : ""}
             </AvatarFallback>
           </Avatar>
-          <Input name="image" type="file" />
+          <Input name="image" type="file" accept="image/*" />
         </div>
       </Label>
 
