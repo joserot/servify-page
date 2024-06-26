@@ -30,7 +30,6 @@ export default async function ProfessionalPage() {
           md:p-10"
         >
           <Menu />
-
           <Content user={user} />
         </div>
       </div>

@@ -15,7 +15,7 @@ export default async function Content({ user }: Props) {
   return (
     <>
       <Revision active={professionalData.active} />
-      <span className="block text-3xl font-bold my-5">Tu perfil</span>
+      <span className="block text-3xl font-bold my-5">Editar tu perfil</span>
       <Form professional={professionalData} />
     </>
   );
