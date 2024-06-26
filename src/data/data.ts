@@ -84,6 +84,18 @@ export const verificationsList = [
     value: "10-experiencia",
     label: "+10 años de experiencia",
   },
+  {
+    value: "15-experiencia",
+    label: "+15 años de experiencia",
+  },
+  {
+    value: "20-experiencia",
+    label: "+20 años de experiencia",
+  },
+  {
+    value: "atencion-24-horas",
+    label: "Atención las 24hs",
+  },
 ];
 
 export const statusList = [
