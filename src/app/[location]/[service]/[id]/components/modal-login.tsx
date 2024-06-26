@@ -6,7 +6,11 @@ import Separator from "./separator";
 
 import Link from "next/link";
 
-export default function ModalLogin() {
+interface Props {
+  professional: Professional;
+}
+
+export default function ModalLogin({ professional }: Props) {
   return (
     <DialogContent className="sm:max-w-[425px]">
       <div className="mx-auto w-11/12 max-w-[500px] h-full flex flex-col justify-center items-center">
@@ -16,7 +20,11 @@ export default function ModalLogin() {
         <p className="mb-4 text-foreground text-center">
           Inicia sesión para contactar con especialistas en tu ciudad
         </p>
-        <GoogleButton />
+        <GoogleButton
+          location={professional.location}
+          service={professional.service}
+          id={professional.id}
+        />
         <Separator />
         <Form />
         <p className="mb-4 text-foreground text-center mt-5">

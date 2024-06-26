@@ -6,10 +6,20 @@ import { Button } from "@/components/ui/button";
 
 import loginGoogle from "@/services/login-google";
 
-export default function GoogleButton() {
+interface Props {
+  location?: string;
+  service?: string;
+  id?: string;
+}
+
+export default function GoogleButton({ location, service, id }: Props) {
   return (
     <Button
-      onClick={loginGoogle}
+      onClick={() => {
+        location && service && id
+          ? loginGoogle(location, service, id)
+          : loginGoogle();
+      }}
       className="w-full flex gap-2 items-center"
       variant={"outline"}
     >

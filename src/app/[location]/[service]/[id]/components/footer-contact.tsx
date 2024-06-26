@@ -47,7 +47,7 @@ export default function FooterContact({ professional, user }: Props) {
             <FontAwesomeIcon icon={faWhatsapp} />
           </Button>
         </DialogTrigger>
-        <ModalLogin />
+        <ModalLogin professional={professional} />
       </Dialog>
     </div>
   );

@@ -61,7 +61,7 @@ export default function ContactButton({
           <FontAwesomeIcon icon={faWhatsapp} />
         </Button>
       </DialogTrigger>
-      <ModalLogin />
+      <ModalLogin professional={professional} />
     </Dialog>
   );
 }
